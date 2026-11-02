@@ -8,7 +8,7 @@ const CLAVE_CARRITO = "changuito_carrito";
 /* Tope de UX del prototipo (Compra-Estados.dc.html), no una regla del
  * backend: el backend solo valida contra el stock real, sin un máximo fijo.
  * Acá se respetan los dos a la vez — lo que sea más chico. */
-const CANTIDAD_MAXIMA = 12;
+export const CANTIDAD_MAXIMA = 12;
 
 /**
  * El carrito guarda solo `{ idProducto, cantidad }` por línea — nunca copia
@@ -19,6 +19,11 @@ const CANTIDAD_MAXIMA = 12;
  */
 export function CartProvider({ children }) {
   const [items, setItems] = useState(() => leer(CLAVE_CARRITO, []));
+  /* El aviso ("Yerba mate 500 g se agregó al carrito") vive acá y no en cada
+   * página, porque se puede agregar un producto desde Inicio, el Catálogo o
+   * el Detalle — un solo lugar para mostrarlo evita repetir la lógica en
+   * los tres. Lo consume ToastCarrito, montado una sola vez en LayoutCliente. */
+  const [aviso, setAviso] = useState(null);
 
   useEffect(() => {
     guardar(CLAVE_CARRITO, items);
@@ -51,7 +56,7 @@ export function CartProvider({ children }) {
   async function agregar(idProducto, cantidad) {
     const existente = buscarItem(idProducto);
     const cantidadFinal = (existente?.cantidad ?? 0) + cantidad;
-    await validarCantidad(idProducto, cantidadFinal);
+    const producto = await validarCantidad(idProducto, cantidadFinal);
 
     setItems((actuales) => {
       if (existente) {
@@ -63,6 +68,15 @@ export function CartProvider({ children }) {
       }
       return [...actuales, { idProducto, cantidad: cantidadFinal }];
     });
+
+    setAviso({
+      variante: "exito",
+      mensaje:
+        cantidad === 1
+          ? `${producto.nombre} se agregó al carrito`
+          : `Agregaste ${cantidad} unidades de ${producto.nombre} al carrito`,
+    });
+    return producto;
   }
 
   /** Reemplaza la cantidad de una línea existente (no la suma). */
@@ -96,6 +110,8 @@ export function CartProvider({ children }) {
         actualizarCantidad,
         quitar,
         vaciar,
+        aviso,
+        limpiarAviso: () => setAviso(null),
       }}
     >
       {children}

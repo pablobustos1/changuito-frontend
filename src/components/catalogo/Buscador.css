@@ -1,0 +1,28 @@
+.buscador {
+  position: relative;
+  flex: 1;
+}
+
+.buscador-icono {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-texto-suave);
+  pointer-events: none;
+}
+
+.buscador input {
+  width: 100%;
+  min-height: var(--zona-tactil);
+  padding: 0 var(--espacio-2) 0 44px;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-campo);
+  background: var(--color-blanco);
+  font: var(--tipo-texto);
+}
+
+/* Safari agrega su propia "x" de limpiar en type=search; se deja la nativa. */
+.buscador input::-webkit-search-cancel-button {
+  cursor: pointer;
+}

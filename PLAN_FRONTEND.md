@@ -206,6 +206,64 @@ que ahí está. Archivos clave a abrir antes de escribir código:
   sin sesión → login como `chenzito@gmail.com` → vuelve exactamente a
   `/finalizar-compra` (no a `/`).
 
+### Paso 4 — Catálogo, detalle, carrito e Inicio
+
+- `src/components/ui/EstadoVacio.jsx` (+ css): mascota + título + texto +
+  botón, reusado en catálogo sin resultados y carrito vacío.
+- `src/components/catalogo/`: `TarjetaProducto.jsx` (+ css) con sus 3
+  estados (normal, "Agregado al carrito" transitorio por 2.2s, sin stock),
+  `Buscador.jsx`, `FiltroCategoria.jsx` (pills con contador, incluido
+  "Todos"), `OrdenPorPrecio.jsx` (dos botones, no un `<select>`).
+- `Catalogo.jsx` (+ css, C2): usa `useSearchParams` para `?categoria=N`
+  (así el link desde Inicio/navbar llega filtrado), `useMemo` para
+  filtrar+ordenar sin recalcular de más, y tres variantes de estado vacío
+  según el caso (sin productos en la categoría, búsqueda sin resultados,
+  catálogo vacío).
+- `DetalleProducto.jsx` (+ css, C3): `useParams`, stepper de cantidad con
+  `aria-label="Restar/Sumar una unidad"` igual que el prototipo, tarjeta de
+  "agregado" que queda fija (a diferencia de la de la tarjeta de grilla,
+  que es transitoria).
+- `src/components/carrito/`: `FilaCarrito.jsx` (+ css) — la pieza más
+  delicada: el campo de cantidad es tipeable (no solo +/-), valida en cada
+  tecla contra un estado local de texto separado de `item.cantidad`, y
+  solo llama a `actualizarCantidad` cuando el valor es válido; tiene una
+  rama aparte para productos ya no disponibles (tarjeta apagada, sin
+  stepper, "No se incluye" en vez de subtotal). `ResumenCarrito.jsx` (+
+  css) — el botón "Finalizar compra" se renderiza como `<button disabled>`
+  en vez de `Boton to=...` cuando no se puede finalizar, porque un `<Link>`
+  ignora el atributo `disabled`.
+- `ToastCarrito.jsx` (+ css): aviso global ("Se agregó al carrito"),
+  montado una sola vez en `LayoutCliente`, se lee del nuevo campo `aviso`
+  de `CartContext` y se cierra solo a los 3.5s (`aria-live="polite"`).
+- `src/components/compra/IndicadorPasos.jsx` (+ css): el stepper de 3 pasos
+  (Carrito / Datos y pago / Confirmación) del prototipo, reusado también
+  en el paso 5.
+- `Carrito.jsx` (+ css, C4): el carrito en `CartContext` solo guarda
+  `{idProducto, cantidad}` — cada línea se resuelve contra
+  `productosService.obtener` al entrar a la pantalla, nunca se guarda el
+  producto completo. Por eso un producto dado de baja **después** de
+  agregado al carrito aparece solo como "no disponible" (y se excluye del
+  total) en vez de romper la pantalla, sin código especial para ese caso:
+  es consecuencia natural de no persistir datos de producto en el carrito.
+- `Inicio.jsx` (+ css, C1): hero, 5 tarjetas de categoría, 4 productos
+  destacados (uno de cada rubro, fijo a propósito — no es una selección
+  "inteligente"), franja "Por qué Changuito", sección partida con CTA a
+  Nosotros.
+- Verificado con Playwright, incluido un caso que al principio dio un
+  falso negativo: simular que un producto se da de baja estando en el
+  carrito de alguien requiere que `changuito_productos` ya exista en
+  localStorage (el servicio lee la semilla en memoria si la clave no
+  existe, pero nunca la persiste en una simple lectura — sólo
+  `_guardarTodos`, sin usar todavía, escribe). El primer intento de prueba
+  mutaba sobre una clave inexistente y no hacía nada; repetido
+  escribiendo la semilla antes de mutar, se confirmó que `FilaCarrito`
+  muestra bien la tarjeta apagada, excluye el producto del total (0
+  unidades, $0) y deshabilita "Finalizar compra". También verificado:
+  catálogo y detalle en mobile (390px), y que el índice de un test
+  anterior (no la app) había apuntado mal una tarjeta al clickear por
+  posición en vez de por nombre — confirmado reproduciendo con un locator
+  por texto que "Agregar al carrito" agrega el producto correcto.
+
 ## Notas del prototipo renderizado (para los próximos pasos)
 
 El texto de los archivos `.dc.html` no alcanza para construir fiel al
@@ -411,7 +469,7 @@ seguir al siguiente.
 1. ~~Setup del proyecto + sistema de diseño~~ ✅ hecho
 2. ~~Layouts, navegación y `AuthContext`/`CartContext`~~ ✅ hecho
 3. ~~Login + registro + política de privacidad~~ ✅ hecho
-4. Catálogo + detalle + carrito
+4. ~~Catálogo + detalle + carrito~~ ✅ hecho
 5. Checkout + confirmación
 6. Nosotros + Contacto
 7. Administración completa, con sus rutas protegidas

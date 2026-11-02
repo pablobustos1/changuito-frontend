@@ -1,0 +1,76 @@
+.indicador-pasos {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: var(--espacio-2) 0 var(--espacio-3);
+  padding: 0;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.indicador-pasos li {
+  display: flex;
+  align-items: center;
+}
+
+.indicador-pasos-paso {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 6px;
+  border-radius: 999px;
+  font: 600 14px var(--fuente-texto);
+  color: var(--color-texto-suave);
+  background: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+}
+
+.indicador-pasos-circulo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--color-crema);
+  color: var(--color-texto-suave);
+  font: 700 13px var(--fuente-texto);
+  flex-shrink: 0;
+}
+
+.indicador-pasos-activo {
+  background: var(--color-verde-principal);
+  color: var(--color-blanco);
+  border-color: var(--color-verde-principal);
+}
+.indicador-pasos-activo .indicador-pasos-circulo {
+  background: var(--color-blanco);
+  color: var(--color-verde-principal);
+}
+
+.indicador-pasos-completo {
+  color: var(--color-verde-principal);
+}
+.indicador-pasos-completo .indicador-pasos-circulo {
+  background: var(--color-verde-suave);
+  color: var(--color-verde-principal);
+}
+
+.indicador-pasos-linea {
+  width: 24px;
+  height: 1px;
+  background: var(--color-borde);
+  margin: 0 2px;
+}
+
+@media (max-width: 560px) {
+  .indicador-pasos-etiqueta {
+    display: none;
+  }
+  .indicador-pasos-paso {
+    padding: 6px;
+  }
+  .indicador-pasos-linea {
+    width: 14px;
+  }
+}

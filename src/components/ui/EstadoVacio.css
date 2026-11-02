@@ -1,0 +1,25 @@
+.estado-vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--espacio-1);
+  padding: var(--espacio-5) var(--espacio-3);
+  background: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+}
+
+.estado-vacio img {
+  margin-bottom: var(--espacio-1);
+}
+
+.estado-vacio h2 {
+  margin-top: 4px;
+}
+
+.estado-vacio p {
+  color: var(--color-texto-suave);
+  max-width: 420px;
+  margin-bottom: var(--espacio-2);
+}

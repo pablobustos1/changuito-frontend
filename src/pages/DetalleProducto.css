@@ -1,0 +1,198 @@
+.pagina-detalle {
+  padding-top: var(--espacio-2);
+  padding-bottom: var(--espacio-5);
+}
+
+.pagina-detalle-volver {
+  display: inline-block;
+  margin: var(--espacio-2) 0 var(--espacio-3);
+}
+
+.pagina-detalle-cargando {
+  padding: var(--espacio-5) 0;
+  text-align: center;
+  color: var(--color-texto-suave);
+}
+
+.pagina-detalle-grilla {
+  display: grid;
+  grid-template-columns: minmax(280px, 420px) 1fr;
+  gap: var(--espacio-4);
+  align-items: start;
+}
+
+.pagina-detalle-foto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  aspect-ratio: 1 / 1;
+  background: var(--color-verde-suave);
+  color: var(--color-verde-principal);
+  border-radius: var(--radio-tarjeta);
+  padding: var(--espacio-3);
+}
+.pagina-detalle-foto p {
+  font: 700 16px var(--fuente-texto);
+}
+.pagina-detalle-foto span {
+  font-size: 13px;
+  color: var(--color-texto-suave);
+}
+.pagina-detalle-foto-sin-stock {
+  background: var(--color-mostaza-suave);
+  color: var(--color-texto-suave);
+}
+
+.pagina-detalle-estado {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--espacio-1);
+}
+.pagina-detalle-categoria {
+  font: var(--tipo-etiqueta);
+  color: var(--color-texto-suave);
+  border: 1px solid var(--color-borde);
+  padding: 3px 12px;
+  border-radius: 999px;
+}
+
+.pagina-detalle-info h1 {
+  margin-bottom: 8px;
+}
+
+.pagina-detalle-precio {
+  font: var(--tipo-precio);
+  color: var(--color-verde-oscuro);
+  margin-bottom: var(--espacio-2);
+}
+
+.pagina-detalle-descripcion {
+  font: var(--tipo-texto);
+  color: var(--color-texto);
+  max-width: 48ch;
+}
+
+.pagina-detalle-dato-ejemplo {
+  font-size: 13px;
+  color: var(--color-texto-suave);
+  margin-top: 6px;
+  margin-bottom: var(--espacio-3);
+}
+
+.pagina-detalle-caja-compra,
+.pagina-detalle-caja-sin-stock {
+  background: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+  box-shadow: var(--sombra-elevada);
+  padding: var(--espacio-3);
+  max-width: 420px;
+}
+
+.pagina-detalle-cantidad {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  margin-bottom: var(--espacio-2);
+  flex-wrap: wrap;
+}
+.pagina-detalle-cantidad > span:first-child {
+  font: var(--tipo-etiqueta);
+}
+
+.pagina-detalle-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pagina-detalle-selector button {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radio-campo);
+  border: 1px solid var(--color-verde-principal);
+  background: var(--color-blanco);
+  color: var(--color-verde-principal);
+  font: 700 18px var(--fuente-texto);
+  cursor: pointer;
+  line-height: 1;
+}
+.pagina-detalle-selector button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.pagina-detalle-selector span {
+  min-width: 24px;
+  text-align: center;
+  font: 700 18px var(--fuente-texto);
+}
+
+.pagina-detalle-total {
+  margin-left: auto;
+  font-size: 14px;
+  color: var(--color-texto-suave);
+}
+.pagina-detalle-total strong {
+  color: var(--color-texto);
+  font-size: 16px;
+}
+
+.pagina-detalle-caja-compra .boton {
+  width: 100%;
+}
+
+.pagina-detalle-boton-agregado {
+  background: var(--color-verde-principal);
+  color: var(--color-blanco);
+  cursor: default;
+  margin-bottom: var(--espacio-2);
+}
+
+.pagina-detalle-confirmacion {
+  display: flex;
+  gap: 10px;
+  background: var(--color-verde-suave);
+  border-radius: var(--radio-campo);
+  padding: var(--espacio-2);
+  color: var(--color-verde-oscuro);
+}
+.pagina-detalle-confirmacion p {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.pagina-detalle-aviso-sin-stock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.pagina-detalle-caja-sin-stock p {
+  font-size: 14px;
+  color: var(--color-texto-suave);
+  margin-bottom: var(--espacio-2);
+}
+.pagina-detalle-caja-sin-stock button[disabled] {
+  width: 100%;
+  background: var(--color-crema);
+  color: var(--color-texto-suave);
+  border: 1px solid var(--color-borde);
+  cursor: not-allowed;
+  margin-bottom: var(--espacio-1);
+}
+.pagina-detalle-caja-sin-stock .boton {
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  .pagina-detalle-grilla {
+    grid-template-columns: 1fr;
+  }
+  .pagina-detalle-foto {
+    aspect-ratio: 16 / 10;
+  }
+}

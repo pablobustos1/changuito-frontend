@@ -1,0 +1,32 @@
+.orden-precio {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.orden-precio-boton {
+  min-height: var(--zona-tactil);
+  padding: 0 16px;
+  border-radius: var(--radio-boton);
+  border: 1px solid var(--color-borde);
+  background: var(--color-blanco);
+  color: var(--color-texto);
+  font: 600 14px var(--fuente-texto);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.orden-precio-activo {
+  border-color: var(--color-verde-principal);
+  color: var(--color-verde-principal);
+  background: var(--color-verde-suave);
+}
+
+@media (max-width: 640px) {
+  .orden-precio {
+    width: 100%;
+  }
+  .orden-precio-boton {
+    flex: 1;
+  }
+}
