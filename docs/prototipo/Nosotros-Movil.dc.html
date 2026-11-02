@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<title>Changuito · Nosotros (móvil)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed}
+input,textarea{font-family:'Source Sans 3',system-ui,sans-serif}
+</style>
+</helmet>
+<div style="min-height: 5600px; background: #FAF8F2; color: #24332D; font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 17px; line-height: 26px; overflow-x: hidden">
+<header style="background: #FAF8F2; border-bottom: 1px solid #E3DFD2">
+<div style="padding: 8px 16px; min-height: 64px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<a href="Landing-Movil.dc.html" style="display: flex; align-items: center; gap: 8px"><img src="img/pulgar.png" alt="" style="height: 40px; width: auto; display: block"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 22px; line-height: 28px; color: #176B4D; letter-spacing: -0.02em">Changuito</span></a>
+<div style="display: flex; align-items: center; gap: 8px">
+<a href="Compra-Escritorio.dc.html" aria-label="Carrito" style="position: relative; width: 48px; height: 48px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; display: inline-flex; align-items: center; justify-content: center; padding: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M2.5 3.5h2.7l2.3 11.2a1.6 1.6 0 0 0 1.6 1.3h8.1a1.6 1.6 0 0 0 1.6-1.2L20.5 8H6.2"/></svg></a>
+<button type="button" onClick="{{ toggleMenu }}" aria-label="Menú" style="width: 48px; height: 48px; border: 0; border-radius: 12px; background: #176B4D; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; padding: 0">
+<sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+</sc-if>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+</sc-if>
+</button>
+</div>
+</div>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+<nav aria-label="Principal" style="padding: 4px 16px 20px; display: flex; flex-direction: column; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px">
+<a href="Landing-Movil.dc.html" style="min-height: 52px; display: flex; align-items: center; border-bottom: 1px solid #E3DFD2">Inicio</a>
+<a href="Catalogo-Movil.dc.html" style="min-height: 52px; display: flex; align-items: center; border-bottom: 1px solid #E3DFD2">Productos</a>
+<a href="Nosotros-Movil.dc.html" aria-current="page" style="min-height: 52px; display: flex; align-items: center; color: #176B4D; border-bottom: 1px solid #E3DFD2">Nosotros</a>
+<a href="Contacto-Movil.dc.html" style="min-height: 52px; display: flex; align-items: center; border-bottom: 1px solid #E3DFD2">Contacto</a>
+<a href="Admin-Escritorio.dc.html" style="margin-top: 16px; min-height: 52px; padding: 0 16px; box-sizing: border-box; border-radius: 12px; background: #103E32; color: #FAF8F2; display: flex; align-items: center; justify-content: space-between; font-size: 16px">Administración<span style="height: 24px; padding: 0 10px; border-radius: 999px; background: #F5A623; color: #24332D; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; display: inline-flex; align-items: center">Demo</span></a>
+</nav>
+</sc-if>
+</header>
+<main>
+<section style="padding: 24px 16px 0">
+<nav aria-label="Ruta" style="display: flex; align-items: center; gap: 8px; font-size: 15px; line-height: 22px; color: #55655E"><a href="Landing-Movil.dc.html" style="color: #176B4D; font-weight: 600; display: inline-flex; align-items: center; min-height: 44px">Inicio</a><span>/</span><span>Nosotros</span></nav>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px; margin-top: 8px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Nosotros</span>
+<h1 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 38px; line-height: 44px; letter-spacing: -0.02em; color: #103E32">Conocé Changuito</h1>
+<p style="margin: 0; font-size: 18px; line-height: 28px">Changuito es un proyecto de comercio electrónico pensado para acercar la experiencia del almacén de barrio al mundo digital. Buscamos que encontrar productos cotidianos y realizar compras sea simple, rápido y accesible, incorporando herramientas de gestión para el comercio.</p>
+<span style="display: inline-flex; align-items: center; min-height: 32px; padding: 4px 14px; border-radius: 999px; border: 1px dashed #55655E; color: #55655E; font-weight: 600; font-size: 14px; line-height: 20px; box-sizing: border-box">Proyecto universitario · Aplicaciones Interactivas, UADE</span>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 20px; padding: 24px; display: flex; align-items: center; justify-content: center; margin-top: 28px; box-sizing: border-box">
+<img src="img/senalando.png" alt="Personaje de Changuito señalando" style="width: 100%; max-width: 240px; height: auto; display: block">
+</div>
+</section>
+
+<section aria-labelledby="pres" style="padding: 56px 16px 0; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 6px"><h2 id="pres" style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 28px; line-height: 36px; color: #103E32">Qué es Changuito y qué propone</h2><p style="margin: 0; font-size: 17px; line-height: 26px; color: #55655E">Cuatro respuestas breves.</p></div>
+<article style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<span style="width: 48px; height: 48px; border-radius: 12px; background: #E4F0EA; color: #176B4D; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="9" width="17" height="11" rx="2"/><path d="M5 9l1.5-4.5h11L19 9M9 14h6"/></svg></span>
+<h3 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 22px; line-height: 30px; color: #103E32">Qué es Changuito</h3>
+<p style="margin: 0; font-size: 17px; line-height: 26px">Es un proyecto de comercio electrónico que lleva la experiencia del almacén de barrio al mundo digital. Se desarrolla como trabajo de la materia Aplicaciones Interactivas, en UADE.</p>
+</article>
+<article style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<span style="width: 48px; height: 48px; border-radius: 12px; background: #E4F0EA; color: #176B4D; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5M12 16.2v.1"/></svg></span>
+<h3 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 22px; line-height: 30px; color: #103E32">Qué problema busca resolver</h3>
+<p style="margin: 0; font-size: 17px; line-height: 26px">Que encontrar productos cotidianos y comprarlos sea simple, rápido y accesible, sin perder la cercanía del almacén de barrio.</p>
+</article>
+<article style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<span style="width: 48px; height: 48px; border-radius: 12px; background: #E4F0EA; color: #176B4D; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M2.5 3.5h2.7l2.3 11.2a1.6 1.6 0 0 0 1.6 1.3h8.1a1.6 1.6 0 0 0 1.6-1.2L20.5 8H6.2"/></svg></span>
+<h3 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 22px; line-height: 30px; color: #103E32">Propuesta para los compradores</h3>
+<p style="margin: 0; font-size: 17px; line-height: 26px">Un catálogo con búsqueda por nombre, filtros por rubro y orden por precio, una ficha por producto, un carrito y una compra simulada de principio a fin.</p>
+</article>
+<article style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<span style="width: 48px; height: 48px; border-radius: 12px; background: #E4F0EA; color: #176B4D; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span>
+<h3 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 22px; line-height: 30px; color: #103E32">Propuesta de gestión para el comercio</h3>
+<p style="margin: 0; font-size: 17px; line-height: 26px">Herramientas para administrar los productos: ver el listado, modificar sus datos, eliminarlos de forma lógica (se desactivan, no se borran) y agregar nuevos. El stock cambia con las operaciones del negocio, no a mano.</p>
+</article>
+<div role="note" style="display: flex; align-items: flex-start; gap: 14px; padding: 18px 22px; border-radius: 14px; background: #FDF1D8; border: 1px solid #F5A623; color: #24332D">
+<span style="flex: none; width: 36px; height: 36px; border-radius: 999px; background: #F5A623; color: #24332D; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.1"/></svg></span>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 19px; line-height: 28px; color: #103E32">Qué es real y qué es simulado hoy</span><span style="font-size: 17px; line-height: 26px">Changuito es, por ahora, un prototipo de diseño con productos y precios de ejemplo. La compra, el panel de administración y los avisos se simulan: no hay pasarela de pagos, base de datos ni pedidos guardados.</span></div>
+</div>
+</section>
+
+<section aria-labelledby="equipo" style="background: #103E32; color: #FAF8F2; margin-top: 64px; padding: 56px 16px">
+<div style="display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #F5A623">Equipo</span>
+<h2 id="equipo" style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 32px; line-height: 40px; letter-spacing: -0.01em">El equipo detrás de Changuito</h2>
+<p style="margin: 0; font-size: 17px; line-height: 26px; color: #E4F0EA">Tres integrantes, un mismo proyecto. Las fotos, los roles y las presentaciones son espacios para completar: todavía no hay datos cargados.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 24px">
+<article aria-label="Integrante 1" style="background: #FFFFFF; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.18)">
+<div style="aspect-ratio: 4 / 3; border: 2px dashed #176B4D; border-radius: 14px; background: #E4F0EA; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #103E32; text-align: center; padding: 16px; box-sizing: border-box">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#176B4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20c.8-3.6 3.7-5.6 7.5-5.6s6.7 2 7.5 5.6"/></svg>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px; line-height: 24px">[Foto del integrante]</span>
+<span style="font-size: 15px; line-height: 22px; color: #55655E">Reemplazar por una foto propia</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Nombre completo</span><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 26px; line-height: 32px; color: #103E32">Pablo Bustos</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Participación o rol</span><span style="font-size: 17px; line-height: 26px"><span style="color: #55655E; border-bottom: 1px dashed #55655E">[Rol o participación de Pablo en el proyecto]</span></span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Presentación personal</span><div style="border: 1px dashed #55655E; border-radius: 10px; padding: 12px 14px; min-height: 96px; box-sizing: border-box; color: #55655E; font-size: 16px; line-height: 24px">[Breve presentación personal de Pablo: quién es, qué estudia y qué le interesa. Entre 2 y 3 líneas.]</div></div>
+</article>
+<article aria-label="Integrante 2" style="background: #FFFFFF; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.18)">
+<div style="aspect-ratio: 4 / 3; border: 2px dashed #176B4D; border-radius: 14px; background: #E4F0EA; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #103E32; text-align: center; padding: 16px; box-sizing: border-box">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#176B4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20c.8-3.6 3.7-5.6 7.5-5.6s6.7 2 7.5 5.6"/></svg>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px; line-height: 24px">[Foto del integrante]</span>
+<span style="font-size: 15px; line-height: 22px; color: #55655E">Reemplazar por una foto propia</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Nombre completo</span><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 26px; line-height: 32px; color: #103E32">Tobias Rossi</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Participación o rol</span><span style="font-size: 17px; line-height: 26px"><span style="color: #55655E; border-bottom: 1px dashed #55655E">[Rol o participación de Tobias en el proyecto]</span></span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Presentación personal</span><div style="border: 1px dashed #55655E; border-radius: 10px; padding: 12px 14px; min-height: 96px; box-sizing: border-box; color: #55655E; font-size: 16px; line-height: 24px">[Breve presentación personal de Tobias: quién es, qué estudia y qué le interesa. Entre 2 y 3 líneas.]</div></div>
+</article>
+<article aria-label="Integrante 3" style="background: #FFFFFF; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.18)">
+<div style="aspect-ratio: 4 / 3; border: 2px dashed #176B4D; border-radius: 14px; background: #E4F0EA; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #103E32; text-align: center; padding: 16px; box-sizing: border-box">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#176B4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20c.8-3.6 3.7-5.6 7.5-5.6s6.7 2 7.5 5.6"/></svg>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px; line-height: 24px">[Foto del integrante]</span>
+<span style="font-size: 15px; line-height: 22px; color: #55655E">Reemplazar por una foto propia</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Nombre completo</span><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 26px; line-height: 32px; color: #103E32"><span style="color: #55655E; border-bottom: 1px dashed #55655E">[Nombre]</span> De Vincenzo</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Participación o rol</span><span style="font-size: 17px; line-height: 26px"><span style="color: #55655E; border-bottom: 1px dashed #55655E">[Rol o participación de este integrante en el proyecto]</span></span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Presentación personal</span><div style="border: 1px dashed #55655E; border-radius: 10px; padding: 12px 14px; min-height: 96px; box-sizing: border-box; color: #55655E; font-size: 16px; line-height: 24px">[Breve presentación personal de este integrante: quién es, qué estudia y qué le interesa. Entre 2 y 3 líneas.]</div></div>
+</article>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 22px; color: #E4F0EA">Los nombres de Pablo Bustos y Tobias Rossi son los indicados por el equipo. Del tercer integrante solo se conoce el apellido: falta completar el nombre.</p>
+</div>
+</section>
+
+<section style="padding: 56px 16px 72px">
+<div style="background: #E4F0EA; border-radius: 20px; padding: 28px 24px; display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 26px; line-height: 34px; color: #103E32">¿Tenés una consulta sobre el proyecto?</h2>
+<p style="margin: 0; font-size: 17px; line-height: 26px">Escribinos desde el formulario de contacto.</p>
+<a href="Contacto-Movil.dc.html" style="height: 52px; border-radius: 12px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px; display: flex; align-items: center; justify-content: center; gap: 10px">Ir a Contacto<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</div>
+</section>
+</main>
+<footer id="contacto" style="background: #103E32; color: #FAF8F2; padding: 56px 20px 28px; display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 14px">
+<div style="display: flex; align-items: center; gap: 12px">
+<span style="width: 56px; height: 56px; border-radius: 999px; background: #FAF8F2; display: flex; align-items: center; justify-content: center"><img src="img/pulgar.png" alt="" style="width: 40px; height: auto; display: block"></span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 26px; line-height: 32px; letter-spacing: -0.02em">Changuito</span>
+</div>
+<span style="font-size: 17px; line-height: 26px; color: #E4F0EA">Tu almacén de siempre, ahora a un clic.</span>
+</div>
+<div style="display: flex; flex-direction: column">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #F5A623; margin-bottom: 6px">Navegación</span>
+<a href="Landing-Movil.dc.html" style="display: flex; align-items: center; min-height: 48px; font-size: 17px; border-bottom: 1px solid rgba(250,248,242,0.2)">Inicio</a>
+<a href="Catalogo-Movil.dc.html" style="display: flex; align-items: center; min-height: 48px; font-size: 17px; border-bottom: 1px solid rgba(250,248,242,0.2)">Productos</a>
+<a href="Nosotros-Movil.dc.html" style="display: flex; align-items: center; min-height: 48px; font-size: 17px; border-bottom: 1px solid rgba(250,248,242,0.2)">Nosotros</a>
+<a href="Contacto-Movil.dc.html" style="display: flex; align-items: center; min-height: 48px; font-size: 17px">Contacto</a>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #F5A623; margin-bottom: 4px">Contacto</span>
+<a href="Contacto-Movil.dc.html" style="align-self: stretch; height: 52px; box-sizing: border-box; border: 2px solid #FAF8F2; border-radius: 12px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.500" width="18" height="13" rx="2"/><path d="M3.500 7l8.500 6 8.500-6"/></svg>Escribinos</a>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Correo de contacto]</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Teléfono]</span>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #F5A623; margin-bottom: 4px">Información institucional</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Nombre del comercio]</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Dirección del local]</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Horario de atención]</span>
+</div>
+<div style="border-top: 1px solid rgba(250,248,242,0.25); padding-top: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 22px; color: #E4F0EA">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 20px">
+<span style="color: #F5A623; border-bottom: 1px dashed #F5A623">[Términos y condiciones]</span>
+<span style="color: #F5A623; border-bottom: 1px dashed #F5A623">[Política de privacidad]</span>
+</div>
+<a href="Admin-Escritorio.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: 3px">Administración (demo)</a>
+<span>© <span style="color: #F5A623; border-bottom: 1px dashed #F5A623">[Año]</span> Changuito · Prototipo de diseño, Aplicaciones Interactivas, UADE</span>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":5600}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { menu: false };
+}
+renderVals() {
+const open = !!this.state.menu;
+return {
+menuOpen: open,
+menuClosed: !open,
+toggleMenu: () => this.setState({ menu: !this.state.menu })
+};
+}
+}
+</script>
+</body>
+</html>

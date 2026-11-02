@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<title>Compra simulada: estados</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1440px; min-height: 3900px; box-sizing: border-box; padding: 64px; background: #FAF8F2; color: #24332D; font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 17px; line-height: 26px; display: flex; flex-direction: column; gap: 64px">
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; line-height: 20px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Changuito · Carrito y compra simulada</div>
+<h1 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 52px; line-height: 60px; color: #103E32">Estados del carrito y la compra</h1>
+<p style="margin: 0; max-width: 840px; font-size: 19px; line-height: 30px">Los seis estados que pidió la consigna, a la vista. En el prototipo navegable se llega a cada uno con la interacción, y en el carrito hay una franja punteada de herramientas solo para la demo.</p>
+</div>
+
+<!-- Recorrido -->
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 28px; line-height: 36px; color: #103E32">Recorrido de la compra simulada</h2><p style="margin: 0; color: #55655E">Cinco pasos, de punta a punta. El catálogo y el carrito se pasan los productos entre sí; el resto del recorrido ocurre dentro del prototipo del carrito.</p></div>
+<div style="display: flex; align-items: stretch; gap: 0; max-width: 1312px">
+<div style="flex: 1; padding: 16px 20px; background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 14px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 14px; color: #176B4D">1 · Catálogo</span><span style="font-size: 16px; line-height: 24px">Se elige un producto en la grilla o en el detalle.</span></div>
+<span style="align-self: center; width: 28px; text-align: center; color: #176B4D; font-weight: 800">→</span>
+<div style="flex: 1; padding: 16px 20px; background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 14px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 14px; color: #176B4D">2 · Agregar al carrito</span><span style="font-size: 16px; line-height: 24px">El contador sube y aparece el aviso. Desde el detalle también hay “Ver carrito”.</span></div>
+<span style="align-self: center; width: 28px; text-align: center; color: #176B4D; font-weight: 800">→</span>
+<div style="flex: 1; padding: 16px 20px; background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 14px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 14px; color: #176B4D">3 · Carrito</span><span style="font-size: 16px; line-height: 24px">Cantidades, subtotales, quitar productos y total general.</span></div>
+<span style="align-self: center; width: 28px; text-align: center; color: #176B4D; font-weight: 800">→</span>
+<div style="flex: 1; padding: 16px 20px; background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 14px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 14px; color: #176B4D">4 · Finalizar compra</span><span style="font-size: 16px; line-height: 24px">Datos ilustrativos, entrega y medio de pago simulado.</span></div>
+<span style="align-self: center; width: 28px; text-align: center; color: #176B4D; font-weight: 800">→</span>
+<div style="flex: 1; padding: 16px 20px; background: #E4F0EA; border: 1px solid #176B4D; border-radius: 14px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 14px; color: #176B4D">5 · Confirmación</span><span style="font-size: 16px; line-height: 24px">Número demostrativo y resumen. Dos salidas: inicio o catálogo.</span></div>
+</div>
+</div>
+
+<!-- Carrito vacío -->
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 28px; line-height: 36px; color: #103E32">1 · Carrito vacío</h2><p style="margin: 0; color: #55655E">Se ve al entrar sin productos o después de quitar el último. Tiene un único camino para seguir.</p></div>
+<div style="max-width: 1080px; background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 48px 32px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+<img src="img/senalando.png" alt="" style="height: 150px; width: auto; display: block">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 32px; line-height: 40px; color: #103E32">Tu carrito está vacío</span>
+<span style="max-width: 460px; font-size: 19px; line-height: 28px">Todavía no agregaste productos. Mirá el catálogo y elegí lo que necesites.</span>
+<span style="margin-top: 8px; height: 56px; padding: 0 28px; box-sizing: border-box; border-radius: 12px; background: #F5A623; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 17px; display: inline-flex; align-items: center">Ver productos</span>
+</div>
+</div>
+
+<!-- Cantidad inválida y no disponible -->
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 28px; line-height: 36px; color: #103E32">2 · Cantidad inválida y 3 · Producto no disponible</h2><p style="margin: 0; color: #55655E">La cantidad acepta enteros del 1 al 12. Si se escribe otra cosa, el campo se marca en rojo, el subtotal queda en guion y Finalizar compra avisa en vez de avanzar.</p></div>
+
+<div style="max-width: 1080px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-radius: 14px; background: #FDECEA; border: 1px solid #B42318; color: #7A1B12; font-weight: 600; font-size: 17px; line-height: 26px"><span style="flex: none; width: 32px; height: 32px; border-radius: 999px; background: #B42318; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v8M12 18v.2"/></svg></span>Corregí las cantidades marcadas en rojo antes de continuar.</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 20px; display: grid; grid-template-columns: 104px minmax(0, 1fr) 190px; gap: 24px; align-items: start; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<div style="width: 104px; height: 104px; border-radius: 12px; background: #E4F0EA; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #55655E; font-size: 12px; line-height: 16px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#176B4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>Foto</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 20px; line-height: 28px; color: #103E32">Aceite de girasol 900 ml</span>
+<span style="font-size: 15px; line-height: 22px; color: #55655E">Almacén</span>
+<span style="font-size: 17px; line-height: 26px">Precio unitario: <b>$ 2.350</b></span>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 10px"><span style="font-weight: 600; font-size: 15px">Cantidad</span>
+<div style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 44px; height: 44px; box-sizing: border-box; border: 1px solid #C9C5B6; border-radius: 12px; background: #F3F0E6; color: #55655E; display: inline-flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></span><span style="width: 64px; height: 44px; box-sizing: border-box; text-align: center; border: 2px solid #B42318; border-radius: 12px; background: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; display: inline-flex; align-items: center; justify-content: center">0</span><span style="width: 44px; height: 44px; box-sizing: border-box; border: 1px solid #C9C5B6; border-radius: 12px; background: #F3F0E6; color: #55655E; display: inline-flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></div>
+<span style="font-size: 14px; line-height: 20px; color: #55655E">Máximo 12 por compra</span></div>
+<span style="display: flex; align-items: center; gap: 6px; margin-top: 4px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>Ingresá un número entero entre 1 y 12.</span>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 14px; text-align: right"><div style="display: flex; flex-direction: column"><span style="font-size: 14px; line-height: 20px; color: #55655E">Subtotal</span><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 26px; line-height: 32px; color: #55655E">—</span></div>
+<span style="height: 44px; padding: 0 14px; color: #B42318; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; text-decoration: underline; text-underline-offset: 4px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10 11v6M14 11v6"/></svg>Quitar del carrito</span></div>
+</div>
+
+<div style="display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-radius: 14px; background: #FDF1D8; border: 1px solid #F5A623; color: #24332D; font-size: 17px; line-height: 26px"><span style="flex: none; width: 32px; height: 32px; border-radius: 999px; background: #F5A623; color: #24332D; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v8M12 18v.2"/></svg></span><span><b>Hay productos que ya no están disponibles.</b> No se incluyen en el total. Podés quitarlos del carrito.</span></div>
+
+<div style="background: #F3F0E6; border: 1px solid #E3DFD2; border-radius: 16px; padding: 20px; display: grid; grid-template-columns: 104px minmax(0, 1fr) 190px; gap: 24px; align-items: start">
+<div style="width: 104px; height: 104px; border-radius: 12px; background: #E3DFD2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #55655E; font-size: 12px; line-height: 16px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#55655E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>Foto</div>
+<div style="display: flex; flex-direction: column; gap: 6px; align-items: flex-start">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 20px; line-height: 28px; color: #55655E">Harina 000 1 kg</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: #55655E; color: #FFFFFF; font-weight: 700; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>No disponible</span>
+<span style="font-size: 17px; line-height: 26px">Este producto ya no está disponible. No se incluye en el total.</span>
+<span style="font-size: 15px; line-height: 22px; color: #55655E">Precio unitario: $ 1.100 · Cantidad: 1</span></div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 14px; text-align: right"><div style="display: flex; flex-direction: column"><span style="font-size: 14px; line-height: 20px; color: #55655E">Subtotal</span><span style="font-size: 17px; line-height: 26px; color: #55655E">No se incluye</span></div>
+<span style="height: 44px; padding: 0 14px; color: #B42318; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; text-decoration: underline; text-underline-offset: 4px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10 11v6M14 11v6"/></svg>Quitar del carrito</span></div>
+</div>
+</div>
+</div>
+
+<!-- Checkout con errores -->
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 28px; line-height: 36px; color: #103E32">4 · Campo obligatorio faltante y 5 · Correo inválido</h2><p style="margin: 0; color: #55655E">Aparecen al apretar Confirmar compra simulada con el formulario incompleto. El resumen nombra cada campo y cada campo repite su mensaje. Las observaciones son opcionales y no generan error.</p></div>
+
+<div style="max-width: 1080px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: flex-start; gap: 14px; padding: 18px 22px; border-radius: 14px; background: #FDF1D8; border: 1px solid #F5A623"><span style="flex: none; width: 36px; height: 36px; border-radius: 999px; background: #F5A623; color: #24332D; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.1"/></svg></span><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 19px; line-height: 28px; color: #103E32">Esto es una simulación académica</span><span style="font-size: 17px; line-height: 26px">No se procesa dinero real ni se guarda ningún pedido. Completá datos ilustrativos y no escribas números de tarjeta ni datos bancarios.</span></div></div>
+
+<div style="display: flex; gap: 14px; padding: 16px 20px; border-radius: 14px; background: #FDECEA; border: 1px solid #B42318; color: #7A1B12"><span style="flex: none; width: 32px; height: 32px; border-radius: 999px; background: #B42318; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v8M12 18v.2"/></svg></span><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 18px; line-height: 26px">No se pudo confirmar. Hay 3 campos para revisar.</span><span style="font-size: 16px; line-height: 24px">· Nombre y apellido: Ingresá tu nombre y apellido.</span><span style="font-size: 16px; line-height: 24px">· Correo electrónico: El correo no es válido. Revisá que tenga el formato nombre@ejemplo.com.</span><span style="font-size: 16px; line-height: 24px">· Medio de pago: Elegí un medio de pago simulado.</span></div></div>
+
+<div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 28px 32px; display: flex; flex-direction: column; gap: 22px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 24px; line-height: 32px; color: #103E32">Tus datos</span>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-weight: 700; font-size: 16px; line-height: 22px">Nombre y apellido <span style="color: #B42318">*</span></span><div style="height: 52px; box-sizing: border-box; padding: 0 16px; border: 2px solid #B42318; border-radius: 12px; background: #FFFFFF; display: flex; align-items: center; color: #55655E; font-size: 17px">Por ejemplo: Ana Pérez</div><span style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>Ingresá tu nombre y apellido.</span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-weight: 700; font-size: 16px; line-height: 22px">Correo electrónico <span style="color: #B42318">*</span></span><div style="height: 52px; box-sizing: border-box; padding: 0 16px; border: 2px solid #B42318; border-radius: 12px; background: #FFFFFF; display: flex; align-items: center; font-size: 17px">ana@ejemplo</div><span style="display: flex; align-items: flex-start; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg style="flex: none; margin-top: 2px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>El correo no es válido. Revisá que tenga el formato nombre@ejemplo.com.</span></div>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 28px 32px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 24px; line-height: 32px; color: #103E32">Medio de pago simulado <span style="color: #B42318; font-size: 18px">*</span></span><span style="font-size: 16px; line-height: 24px; color: #55655E">Elegí uno. No se cobra nada ni se piden datos financieros.</span></div>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px">
+<div style="padding: 18px; border: 1px solid #55655E; border-radius: 14px; background: #FFFFFF; display: flex; flex-direction: column; gap: 8px"><div style="display: flex; align-items: center; justify-content: space-between; color: #55655E"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v.1M18 14.5v.1"/></svg><span style="width: 22px; height: 22px; border-radius: 999px; border: 2px solid #55655E; background: #FFFFFF"></span></div><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #103E32">Efectivo</span><span style="font-size: 15px; line-height: 22px; color: #55655E">Simulado: se pagaría al recibir o retirar.</span></div>
+<div style="padding: 18px; border: 1px solid #55655E; border-radius: 14px; background: #FFFFFF; display: flex; flex-direction: column; gap: 8px"><div style="display: flex; align-items: center; justify-content: space-between; color: #55655E"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6 15h4"/></svg><span style="width: 22px; height: 22px; border-radius: 999px; border: 2px solid #55655E; background: #FFFFFF"></span></div><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #103E32">Tarjeta</span><span style="font-size: 15px; line-height: 22px; color: #55655E">Simulado: no se piden números ni códigos.</span></div>
+<div style="padding: 18px; border: 1px solid #55655E; border-radius: 14px; background: #FFFFFF; display: flex; flex-direction: column; gap: 8px"><div style="display: flex; align-items: center; justify-content: space-between; color: #55655E"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h14M14 4l4 4-4 4M20 16H6M10 12l-4 4 4 4"/></svg><span style="width: 22px; height: 22px; border-radius: 999px; border: 2px solid #55655E; background: #FFFFFF"></span></div><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #103E32">Transferencia</span><span style="font-size: 15px; line-height: 22px; color: #55655E">Simulado: no se muestran datos bancarios.</span></div>
+</div>
+<span style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>Elegí un medio de pago simulado.</span>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+<div style="flex: 1 1 420px; padding: 18px; border: 2px solid #176B4D; border-radius: 14px; background: #E4F0EA; display: flex; flex-direction: column; gap: 8px"><div style="display: flex; align-items: center; justify-content: space-between; color: #176B4D"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6 15h4"/></svg><span style="width: 22px; height: 22px; border-radius: 999px; border: 2px solid #176B4D; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 999px; background: #176B4D"></span></span></div><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #103E32">Tarjeta · seleccionada</span><span style="font-size: 15px; line-height: 22px">Simulado: no se piden números ni códigos.</span></div>
+<div style="flex: 1 1 420px; padding: 14px 16px; border-radius: 12px; background: #F3F0E6; font-size: 16px; line-height: 24px; align-self: center">Elegiste tarjeta. Esta demo no pide número, vencimiento ni código de seguridad, y no se cobra nada.</div>
+</div>
+</div>
+</div>
+
+<!-- Confirmada -->
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 28px; line-height: 36px; color: #103E32">6 · Compra simulada confirmada</h2><p style="margin: 0; color: #55655E">Encabezado de la pantalla de confirmación. Debajo, en el prototipo, siguen el resumen del pedido, los datos ilustrativos y los botones Volver al inicio y Seguir comprando.</p></div>
+<div style="max-width: 1312px; background: #E4F0EA; border: 1px solid #176B4D; border-radius: 20px; padding: 36px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px">
+<img src="img/festejo.png" alt="" style="height: 170px; width: auto; display: block">
+<div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 12px">
+<span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 14px; border-radius: 999px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Compra simulada confirmada</span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 40px; line-height: 48px; letter-spacing: -0.02em; color: #103E32">¡Listo, Ana! Tu compra simulada quedó confirmada.</span>
+<span style="font-size: 19px; line-height: 28px">Esto es una demostración: no se procesó ningún pago, no se guardó el pedido y no se envió ningún correo.</span>
+</div>
+<div style="flex: 0 0 auto; background: #FFFFFF; border: 1px dashed #176B4D; border-radius: 14px; padding: 18px 24px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 14px; line-height: 20px; color: #55655E">Número de operación demostrativo</span><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 32px; line-height: 40px; color: #103E32; letter-spacing: 0.02em">DEMO-482917</span><span style="font-size: 14px; line-height: 20px; color: #55655E">Número ficticio: no corresponde a un pedido real.</span></div>
+</div>
+</div>
+
+<!-- Reglas -->
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 28px; line-height: 36px; color: #103E32">Reglas de validación</h2><p style="margin: 0; color: #55655E">Son reglas de diseño propuestas, para ajustar con el equipo.</p></div>
+<div style="max-width: 1080px; background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; overflow: hidden">
+<div style="display: grid; grid-template-columns: 200px 1fr 1fr; gap: 20px; padding: 14px 24px; background: #F3F0E6; border-bottom: 1px solid #E3DFD2; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; line-height: 20px; color: #55655E"><span>Campo</span><span>Regla</span><span>Mensaje cuando falla</span></div>
+<div style="display: grid; grid-template-columns: 200px 1fr 1fr; gap: 20px; padding: 14px 24px; border-bottom: 1px solid #E3DFD2; font-size: 16px; line-height: 24px"><b>Cantidad</b><span>Entero del 1 al 12.</span><span style="color: #B42318">Ingresá un número entero entre 1 y 12.</span></div>
+<div style="display: grid; grid-template-columns: 200px 1fr 1fr; gap: 20px; padding: 14px 24px; border-bottom: 1px solid #E3DFD2; font-size: 16px; line-height: 24px"><b>Nombre y apellido</b><span>Obligatorio, al menos dos palabras.</span><span style="color: #B42318">Ingresá tu nombre y apellido. / Ingresá tu nombre y tu apellido.</span></div>
+<div style="display: grid; grid-template-columns: 200px 1fr 1fr; gap: 20px; padding: 14px 24px; border-bottom: 1px solid #E3DFD2; font-size: 16px; line-height: 24px"><b>Correo electrónico</b><span>Obligatorio, con formato nombre@dominio.ext.</span><span style="color: #B42318">Ingresá tu correo electrónico. / El correo no es válido…</span></div>
+<div style="display: grid; grid-template-columns: 200px 1fr 1fr; gap: 20px; padding: 14px 24px; border-bottom: 1px solid #E3DFD2; font-size: 16px; line-height: 24px"><b>Dirección de entrega</b><span>Obligatoria solo con entrega a domicilio. Con retiro en el local no se pide.</span><span style="color: #B42318">Ingresá la dirección de entrega. Puede ser ilustrativa.</span></div>
+<div style="display: grid; grid-template-columns: 200px 1fr 1fr; gap: 20px; padding: 14px 24px; border-bottom: 1px solid #E3DFD2; font-size: 16px; line-height: 24px"><b>Medio de pago</b><span>Obligatorio, uno de tres. Sin datos financieros.</span><span style="color: #B42318">Elegí un medio de pago simulado.</span></div>
+<div style="display: grid; grid-template-columns: 200px 1fr 1fr; gap: 20px; padding: 14px 24px; font-size: 16px; line-height: 24px"><b>Observaciones</b><span>Opcional, hasta 200 caracteres.</span><span style="color: #B42318">Las observaciones no pueden pasar de 200 caracteres.</span></div>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 1080px">
+<div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 24px 28px; display: flex; flex-direction: column; gap: 12px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 22px; line-height: 30px; color: #103E32">Qué queda simulado</span><div style="display: flex; flex-direction: column; gap: 8px; font-size: 16px; line-height: 24px"><span>No hay pasarela de pagos ni cobro de ningún tipo.</span><span>No hay conexión al backend: el pedido no se guarda en ningún lado.</span><span>El número de operación es ficticio y se arma en el momento.</span><span>No se envía ningún correo de confirmación.</span></div></div>
+<div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 24px 28px; display: flex; flex-direction: column; gap: 12px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 22px; line-height: 30px; color: #103E32">Cómo se avisa que es una simulación</span><div style="display: flex; flex-direction: column; gap: 8px; font-size: 16px; line-height: 24px"><span>Etiqueta punteada “Compra simulada · datos de ejemplo” en cada pantalla.</span><span>Aviso ámbar fijo arriba del formulario de pago.</span><span>Cada medio de pago aclara que es simulado.</span><span>La confirmación repite que no se procesó dinero ni se guardó el pedido.</span></div></div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+.etiqueta {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font: var(--tipo-etiqueta);
+  white-space: nowrap;
+}
+
+.etiqueta-disponible,
+.etiqueta-guardado {
+  background: var(--color-verde-suave);
+  color: var(--color-verde-principal);
+}
+
+.etiqueta-sin-stock {
+  background: var(--color-borde);
+  color: var(--color-texto-suave);
+}
+
+.etiqueta-oferta {
+  background: var(--color-mostaza);
+  color: var(--color-texto);
+}
+
+.etiqueta-desactivado {
+  background: var(--color-blanco);
+  color: var(--color-texto-suave);
+  border: 1px solid var(--color-borde);
+  text-decoration: line-through;
+}

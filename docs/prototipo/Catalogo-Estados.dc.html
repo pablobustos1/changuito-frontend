@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<title>Catálogo y detalle: estados</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1440px; min-height: 2500px; box-sizing: border-box; padding: 64px; background: #FAF8F2; color: #24332D; font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 17px; line-height: 26px; display: flex; flex-direction: column; gap: 64px">
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; line-height: 20px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Changuito · Catálogo y detalle</div>
+<h1 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 52px; line-height: 60px; color: #103E32">Estados visuales</h1>
+<p style="margin: 0; max-width: 780px; font-size: 19px; line-height: 30px">Todos los estados del catálogo y del detalle, a la vista. En el prototipo navegable se llega a cada uno con la interacción: buscar una palabra que no existe, elegir Cuidado personal o agregar un producto.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 28px; line-height: 36px; color: #103E32">Tarjeta de producto</h2><p style="margin: 0; color: #55655E">Tres estados: normal, recién agregado al carrito y sin stock. El de “agregado” vuelve a normal a los pocos segundos.</p></div>
+<div style="display: grid; grid-template-columns: repeat(3, 340px); gap: 32px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 14px"><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; line-height: 26px; color: #103E32">Normal</span><span style="font-size: 15px; line-height: 22px; color: #55655E">Disponible, con los dos botones activos.</span></div><div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06); display: flex; flex-direction: column">
+<div style="height: 200px; background: #E4F0EA; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #55655E; font-size: 14px; line-height: 20px"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#176B4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>Foto del producto</div>
+<div style="padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px"><span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: #E4F0EA; color: #176B4D; font-weight: 700; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Disponible</span><span style="font-size: 14px; line-height: 20px; color: #55655E">Almacén</span></div>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 20px; line-height: 28px">Yerba mate 500 g</span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 30px; line-height: 36px; color: #176B4D">$ 4.890</span>
+<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px">
+<button type="button" style="height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; border: 2px solid #176B4D; background: #FFFFFF; color: #176B4D">Ver detalle</button>
+<button type="button" style="height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; border: 0; background: #F5A623; color: #24332D"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M2.5 3.5h2.7l2.3 11.2a1.6 1.6 0 0 0 1.6 1.3h8.1a1.6 1.6 0 0 0 1.6-1.2L20.5 8H6.2"/></svg>Agregar al carrito</button>
+</div>
+</div>
+</div></div>
+<div style="display: flex; flex-direction: column; gap: 14px"><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; line-height: 26px; color: #103E32">Agregado al carrito</span><span style="font-size: 15px; line-height: 22px; color: #55655E">El botón se vuelve verde, con tilde y sin acción.</span></div><div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06); display: flex; flex-direction: column">
+<div style="height: 200px; background: #E4F0EA; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #55655E; font-size: 14px; line-height: 20px"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#176B4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>Foto del producto</div>
+<div style="padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px"><span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: #E4F0EA; color: #176B4D; font-weight: 700; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Disponible</span><span style="font-size: 14px; line-height: 20px; color: #55655E">Almacén</span></div>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 20px; line-height: 28px">Aceite de girasol 900 ml</span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 30px; line-height: 36px; color: #176B4D">$ 2.350</span>
+<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px">
+<button type="button" style="height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; border: 2px solid #176B4D; background: #FFFFFF; color: #176B4D">Ver detalle</button>
+<button type="button" disabled style="height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; border: 0; background: #176B4D; color: #FFFFFF"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Agregado al carrito</button>
+</div>
+</div>
+</div></div>
+<div style="display: flex; flex-direction: column; gap: 14px"><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; line-height: 26px; color: #103E32">Sin stock</span><span style="font-size: 15px; line-height: 22px; color: #55655E">Foto atenuada, precio en gris y botón desactivado.</span></div><div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06); display: flex; flex-direction: column">
+<div style="height: 200px; background: #ECE9DE; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #55655E; font-size: 14px; line-height: 20px"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#176B4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>Foto del producto</div>
+<div style="padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px"><span style="display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; background: #FFFFFF; border: 1px solid #55655E; box-sizing: border-box; color: #55655E; font-weight: 700; font-size: 14px">Sin stock</span><span style="font-size: 14px; line-height: 20px; color: #55655E">Almacén</span></div>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 20px; line-height: 28px">Harina 000 1 kg</span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 30px; line-height: 36px; color: #55655E">$ 1.100</span>
+<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px">
+<button type="button" style="height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; border: 2px solid #176B4D; background: #FFFFFF; color: #176B4D">Ver detalle</button>
+<button type="button" disabled style="height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; border: 0; background: #E3DFD2; color: #55655E">No disponible por ahora</button>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 28px; line-height: 36px; color: #103E32">Sin productos y sin resultados</h2><p style="margin: 0; color: #55655E">Los dos usan el personaje señalando y un botón que lleva de vuelta al catálogo completo.</p></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 14px"><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; line-height: 26px; color: #103E32">Búsqueda sin resultados</span><span style="font-size: 15px; line-height: 22px; color: #55655E">Repite la palabra buscada y ofrece limpiar la búsqueda.</span></div><div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 24px; padding: 48px 32px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px">
+<img src="img/senalando.png" alt="" style="width: 180px; height: auto; display: block">
+<h3 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 28px; line-height: 36px; color: #103E32">No encontramos productos para “aceituna”</h3>
+<p style="margin: 0; max-width: 440px; font-size: 18px; line-height: 28px; color: #55655E">Revisá que esté bien escrito o probá con otra palabra.</p>
+<button type="button" style="height: 52px; padding: 0 26px; border: 0; border-radius: 12px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px">Limpiar búsqueda</button>
+</div></div>
+<div style="display: flex; flex-direction: column; gap: 14px"><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; line-height: 26px; color: #103E32">No hay productos para mostrar</span><span style="font-size: 15px; line-height: 22px; color: #55655E">Por ejemplo, un rubro que todavía no tiene productos cargados.</span></div><div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 24px; padding: 48px 32px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px">
+<img src="img/senalando.png" alt="" style="width: 180px; height: auto; display: block">
+<h3 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 28px; line-height: 36px; color: #103E32">No hay productos para mostrar</h3>
+<p style="margin: 0; max-width: 440px; font-size: 18px; line-height: 28px; color: #55655E">Todavía no hay productos cargados en este rubro. Mirá los demás rubros del almacén.</p>
+<button type="button" style="height: 52px; padding: 0 26px; border: 0; border-radius: 12px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px">Ver todos los productos</button>
+</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 28px; line-height: 36px; color: #103E32">Detalle: caja de compra</h2><p style="margin: 0; color: #55655E">Cantidad, total y botón de compra. Solo el comprador ve estas acciones: no hay editar ni borrar.</p></div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 14px"><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; line-height: 26px; color: #103E32">Normal</span><span style="font-size: 15px; line-height: 22px; color: #55655E">Selector de cantidad y botón de acento.</span></div><div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px"><span style="font-weight: 600; font-size: 17px">Cantidad</span><div style="display: flex; align-items: center; gap: 6px"><span style="width: 52px; height: 52px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></span><span style="min-width: 64px; text-align: center; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 26px; line-height: 32px">2</span><span style="width: 52px; height: 52px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></div><span style="font-size: 16px; color: #55655E">Total: <b style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; color: #103E32; font-size: 20px">$ 9.780</b></span></div>
+<button type="button" style="height: 60px; border: 0; border-radius: 12px; background: #F5A623; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 19px; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M2.5 3.5h2.7l2.3 11.2a1.6 1.6 0 0 0 1.6 1.3h8.1a1.6 1.6 0 0 0 1.6-1.2L20.5 8H6.2"/></svg>Agregar al carrito</button>
+
+</div></div>
+<div style="display: flex; flex-direction: column; gap: 14px"><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; line-height: 26px; color: #103E32">Agregado al carrito</span><span style="font-size: 15px; line-height: 22px; color: #55655E">Botón verde con tilde y mensaje de confirmación con “Seguir comprando”.</span></div><div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px"><span style="font-weight: 600; font-size: 17px">Cantidad</span><div style="display: flex; align-items: center; gap: 6px"><span style="width: 52px; height: 52px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></span><span style="min-width: 64px; text-align: center; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 26px; line-height: 32px">2</span><span style="width: 52px; height: 52px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></div><span style="font-size: 16px; color: #55655E">Total: <b style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; color: #103E32; font-size: 20px">$ 9.780</b></span></div>
+<button type="button" disabled style="height: 60px; border: 0; border-radius: 12px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 19px; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Agregado al carrito</button>
+<div style="background: #E4F0EA; border: 1px solid #176B4D; border-radius: 12px; padding: 16px 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 999px; background: #176B4D; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+<span style="flex: 1 1 200px; font-size: 17px; line-height: 24px"><b>¡Listo!</b> Agregaste 2 unidades de Yerba mate 500 g al carrito.</span>
+<button type="button" style="height: 48px; padding: 0 20px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px">Seguir comprando</button>
+</div>
+</div></div>
+<div style="display: flex; flex-direction: column; gap: 14px"><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; line-height: 26px; color: #103E32">Sin stock</span><span style="font-size: 15px; line-height: 22px; color: #55655E">Sin selector de cantidad: se explica y se ofrece ver otros productos del rubro.</span></div><div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: flex-start; gap: 12px; font-size: 17px; line-height: 26px"><span style="flex: none; color: #55655E; margin-top: 2px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 16H3zM12 10v4.5M12 17.2v.1"/></svg></span><span><b>Por ahora no tenemos este producto.</b> Mientras tanto, mirá otros productos del rubro.</span></div>
+<button type="button" disabled style="height: 60px; border: 0; border-radius: 12px; background: #E3DFD2; color: #55655E; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 19px">No disponible por ahora</button>
+<button type="button" style="height: 52px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px">Ver otros productos de Almacén</button>
+</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 28px; line-height: 36px; color: #103E32">Aviso de producto agregado</h2><p style="margin: 0; color: #55655E">Aparece arriba a la derecha unos segundos y el contador del carrito suma la cantidad.</p></div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 24px">
+<div role="status" style="display: flex; align-items: center; gap: 12px; background: #103E32; color: #FAF8F2; border-radius: 12px; padding: 14px 20px 14px 16px; box-shadow: 0 8px 24px rgba(16,62,50,0.28); font-weight: 600; font-size: 16px; line-height: 22px">
+<span style="flex: none; width: 28px; height: 28px; border-radius: 999px; background: #F5A623; color: #24332D; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+<span>Yerba mate 500 g se agregó al carrito</span>
+</div>
+<span style="height: 48px; padding: 0 18px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; display: inline-flex; align-items: center; gap: 8px; box-sizing: border-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M2.5 3.5h2.7l2.3 11.2a1.6 1.6 0 0 0 1.6 1.3h8.1a1.6 1.6 0 0 0 1.6-1.2L20.5 8H6.2"/></svg>Carrito<span style="min-width: 24px; height: 24px; padding: 0 6px; box-sizing: border-box; border-radius: 999px; background: #F5A623; color: #24332D; font-size: 14px; display: inline-flex; align-items: center; justify-content: center">3</span></span>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2500}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+/*
+ * Tokens de diseño de Changuito.
+ *
+ * Los valores salen del documento de identidad del prototipo (Main.dc.html e
+ * Identidad-Componentes.dc.html), no son inventados. Cualquier componente nuevo
+ * usa estas variables en vez de escribir un color o una medida suelta, para que
+ * un cambio de paleta se haga en un solo lugar.
+ */
+:root {
+  /* Color — paleta aprobada, con los contrastes ya verificados en el documento
+     de identidad. No combinar colores fuera de las reglas de uso de ahí
+     (ej.: el mostaza nunca va como texto sobre fondo claro). */
+  --color-verde-principal: #176b4d;
+  --color-verde-oscuro: #103e32;
+  --color-mostaza: #f5a623;
+  --color-crema: #faf8f2;
+  --color-texto: #24332d;
+  --color-blanco: #ffffff;
+  --color-borde: #e3dfd2;
+  --color-texto-suave: #55655e;
+  --color-verde-suave: #e4f0ea;
+  --color-error: #b42318;
+  --color-error-suave: #fbeae8;
+
+  /* Tipografía. Manrope para títulos y precios, Source Sans 3 para el resto —
+     las dos se cargan desde Google Fonts en index.html. */
+  --fuente-titulos: "Manrope", system-ui, sans-serif;
+  --fuente-texto: "Source Sans 3", system-ui, sans-serif;
+
+  /* Escala tipográfica (tamaño/interlineado/peso) de Main.dc.html */
+  --tipo-titulo-pagina: 800 44px/52px var(--fuente-titulos);
+  --tipo-titulo-seccion: 700 30px/38px var(--fuente-titulos);
+  --tipo-nombre-producto: 700 20px/28px var(--fuente-titulos);
+  --tipo-precio: 800 28px/32px var(--fuente-titulos);
+  --tipo-texto: 400 17px/26px var(--fuente-texto);
+  --tipo-etiqueta: 600 14px/20px var(--fuente-texto);
+
+  /* Forma: radios, sombra y espaciado de Identidad-Componentes.dc.html.
+     El espacio siempre en múltiplos de 8px. */
+  --radio-boton: 12px;
+  --radio-campo: 12px;
+  --radio-tarjeta: 16px;
+  --sombra-elevada: 0 4px 16px rgba(16, 62, 50, 0.1);
+  --espacio-1: 8px;
+  --espacio-2: 16px;
+  --espacio-3: 24px;
+  --espacio-4: 32px;
+  --espacio-5: 48px;
+  --ancho-contenido: 1200px;
+  /* Toda zona táctil (botones, campos, filas con acción) mide al menos esto. */
+  --zona-tactil: 48px;
+
+  color-scheme: light;
+}
+
+/* ------------------------------------------------------------------ RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--color-crema);
+  color: var(--color-texto);
+  font: var(--tipo-texto);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--color-verde-principal);
+}
+
+/* Foco visible y consistente en toda la app — el navegador por si solo alcanza,
+   pero un anillo propio asegura que se vea igual en todos los navegadores y con
+   buen contraste sobre cualquier fondo de la paleta. */
+:focus-visible {
+  outline: 2px solid var(--color-verde-principal);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------ TIPOGRAFIA */
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--color-verde-oscuro);
+}
+
+h1 {
+  font: var(--tipo-titulo-pagina);
+}
+
+h2 {
+  font: var(--tipo-titulo-seccion);
+}
+
+h3 {
+  font: var(--tipo-nombre-producto);
+}
+
+p {
+  margin: 0;
+}
+
+/* --------------------------------------------------------------- LAYOUT */
+/* Contenedor de ancho máximo que usan las páginas. Centrado, con un margen
+   lateral que nunca desaparece en pantallas angostas. */
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-contenido);
+  margin: 0 auto;
+  padding: 0 var(--espacio-3);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --tipo-titulo-pagina: 800 32px/40px var(--fuente-titulos);
+    --tipo-titulo-seccion: 700 24px/32px var(--fuente-titulos);
+  }
+
+  .contenedor {
+    padding: 0 var(--espacio-2);
+  }
+}

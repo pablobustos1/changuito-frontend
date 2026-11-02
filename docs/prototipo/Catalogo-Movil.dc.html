@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<title>Changuito · Productos (móvil)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed}
+</style>
+</helmet>
+<div style="min-height: 4900px; background: #FAF8F2; color: #24332D; font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 17px; line-height: 26px; overflow-x: hidden">
+<header style="background: #FAF8F2; border-bottom: 1px solid #E3DFD2">
+<div style="padding: 8px 16px; min-height: 64px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<a href="Landing-Movil.dc.html" style="display: flex; align-items: center; gap: 8px"><img src="img/pulgar.png" alt="" style="height: 40px; width: auto; display: block"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 22px; line-height: 28px; color: #176B4D; letter-spacing: -0.02em">Changuito</span></a>
+<div style="display: flex; align-items: center; gap: 8px">
+<a href="{{ cartHref }}" aria-label="Ver carrito" style="position: relative; box-sizing: border-box; width: 48px; height: 48px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; display: inline-flex; align-items: center; justify-content: center; padding: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M2.5 3.5h2.7l2.3 11.2a1.6 1.6 0 0 0 1.6 1.3h8.1a1.6 1.6 0 0 0 1.6-1.2L20.5 8H6.2"/></svg><span style="position: absolute; top: -8px; right: -8px; min-width: 22px; height: 22px; padding: 0 5px; box-sizing: border-box; border-radius: 999px; background: #F5A623; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center">{{cartCount}}</span></a>
+<button type="button" onClick="{{ toggleMenu }}" aria-label="Menú" style="width: 48px; height: 48px; border: 0; border-radius: 12px; background: #176B4D; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; padding: 0">
+<sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+</sc-if>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+</sc-if>
+</button>
+</div>
+</div>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+<nav aria-label="Principal" style="padding: 4px 16px 20px; display: flex; flex-direction: column; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px">
+<a href="Landing-Movil.dc.html" style="min-height: 52px; display: flex; align-items: center; border-bottom: 1px solid #E3DFD2">Inicio</a>
+<a href="#catalogo" style="min-height: 52px; display: flex; align-items: center; color: #176B4D; border-bottom: 1px solid #E3DFD2">Productos</a>
+<a href="Nosotros-Movil.dc.html" style="min-height: 52px; display: flex; align-items: center; border-bottom: 1px solid #E3DFD2">Nosotros</a>
+<a href="Contacto-Movil.dc.html" style="min-height: 52px; display: flex; align-items: center; border-bottom: 1px solid #E3DFD2">Contacto</a>
+<a href="Admin-Escritorio.dc.html" style="margin-top: 16px; min-height: 52px; padding: 0 16px; box-sizing: border-box; border-radius: 12px; background: #103E32; color: #FAF8F2; display: flex; align-items: center; justify-content: space-between; font-size: 16px">Administración<span style="height: 24px; padding: 0 10px; border-radius: 999px; background: #F5A623; color: #24332D; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; display: inline-flex; align-items: center">Demo</span></a>
+</nav>
+</sc-if>
+</header>
+<div style="position: sticky; top: 8px; z-index: 30; height: 0; padding: 0 16px">
+<sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="display: flex; align-items: center; gap: 10px; background: #103E32; color: #FAF8F2; border-radius: 12px; padding: 12px 14px; box-shadow: 0 8px 24px rgba(16,62,50,0.28); font-weight: 600; font-size: 15px; line-height: 21px">
+<span style="flex: none; width: 26px; height: 26px; border-radius: 999px; background: #F5A623; color: #24332D; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+<span>{{toast}}</span>
+</div>
+</sc-if>
+</div>
+<sc-if value="{{ isCatalog }}" hint-placeholder-val="{{ true }}">
+<main id="catalogo" style="padding: 24px 16px 64px">
+<nav aria-label="Ruta" style="display: flex; align-items: center; gap: 8px; font-size: 14px; line-height: 20px; color: #55655E"><a href="Landing-Movil.dc.html" style="color: #176B4D; font-weight: 600">Inicio</a><span>/</span><span>Productos</span></nav>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 12px">
+<h1 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 34px; line-height: 42px; letter-spacing: -0.02em; color: #103E32">Nuestros productos</h1>
+<p style="margin: 0; font-size: 18px; line-height: 27px">Elegí por rubro, buscá por nombre o ordená por precio.</p>
+<span style="display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; border: 1px dashed #55655E; color: #55655E; font-weight: 600; font-size: 14px; box-sizing: border-box">Productos y precios de ejemplo</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px; margin-top: 24px">
+<label for="buscar" style="font-weight: 600; font-size: 15px; line-height: 22px">Buscar por nombre</label>
+<div style="position: relative; display: flex; align-items: center">
+<span style="position: absolute; left: 14px; color: #55655E; display: flex"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></span>
+<input id="buscar" type="search" value="{{ query }}" onInput="{{ onQuery }}" placeholder="Por ejemplo: yerba, aceite" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 52px 0 46px; border: 1px solid #55655E; border-radius: 12px; background: #FFFFFF; color: #24332D; font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 17px">
+<sc-if value="{{ hasQuery }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ clearQuery }}" aria-label="Borrar búsqueda" style="position: absolute; right: 4px; width: 44px; height: 44px; border: 0; border-radius: 10px; background: transparent; color: #55655E; display: flex; align-items: center; justify-content: center; padding: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></sc-if>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px; margin-top: 16px">
+<span id="orden" style="font-weight: 600; font-size: 15px; line-height: 22px">Ordenar por precio</span>
+<div role="group" aria-labelledby="orden" style="display: flex; gap: 10px">
+<sc-if value="{{ sortAscOn }}" hint-placeholder-val="{{ false }}"><button type="button" aria-pressed="true" onClick="{{ sortAsc }}" style="flex: 1 1 0; height: 48px; box-sizing: border-box; border-radius: 12px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 8px; background: #176B4D; border: 2px solid #176B4D; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>Menor a mayor</button></sc-if><sc-if value="{{ sortAscOff }}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" onClick="{{ sortAsc }}" style="flex: 1 1 0; height: 48px; box-sizing: border-box; border-radius: 12px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 8px; background: #FFFFFF; border: 1px solid #55655E; color: #24332D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>Menor a mayor</button></sc-if>
+<sc-if value="{{ sortDescOn }}" hint-placeholder-val="{{ false }}"><button type="button" aria-pressed="true" onClick="{{ sortDesc }}" style="flex: 1 1 0; height: 48px; box-sizing: border-box; border-radius: 12px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 8px; background: #176B4D; border: 2px solid #176B4D; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>Mayor a menor</button></sc-if><sc-if value="{{ sortDescOff }}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" onClick="{{ sortDesc }}" style="flex: 1 1 0; height: 48px; box-sizing: border-box; border-radius: 12px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 8px; background: #FFFFFF; border: 1px solid #55655E; color: #24332D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>Mayor a menor</button></sc-if>
+</div>
+</div>
+<div role="group" aria-label="Filtrar por rubro" style="display: flex; gap: 8px; overflow-x: auto; margin: 16px -16px 0; padding: 4px 16px 8px">
+<sc-for list="{{ cats }}" as="c" hint-placeholder-count="6">
+<sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><button type="button" aria-pressed="true" onClick="{{ c.pick }}" style="flex: none; height: 44px; padding: 0 10px 0 16px; border: 2px solid #176B4D; border-radius: 999px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap">{{c.label}}<span style="min-width: 24px; height: 24px; padding: 0 6px; box-sizing: border-box; border-radius: 999px; background: #FFFFFF; color: #176B4D; font-size: 13px; display: inline-flex; align-items: center; justify-content: center">{{c.count}}</span></button></sc-if>
+<sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" onClick="{{ c.pick }}" style="flex: none; height: 44px; padding: 0 10px 0 16px; border: 1px solid #55655E; border-radius: 999px; background: #FFFFFF; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap">{{c.label}}<span style="min-width: 24px; height: 24px; padding: 0 6px; box-sizing: border-box; border-radius: 999px; background: #E4F0EA; color: #176B4D; font-size: 13px; display: inline-flex; align-items: center; justify-content: center">{{c.count}}</span></button></sc-if>
+</sc-for>
+</div>
+<div role="status" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; margin: 12px 0 14px; min-height: 44px">
+<span style="font-size: 15px; line-height: 22px; color: #55655E">{{countText}}</span>
+<sc-if value="{{ hasFilters }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ clearAll }}" style="height: 44px; padding: 0 4px; border: 0; background: transparent; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; text-decoration: underline; text-underline-offset: 4px">Limpiar filtros</button></sc-if>
+</div>
+<sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<sc-for list="{{ visible }}" as="item" hint-placeholder-count="6">
+<div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 14px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06); display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; gap: 14px; align-items: flex-start">
+<sc-if value="{{ item.ok }}" hint-placeholder-val="{{ true }}">
+<div style="flex: none; width: 104px; height: 104px; border-radius: 12px; background: #E4F0EA; display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#176B4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></div>
+</sc-if>
+<sc-if value="{{ item.soldOut }}" hint-placeholder-val="{{ false }}">
+<div style="flex: none; width: 104px; height: 104px; border-radius: 12px; background: #ECE9DE; display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#176B4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></div>
+</sc-if>
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px">
+<sc-if value="{{ item.ok }}" hint-placeholder-val="{{ true }}"><span style="display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 10px; border-radius: 999px; background: #E4F0EA; color: #176B4D; font-weight: 700; font-size: 13px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Disponible</span></sc-if>
+<sc-if value="{{ item.soldOut }}" hint-placeholder-val="{{ false }}"><span style="display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 999px; background: #FFFFFF; border: 1px solid #55655E; box-sizing: border-box; color: #55655E; font-weight: 700; font-size: 13px">Sin stock</span></sc-if>
+</div>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px; line-height: 23px">{{item.name}}</span>
+<span style="font-size: 14px; line-height: 20px; color: #55655E">{{item.cat}}</span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 24px; line-height: 30px; color: {{ item.priceColor }}">{{item.priceStr}}</span>
+</div>
+</div>
+<div style="display: flex; gap: 10px">
+<button type="button" onClick="{{ item.open }}" style="flex: 1 1 0; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; padding: 0 8px; box-sizing: border-box; border: 2px solid #176B4D; background: #FFFFFF; color: #176B4D">Ver detalle</button>
+<sc-if value="{{ item.showAdd }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ item.add }}" style="flex: 1.7 1 0; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; padding: 0 8px; box-sizing: border-box; border: 0; background: #F5A623; color: #24332D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M2.5 3.5h2.7l2.3 11.2a1.6 1.6 0 0 0 1.6 1.3h8.1a1.6 1.6 0 0 0 1.6-1.2L20.5 8H6.2"/></svg>Agregar al carrito</button></sc-if>
+<sc-if value="{{ item.showAdded }}" hint-placeholder-val="{{ false }}"><button type="button" disabled style="flex: 1.7 1 0; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; padding: 0 8px; box-sizing: border-box; border: 0; background: #176B4D; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Agregado al carrito</button></sc-if>
+<sc-if value="{{ item.soldOut }}" hint-placeholder-val="{{ false }}"><button type="button" disabled style="flex: 1.7 1 0; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; padding: 0 8px; box-sizing: border-box; border: 0; background: #E3DFD2; color: #55655E">No disponible por ahora</button></sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ emptySearch }}" hint-placeholder-val="{{ false }}">
+<div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 20px; padding: 36px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px">
+<img src="img/senalando.png" alt="" style="width: 150px; height: auto; display: block">
+<h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 24px; line-height: 32px; color: #103E32">No encontramos productos para “{{query}}”</h2>
+<p style="margin: 0; font-size: 17px; line-height: 26px; color: #55655E">Revisá que esté bien escrito o probá con otra palabra.</p>
+<button type="button" onClick="{{ clearQuery }}" style="align-self: stretch; height: 52px; border: 0; border-radius: 12px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px">Limpiar búsqueda</button>
+</div>
+</sc-if>
+<sc-if value="{{ emptyCat }}" hint-placeholder-val="{{ false }}">
+<div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 20px; padding: 36px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px">
+<img src="img/senalando.png" alt="" style="width: 150px; height: auto; display: block">
+<h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 24px; line-height: 32px; color: #103E32">No hay productos para mostrar</h2>
+<p style="margin: 0; font-size: 17px; line-height: 26px; color: #55655E">Todavía no hay productos cargados en este rubro. Mirá los demás rubros del almacén.</p>
+<button type="button" onClick="{{ clearAll }}" style="align-self: stretch; height: 52px; border: 0; border-radius: 12px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px">Ver todos los productos</button>
+</div>
+</sc-if>
+</main>
+</sc-if>
+<sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+<main style="padding: 12px 16px 64px">
+<button type="button" onClick="{{ backToCatalog }}" style="height: 48px; padding: 0 14px 0 6px; border: 0; border-radius: 12px; background: transparent; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; display: inline-flex; align-items: center; gap: 8px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Volver al catálogo</button>
+<div style="aspect-ratio: 4 / 3; margin-top: 8px; background: #E4F0EA; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #55655E; text-align: center; padding: 16px; box-sizing: border-box">
+<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#176B4D" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px; color: #103E32">Foto principal del producto</span>
+<span style="font-size: 14px; line-height: 20px">Foto de referencia, se reemplaza por la real.</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px; margin-top: 20px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+<span style="display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E3DFD2; box-sizing: border-box; color: #24332D; font-weight: 600; font-size: 13px">{{selCat}}</span>
+<sc-if value="{{ selOk }}" hint-placeholder-val="{{ true }}"><span style="display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 10px; border-radius: 999px; background: #E4F0EA; color: #176B4D; font-weight: 700; font-size: 13px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Disponible</span></sc-if>
+<sc-if value="{{ selSoldOut }}" hint-placeholder-val="{{ false }}"><span style="display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 999px; background: #FFFFFF; border: 1px solid #55655E; box-sizing: border-box; color: #55655E; font-weight: 700; font-size: 13px">Sin stock</span></sc-if>
+</div>
+<h1 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 32px; line-height: 40px; letter-spacing: -0.02em; color: #103E32">{{selName}}</h1>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 36px; line-height: 44px; color: #176B4D">{{selPrice}}</span>
+<p style="margin: 0; font-size: 18px; line-height: 28px">{{selDesc}}</p>
+<span style="font-size: 14px; line-height: 20px; color: #55655E">Producto, descripción y precio de ejemplo.</span>
+<sc-if value="{{ selOk }}" hint-placeholder-val="{{ true }}">
+<div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px">
+<span id="cant" style="font-weight: 600; font-size: 17px">Cantidad</span>
+<div role="group" aria-labelledby="cant" style="display: flex; align-items: center; gap: 4px">
+<button type="button" aria-label="Restar una unidad" onClick="{{ qtyMinus }}" style="width: 52px; height: 52px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; display: flex; align-items: center; justify-content: center; padding: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+<span aria-live="polite" style="min-width: 56px; text-align: center; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 24px; line-height: 30px">{{qty}}</span>
+<button type="button" aria-label="Sumar una unidad" onClick="{{ qtyPlus }}" style="width: 52px; height: 52px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; display: flex; align-items: center; justify-content: center; padding: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+</div>
+</div>
+<div style="display: flex; align-items: baseline; justify-content: space-between; font-size: 16px; line-height: 24px; color: #55655E"><span>Total</span><b style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; color: #103E32; font-size: 22px">{{lineTotal}}</b></div>
+<sc-if value="{{ selNormal }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ addDetail }}" style="height: 56px; border: 0; border-radius: 12px; background: #F5A623; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M2.5 3.5h2.7l2.3 11.2a1.6 1.6 0 0 0 1.6 1.3h8.1a1.6 1.6 0 0 0 1.6-1.2L20.5 8H6.2"/></svg>Agregar al carrito</button></sc-if>
+<sc-if value="{{ selAdded }}" hint-placeholder-val="{{ false }}"><button type="button" disabled style="height: 56px; border: 0; border-radius: 12px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Agregado al carrito</button></sc-if>
+<sc-if value="{{ selMsg }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="background: #E4F0EA; border: 1px solid #176B4D; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: flex-start; gap: 10px"><span style="flex: none; width: 28px; height: 28px; border-radius: 999px; background: #176B4D; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span style="font-size: 16px; line-height: 24px"><b>¡Listo!</b> Agregaste {{msgText}} al carrito.</span></div>
+<button type="button" onClick="{{ backToCatalog }}" style="height: 48px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px">Seguir comprando</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+<sc-if value="{{ selSoldOut }}" hint-placeholder-val="{{ false }}">
+<div style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: flex-start; gap: 10px; font-size: 16px; line-height: 24px"><span style="flex: none; color: #55655E; margin-top: 1px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 16H3zM12 10v4.5M12 17.2v.1"/></svg></span><span><b>Por ahora no tenemos este producto.</b> Mientras tanto, mirá otros productos del rubro.</span></div>
+<button type="button" disabled style="height: 56px; border: 0; border-radius: 12px; background: #E3DFD2; color: #55655E; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 18px">No disponible por ahora</button>
+<button type="button" onClick="{{ seeCategory }}" style="min-height: 52px; padding: 8px 12px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px">Ver otros productos de {{selCat}}</button>
+</div>
+</sc-if>
+</div>
+</main>
+</sc-if>
+<footer id="contacto" style="background: #103E32; color: #FAF8F2; padding: 56px 20px 28px; display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 14px">
+<div style="display: flex; align-items: center; gap: 12px">
+<span style="width: 56px; height: 56px; border-radius: 999px; background: #FAF8F2; display: flex; align-items: center; justify-content: center"><img src="img/pulgar.png" alt="" style="width: 40px; height: auto; display: block"></span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 26px; line-height: 32px; letter-spacing: -0.02em">Changuito</span>
+</div>
+<span style="font-size: 17px; line-height: 26px; color: #E4F0EA">Tu almacén de siempre, ahora a un clic.</span>
+</div>
+<div style="display: flex; flex-direction: column">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #F5A623; margin-bottom: 6px">Navegación</span>
+<a href="Landing-Movil.dc.html" style="display: flex; align-items: center; min-height: 48px; font-size: 17px; border-bottom: 1px solid rgba(250,248,242,0.2)">Inicio</a>
+<a href="#catalogo" style="display: flex; align-items: center; min-height: 48px; font-size: 17px; border-bottom: 1px solid rgba(250,248,242,0.2)">Productos</a>
+<a href="Nosotros-Movil.dc.html" style="display: flex; align-items: center; min-height: 48px; font-size: 17px; border-bottom: 1px solid rgba(250,248,242,0.2)">Nosotros</a>
+<a href="Contacto-Movil.dc.html" style="display: flex; align-items: center; min-height: 48px; font-size: 17px">Contacto</a>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #F5A623; margin-bottom: 4px">Contacto</span>
+<a href="Contacto-Movil.dc.html" style="align-self: stretch; height: 52px; box-sizing: border-box; border: 2px solid #FAF8F2; border-radius: 12px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.500" width="18" height="13" rx="2"/><path d="M3.500 7l8.500 6 8.500-6"/></svg>Escribinos</a>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Correo de contacto]</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Teléfono]</span>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #F5A623; margin-bottom: 4px">Información institucional</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Nombre del comercio]</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Dirección del local]</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Horario de atención]</span>
+</div>
+<div style="border-top: 1px solid rgba(250,248,242,0.25); padding-top: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 22px; color: #E4F0EA">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 20px">
+<span style="color: #F5A623; border-bottom: 1px dashed #F5A623">[Términos y condiciones]</span>
+<span style="color: #F5A623; border-bottom: 1px dashed #F5A623">[Política de privacidad]</span>
+</div>
+<a href="Admin-Escritorio.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: 3px">Administración (demo)</a>
+<span>© <span style="color: #F5A623; border-bottom: 1px dashed #F5A623">[Año]</span> Changuito · Prototipo de diseño, Aplicaciones Interactivas, UADE</span>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":4900}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { view: this.initialView(), selId: this.initialSel(), query: '', cat: 'Todos', sort: 'none', cart: this.loadCart(), flash: {}, qty: 1, msg: null, btnAdded: false, toast: null, menu: false };
+}
+initialSel() {
+try {
+const m = /[?&]p=(\d+)/.exec(window.location.search || '');
+if (m) { const id = parseInt(m[1], 10); if (id >= 1 && id <= 13) return id; }
+} catch (e) {}
+return null;
+}
+initialView() {
+return this.initialSel() ? 'detail' : 'catalog';
+}
+loadCart() {
+const cart = {};
+try {
+const m = /[?&]c=([^&]*)/.exec(window.location.search || '');
+if (m && m[1]) {
+m[1].split(',').forEach((t) => { const a = t.split('.'); const id = parseInt(a[0], 10); const n = parseInt(a[1], 10); if (id > 0 && n > 0) cart[id] = n; });
+return cart;
+}
+} catch (e) {}
+try {
+const raw = window.localStorage.getItem('changuito-carrito');
+if (raw) { const o = JSON.parse(raw); Object.keys(o).forEach((k) => { if (o[k] > 0) cart[k] = o[k]; }); }
+} catch (e) {}
+return cart;
+}
+saveCart(cart) {
+try { window.localStorage.setItem('changuito-carrito', JSON.stringify(cart)); } catch (e) {}
+}
+cartQuery(cart) {
+const parts = Object.keys(cart).filter((k) => cart[k] > 0).map((k) => k + '.' + cart[k]);
+return parts.length ? '?c=' + parts.join(',') : '';
+}
+getProducts() {
+return [
+{ id: 1, name: 'Yerba mate 500 g', cat: 'Almacén', price: 4890, ok: true, desc: 'Yerba mate con palo, en paquete de 500 g. Ideal para el mate de todos los días.' },
+{ id: 2, name: 'Fideos tirabuzón 500 g', cat: 'Almacén', price: 1250, ok: true, desc: 'Pasta seca de sémola de trigo en paquete de 500 g. Se cocina en pocos minutos.' },
+{ id: 3, name: 'Arroz largo fino 1 kg', cat: 'Almacén', price: 1980, ok: true, desc: 'Arroz largo fino en paquete de 1 kg. Un básico de la alacena.' },
+{ id: 4, name: 'Aceite de girasol 900 ml', cat: 'Almacén', price: 2350, ok: true, desc: 'Aceite de girasol en botella de 900 ml, para cocinar y condimentar.' },
+{ id: 5, name: 'Azúcar 1 kg', cat: 'Almacén', price: 1450, ok: true, desc: 'Azúcar blanca en paquete de 1 kg.' },
+{ id: 6, name: 'Harina 000 1 kg', cat: 'Almacén', price: 1100, ok: false, desc: 'Harina de trigo 000 en paquete de 1 kg, para panificados y masas.' },
+{ id: 7, name: 'Gaseosa cola 1,5 L', cat: 'Bebidas sin alcohol', price: 2100, ok: true, desc: 'Bebida gaseosa sabor cola en botella de 1,5 litros.' },
+{ id: 8, name: 'Agua mineral 2 L', cat: 'Bebidas sin alcohol', price: 1100, ok: true, desc: 'Agua mineral sin gas en botella de 2 litros.' },
+{ id: 9, name: 'Jugo en polvo sabor naranja', cat: 'Bebidas sin alcohol', price: 450, ok: true, desc: 'Jugo en polvo sabor naranja para preparar en jarra. Se vende por sobre.' },
+{ id: 10, name: 'Detergente para vajilla 750 ml', cat: 'Limpieza', price: 1890, ok: true, desc: 'Detergente líquido para lavar la vajilla, en envase de 750 ml.' },
+{ id: 11, name: 'Lavandina 1 L', cat: 'Limpieza', price: 980, ok: true, desc: 'Lavandina en botella de 1 litro, para limpiar y desinfectar superficies.' },
+{ id: 12, name: 'Tomate redondo, 1 kg', cat: 'Frescos', price: 2790, ok: true, desc: 'Tomate redondo fresco. El precio es por kilo.' },
+{ id: 13, name: 'Banana, 1 kg', cat: 'Frescos', price: 2200, ok: true, desc: 'Bananas frescas. El precio es por kilo.' }
+];
+}
+norm(s) {
+return String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+}
+money(n) {
+return '$ ' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+top() {
+try { window.scrollTo(0, 0); } catch (e) {}
+}
+later(fn, ms) {
+setTimeout(fn, ms);
+}
+addToCart(p, n) {
+const cart = Object.assign({}, this.state.cart);
+cart[p.id] = (cart[p.id] || 0) + n;
+const stamp = Date.now();
+this.saveCart(cart);
+this.setState({ cart: cart, toast: p.name + ' se agregó al carrito', toastStamp: stamp });
+this.later(() => { if (this.state.toastStamp === stamp) this.setState({ toast: null }); }, 2800);
+}
+renderVals() {
+const st = this.state;
+const all = this.getProducts();
+const cats = ['Todos', 'Almacén', 'Bebidas sin alcohol', 'Limpieza', 'Cuidado personal', 'Frescos'];
+const q = this.norm(st.query.trim());
+let list = all.filter((p) => (st.cat === 'Todos' || p.cat === st.cat) && (q === '' || this.norm(p.name).indexOf(q) !== -1));
+if (st.sort === 'asc') list = list.slice().sort((a, b) => a.price - b.price);
+if (st.sort === 'desc') list = list.slice().sort((a, b) => b.price - a.price);
+const cartCount = Object.keys(st.cart).reduce((t, k) => t + st.cart[k], 0);
+const hasFilters = st.cat !== 'Todos' || q !== '' || st.sort !== 'none';
+const visible = list.map((p) => {
+const flashed = !!st.flash[p.id];
+return {
+id: p.id, name: p.name, cat: p.cat, priceStr: this.money(p.price),
+ok: p.ok, soldOut: !p.ok,
+showAdd: p.ok && !flashed, showAdded: p.ok && flashed,
+priceColor: p.ok ? '#176B4D' : '#55655E',
+open: () => { this.setState({ view: 'detail', selId: p.id, qty: 1, msg: null, btnAdded: false }); this.top(); },
+add: () => {
+this.addToCart(p, 1);
+const f = Object.assign({}, this.state.flash); f[p.id] = true; this.setState({ flash: f });
+this.later(() => { const g = Object.assign({}, this.state.flash); delete g[p.id]; this.setState({ flash: g }); }, 2200);
+}
+};
+});
+const catItems = cats.map((c) => {
+const n = c === 'Todos' ? all.length : all.filter((p) => p.cat === c).length;
+return { label: c, count: n, on: st.cat === c, off: st.cat !== c, pick: () => this.setState({ cat: c }) };
+});
+const sel = all.find((p) => p.id === st.selId) || all[0];
+const shown = visible.length;
+const countText = shown === 0 ? 'Sin productos para mostrar' : (shown === 1 ? 'Mostrando 1 producto' : 'Mostrando ' + shown + ' de ' + all.length + ' productos');
+const emptySearch = shown === 0 && q !== '';
+const emptyCat = shown === 0 && q === '';
+const setQty = (n) => this.setState({ qty: Math.max(1, Math.min(12, n)), msg: null, btnAdded: false });
+return {
+cartCount: cartCount,
+cartHref: 'Compra-Escritorio.dc.html' + this.cartQuery(st.cart),
+isCatalog: st.view === 'catalog',
+isDetail: st.view === 'detail',
+hasToast: !!st.toast,
+toast: st.toast || '',
+query: st.query,
+hasQuery: st.query !== '',
+onQuery: (e) => this.setState({ query: e && e.target ? e.target.value : '' }),
+clearQuery: () => this.setState({ query: '' }),
+clearAll: () => this.setState({ query: '', cat: 'Todos', sort: 'none' }),
+hasFilters: hasFilters,
+cats: catItems,
+sortAscOn: st.sort === 'asc', sortAscOff: st.sort !== 'asc',
+sortDescOn: st.sort === 'desc', sortDescOff: st.sort !== 'desc',
+sortAsc: () => this.setState({ sort: st.sort === 'asc' ? 'none' : 'asc' }),
+sortDesc: () => this.setState({ sort: st.sort === 'desc' ? 'none' : 'desc' }),
+countText: countText,
+hasResults: shown > 0,
+emptySearch: emptySearch,
+emptyCat: emptyCat,
+visible: visible,
+selName: sel.name, selCat: sel.cat, selDesc: sel.desc, selPrice: this.money(sel.price),
+selOk: sel.ok, selSoldOut: !sel.ok,
+selNormal: sel.ok && !st.btnAdded, selAdded: sel.ok && st.btnAdded,
+selMsg: sel.ok && !!st.msg,
+msgText: st.msg ? (st.msg.qty === 1 ? '1 unidad' : st.msg.qty + ' unidades') + ' de ' + sel.name : '',
+qty: st.qty,
+lineTotal: this.money(sel.price * st.qty),
+qtyMinus: () => setQty(st.qty - 1),
+qtyPlus: () => setQty(st.qty + 1),
+addDetail: () => {
+this.addToCart(sel, st.qty);
+this.setState({ msg: { qty: st.qty }, btnAdded: true });
+this.later(() => this.setState({ btnAdded: false }), 2200);
+},
+backToCatalog: () => { this.setState({ view: 'catalog', msg: null, btnAdded: false }); this.top(); },
+seeCategory: () => { this.setState({ view: 'catalog', cat: sel.cat, query: '', msg: null, btnAdded: false }); this.top(); },
+menuOpen: !!st.menu,
+menuClosed: !st.menu,
+toggleMenu: () => this.setState({ menu: !st.menu })
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<title>Changuito · Administración de productos</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed}
+input,textarea{font-family:'Source Sans 3',system-ui,sans-serif}
+</style>
+</helmet>
+<div style="position: relative; min-height: 1800px; background: #FAF8F2; color: #24332D; font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 17px; line-height: 26px">
+
+<header style="background: #103E32; color: #FAF8F2">
+<div style="max-width: 1312px; margin: 0 auto; padding: 12px 32px; box-sizing: border-box; min-height: 76px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+<div style="display: flex; align-items: center; gap: 14px">
+<span style="width: 48px; height: 48px; border-radius: 999px; background: #FAF8F2; display: flex; align-items: center; justify-content: center"><img src="img/pulgar.png" alt="" style="height: 38px; width: auto; display: block"></span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 26px; line-height: 32px; letter-spacing: -0.02em">Changuito</span>
+<span style="height: 28px; padding: 0 12px; border-radius: 999px; background: #F5A623; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; display: inline-flex; align-items: center">Administración</span>
+</div>
+<nav aria-label="Administración" style="display: flex; align-items: center; gap: 28px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px">
+<button type="button" onClick="{{ goList }}" style="height: 48px; padding: 0; border: 0; border-bottom: 3px solid #F5A623; background: transparent; color: #FAF8F2; font: inherit">Productos</button>
+</nav>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<span style="display: inline-flex; align-items: center; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px dashed #A9C4B8; color: #E4F0EA; font-weight: 600; font-size: 14px; box-sizing: border-box">Modo demo · sin inicio de sesión</span>
+<a href="Landing-Escritorio.dc.html" style="height: 44px; padding: 0 16px; box-sizing: border-box; border: 2px solid #FAF8F2; border-radius: 12px; color: #FAF8F2; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Volver a la tienda</a>
+</div>
+</div>
+</header>
+
+<sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+<main style="max-width: 1312px; margin: 0 auto; padding: 36px 32px 96px; box-sizing: border-box">
+<nav aria-label="Ruta" style="display: flex; align-items: center; gap: 8px; font-size: 15px; line-height: 22px; color: #55655E"><span>Administración</span><span>/</span><span>Productos</span></nav>
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 32px; margin-top: 14px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 44px; line-height: 52px; letter-spacing: -0.02em; color: #103E32">Administración de productos</h1>
+<p style="margin: 0; font-size: 19px; line-height: 28px">Editá los datos de cada producto o eliminalo del catálogo de la tienda.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<span style="display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px dashed #55655E; color: #55655E; font-weight: 600; font-size: 14px; box-sizing: border-box">Alta de productos: parte del proyecto</span>
+<button type="button" onClick="{{ openCreate }}" style="height: 52px; padding: 0 22px; border: 0; border-radius: 12px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px; display: inline-flex; align-items: center; gap: 10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Agregar producto</button>
+</div>
+</div>
+
+<sc-if value="{{ bannerOn }}" hint-placeholder-val="{{ true }}">
+<div role="status" style="margin-top: 24px; display: flex; align-items: flex-start; gap: 14px; padding: 16px 16px 16px 18px; border-radius: 14px; box-sizing: border-box; background: {{ bannerBg }}; border: 1px solid {{ bannerBorder }}; color: #24332D">
+<sc-if value="{{ bannerSuccess }}" hint-placeholder-val="{{ true }}"><span style="flex: none; width: 32px; height: 32px; border-radius: 999px; background: #176B4D; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></sc-if>
+<sc-if value="{{ bannerInfo }}" hint-placeholder-val="{{ false }}"><span style="flex: none; width: 32px; height: 32px; border-radius: 999px; background: #F5A623; color: #24332D; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"/><path d="M10.6 6.2A9.5 9.5 0 0 1 12 6c5 0 8.5 4 9.5 6a14 14 0 0 1-3 3.8M6.5 7.6C4.4 9 3 11 2.5 12c1 2 4.5 6 9.5 6 1.3 0 2.5-.3 3.6-.8"/></svg></span></sc-if>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 18px; line-height: 26px; color: #103E32">{{bannerTitle}}</span><span style="font-size: 17px; line-height: 26px">{{bannerText}}</span></div>
+<button type="button" onClick="{{ closeBanner }}" aria-label="Cerrar aviso" style="flex: none; width: 44px; height: 44px; border: 0; border-radius: 10px; background: transparent; color: #24332D; display: flex; align-items: center; justify-content: center; padding: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+</sc-if>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: 28px">
+<div role="group" aria-label="Filtrar por estado" style="display: flex; flex-wrap: wrap; gap: 10px">
+<sc-for list="{{ filters }}" as="c" hint-placeholder-count="4">
+<sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><button type="button" aria-pressed="true" onClick="{{ c.pick }}" style="height: 44px; padding: 0 12px 0 18px; border: 2px solid #176B4D; border-radius: 999px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 10px">{{c.label}}<span style="min-width: 26px; height: 26px; padding: 0 7px; box-sizing: border-box; border-radius: 999px; background: #FFFFFF; color: #176B4D; font-size: 13px; display: inline-flex; align-items: center; justify-content: center">{{c.count}}</span></button></sc-if>
+<sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" onClick="{{ c.pick }}" style="height: 44px; padding: 0 12px 0 18px; border: 1px solid #55655E; border-radius: 999px; background: #FFFFFF; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 10px">{{c.label}}<span style="min-width: 26px; height: 26px; padding: 0 7px; box-sizing: border-box; border-radius: 999px; background: #E4F0EA; color: #176B4D; font-size: 13px; display: inline-flex; align-items: center; justify-content: center">{{c.count}}</span></button></sc-if>
+</sc-for>
+</div>
+<span style="font-size: 16px; line-height: 24px; color: #55655E">{{countText}} · datos de ejemplo</span>
+</div>
+
+<div style="margin-top: 16px; background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<div style="display: grid; grid-template-columns: 72px minmax(200px, 1.6fr) 190px 130px 200px 250px; gap: 16px; align-items: center; padding: 14px 20px; background: #F3F0E6; border-bottom: 1px solid #E3DFD2; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; line-height: 20px; color: #55655E">
+<span>Imagen</span><span>Producto</span><span>Categoría</span><span>Precio</span><span>Disponibilidad</span><span>Acciones</span>
+</div>
+<sc-for list="{{ rows }}" as="item" hint-placeholder-count="8">
+<div style="border-bottom: 1px solid #E3DFD2">
+<sc-if value="{{ item.active }}" hint-placeholder-val="{{ true }}">
+<div style="display: grid; grid-template-columns: 72px minmax(200px, 1.6fr) 190px 130px 200px 250px; gap: 16px; align-items: center; padding: 12px 20px; background: {{ item.rowBg }}">
+<div style="width: 56px; height: 56px; border-radius: 10px; background: #E4F0EA; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#176B4D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px; line-height: 24px; color: #103E32">{{item.name}}</span>
+<sc-if value="{{ item.justSaved }}" hint-placeholder-val="{{ false }}"><span style="height: 24px; padding: 0 10px; border-radius: 999px; background: #176B4D; color: #FFFFFF; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center">Guardado</span></sc-if></div>
+<span style="font-size: 16px; line-height: 22px">{{item.cat}}</span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 18px; line-height: 24px; color: #176B4D">{{item.priceStr}}</span>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px">
+<sc-if value="{{ item.isOk }}" hint-placeholder-val="{{ true }}"><span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: #E4F0EA; color: #176B4D; font-weight: 700; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Disponible</span></sc-if>
+<sc-if value="{{ item.isSold }}" hint-placeholder-val="{{ false }}"><span style="display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; background: #FFFFFF; border: 1px solid #55655E; box-sizing: border-box; color: #55655E; font-weight: 700; font-size: 14px">Sin stock</span></sc-if>
+<span style="font-size: 14px; line-height: 20px; color: #55655E">Stock: {{item.stockText}}</span>
+</div>
+<div style="display: flex; gap: 10px">
+<button type="button" onClick="{{ item.edit }}" aria-label="{{ item.editLabel }}" style="height: 44px; padding: 0 16px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>Editar</button>
+<button type="button" onClick="{{ item.del }}" aria-label="{{ item.delLabel }}" style="height: 44px; padding: 0 16px; border: 2px solid #B42318; border-radius: 12px; background: #FFFFFF; color: #B42318; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10 11v6M14 11v6"/></svg>Eliminar</button>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ item.inactive }}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: 72px minmax(200px, 1.6fr) 190px 130px 200px 250px; gap: 16px; align-items: center; padding: 12px 20px; background: #F3F0E6">
+<div style="width: 56px; height: 56px; border-radius: 10px; background: #E3DFD2; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#55655E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></div>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px; line-height: 24px; color: #55655E; text-decoration: line-through">{{item.name}}</span>
+<span style="font-size: 16px; line-height: 22px; color: #55655E">{{item.cat}}</span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; line-height: 24px; color: #55655E">{{item.priceStr}}</span>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px">
+<span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: #55655E; color: #FFFFFF; font-weight: 700; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"/><path d="M10.6 6.2A9.5 9.5 0 0 1 12 6c5 0 8.5 4 9.5 6a14 14 0 0 1-3 3.8M6.5 7.6C4.4 9 3 11 2.5 12c1 2 4.5 6 9.5 6 1.3 0 2.5-.3 3.6-.8"/></svg>Desactivado</span>
+<span style="font-size: 14px; line-height: 20px; color: #55655E">No se muestra en la tienda</span>
+</div>
+<div style="display: flex; gap: 10px">
+<button type="button" disabled aria-label="{{ item.editLabel }} (no disponible: producto desactivado)" style="height: 44px; padding: 0 16px; border: 1px solid #C9C5B6; border-radius: 12px; background: #F3F0E6; color: #55655E; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>Editar</button>
+<button type="button" disabled aria-label="{{ item.delLabel }} (no disponible: producto ya desactivado)" style="height: 44px; padding: 0 16px; border: 1px solid #C9C5B6; border-radius: 12px; background: #F3F0E6; color: #55655E; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10 11v6M14 11v6"/></svg>Eliminar</button>
+</div>
+</div>
+</sc-if>
+</div>
+</sc-for>
+<sc-if value="{{ emptyRows }}" hint-placeholder-val="{{ false }}">
+<div style="padding: 48px 24px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 22px; line-height: 30px; color: #103E32">No hay productos en este estado</span>
+<span style="font-size: 17px; line-height: 26px; color: #55655E">Probá con otro filtro para ver el resto del listado.</span>
+<button type="button" onClick="{{ showAll }}" style="margin-top: 6px; height: 48px; padding: 0 20px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px">Ver todos los productos</button>
+</div>
+</sc-if>
+</div>
+
+<div style="margin-top: 24px; display: flex; flex-direction: column; gap: 6px; max-width: 900px; font-size: 16px; line-height: 24px; color: #55655E">
+<span><b style="color: #24332D">Eliminar no borra el producto.</b> Según la propuesta del proyecto, la eliminación es lógica: el producto queda desactivado y deja de mostrarse en la tienda.</span>
+<span>En este prototipo todo es visual: no hay base de datos ni inicio de sesión conectados, y la tienda no refleja estos cambios.</span>
+</div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isForm }}" hint-placeholder-val="{{ false }}">
+<main style="max-width: 1312px; margin: 0 auto; padding: 36px 32px 96px; box-sizing: border-box">
+<nav aria-label="Ruta" style="display: flex; align-items: center; gap: 8px; font-size: 15px; line-height: 22px; color: #55655E"><span>Administración</span><span>/</span><button type="button" onClick="{{ goList }}" style="padding: 0; border: 0; background: transparent; color: #176B4D; font: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 3px">Productos</button><span>/</span><span>{{formTitle}}</span></nav>
+<div style="margin-top: 14px; display: flex; flex-direction: column; gap: 8px">
+<h1 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 44px; line-height: 52px; letter-spacing: -0.02em; color: #103E32">{{formTitle}}</h1>
+<p style="margin: 0; font-size: 19px; line-height: 28px">{{formLead}}</p>
+</div>
+
+<sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="margin-top: 24px; max-width: 1080px; box-sizing: border-box; display: flex; gap: 14px; padding: 16px 20px; border-radius: 14px; background: #FDECEA; border: 1px solid #B42318; color: #7A1B12">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 999px; background: #B42318; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v8M12 18v.2"/></svg></span>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 18px; line-height: 26px">No se pudo guardar. {{errSummary}}</span>
+<sc-for list="{{ errList }}" as="e" hint-placeholder-count="2"><span style="font-size: 16px; line-height: 24px">· {{e.text}}</span></sc-for></div>
+</div>
+</sc-if>
+
+<div style="display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(320px, 1fr); gap: 32px; align-items: start; margin-top: 28px; max-width: 1080px">
+<form onSubmit="{{ noSubmit }}" style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 24px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-nombre" style="font-weight: 700; font-size: 16px; line-height: 22px">Nombre <span style="color: #B42318" aria-hidden="true">*</span></label>
+<input id="f-nombre" type="text" value="{{ vName }}" onInput="{{ onName }}" aria-required="true" aria-describedby="e-nombre" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 16px; border: 2px solid {{ bdName }}; border-radius: 12px; background: #FFFFFF; color: #24332D; font-size: 17px">
+<sc-if value="{{ errName }}" hint-placeholder-val="{{ false }}"><span id="e-nombre" style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>{{msgName}}</span></sc-if>
+</div>
+
+<div role="radiogroup" aria-labelledby="f-cat-l" style="display: flex; flex-direction: column; gap: 8px">
+<span id="f-cat-l" style="font-weight: 700; font-size: 16px; line-height: 22px">Categoría <span style="color: #B42318" aria-hidden="true">*</span></span>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+<sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><button type="button" role="radio" aria-checked="true" onClick="{{ c.pick }}" style="height: 44px; padding: 0 18px; border: 2px solid #176B4D; border-radius: 999px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px">{{c.label}}</button></sc-if>
+<sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}"><button type="button" role="radio" aria-checked="false" onClick="{{ c.pick }}" style="height: 44px; padding: 0 18px; border: 1px solid #55655E; border-radius: 999px; background: #FFFFFF; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px">{{c.label}}</button></sc-if>
+</sc-for>
+</div>
+<sc-if value="{{ errCat }}" hint-placeholder-val="{{ false }}"><span style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>{{msgCat}}</span></sc-if>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px; max-width: 340px">
+<label for="f-precio" style="font-weight: 700; font-size: 16px; line-height: 22px">Precio en pesos <span style="color: #B42318" aria-hidden="true">*</span></label>
+<div style="position: relative; display: flex; align-items: center">
+<span style="position: absolute; left: 16px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #55655E" aria-hidden="true">$</span>
+<input id="f-precio" type="text" inputmode="decimal" value="{{ vPrice }}" onInput="{{ onPrice }}" aria-required="true" aria-describedby="e-precio h-precio" placeholder="2350" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 16px 0 38px; border: 2px solid {{ bdPrice }}; border-radius: 12px; background: #FFFFFF; color: #24332D; font-size: 17px">
+</div>
+<span id="h-precio" style="font-size: 14px; line-height: 20px; color: #55655E">Solo números. Para centavos usá coma, por ejemplo 2350,50.</span>
+<sc-if value="{{ errPrice }}" hint-placeholder-val="{{ false }}"><span id="e-precio" style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>{{msgPrice}}</span></sc-if>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-desc" style="font-weight: 700; font-size: 16px; line-height: 22px">Descripción <span style="color: #B42318" aria-hidden="true">*</span></label>
+<textarea id="f-desc" rows="4" value="{{ vDesc }}" onInput="{{ onDesc }}" aria-required="true" aria-describedby="e-desc" style="width: 100%; box-sizing: border-box; padding: 12px 16px; border: 2px solid {{ bdDesc }}; border-radius: 12px; background: #FFFFFF; color: #24332D; font-size: 17px; line-height: 26px; resize: vertical"></textarea>
+<div style="display: flex; justify-content: space-between; gap: 16px">
+<sc-if value="{{ errDesc }}" hint-placeholder-val="{{ false }}"><span id="e-desc" style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>{{msgDesc}}</span></sc-if>
+<sc-if value="{{ noErrDesc }}" hint-placeholder-val="{{ true }}"><span style="font-size: 14px; line-height: 20px; color: #55655E">Entre 10 y 200 caracteres.</span></sc-if>
+<span style="font-size: 14px; line-height: 20px; color: #55655E">{{descCount}} / 200</span>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; padding-top: 8px; border-top: 1px solid #E3DFD2">
+<button type="button" onClick="{{ save }}" style="margin-top: 16px; height: 56px; padding: 0 28px; border: 0; border-radius: 12px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 17px; display: inline-flex; align-items: center; gap: 10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>{{saveLabel}}</button>
+<button type="button" onClick="{{ goList }}" style="margin-top: 16px; height: 56px; padding: 0 28px; border: 2px solid #55655E; border-radius: 12px; background: #FFFFFF; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px">Cancelar</button>
+<span style="margin-top: 16px; font-size: 15px; line-height: 22px; color: #55655E">Cancelar descarta lo que cambiaste.</span>
+</div>
+</form>
+
+<aside style="display: flex; flex-direction: column; gap: 24px">
+<section aria-labelledby="img-t" style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<h2 id="img-t" style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 20px; line-height: 28px; color: #103E32">Imagen <span style="font-weight: 600; font-size: 15px; color: #55655E">(opcional)</span></h2>
+<div style="aspect-ratio: 4 / 3; background: #E4F0EA; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #55655E; font-size: 14px; line-height: 20px; text-align: center; padding: 16px; box-sizing: border-box">
+<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#176B4D" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>
+<sc-if value="{{ imgNone }}" hint-placeholder-val="{{ true }}"><span>{{imgCurrentText}}</span></sc-if>
+<sc-if value="{{ imgChosen }}" hint-placeholder-val="{{ false }}"><span style="font-weight: 700; color: #103E32">foto-ejemplo.jpg</span><span>Imagen nueva elegida (selección simulada)</span></sc-if>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<button type="button" onClick="{{ chooseImg }}" style="height: 44px; padding: 0 16px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V5M7.5 9.5L12 5l4.5 4.5M5 19h14"/></svg>Elegir otra imagen</button>
+<sc-if value="{{ imgChosen }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ clearImg }}" style="height: 44px; padding: 0 12px; border: 0; background: transparent; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; text-decoration: underline; text-underline-offset: 4px">Quitar imagen nueva</button></sc-if>
+</div>
+<span style="font-size: 14px; line-height: 20px; color: #55655E">No es obligatoria: si no elegís otra, se conserva la imagen actual.</span>
+</section>
+
+<section aria-labelledby="stock-t" style="background: #F3F0E6; border: 1px solid #E3DFD2; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<h2 id="stock-t" style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 20px; line-height: 28px; color: #103E32; display: flex; align-items: center; gap: 10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Stock</h2>
+<div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 32px; line-height: 38px; color: #24332D">{{stockNum}}</span><span style="font-size: 17px; color: #24332D">unidades</span><span style="margin-left: auto; height: 26px; padding: 0 10px; border-radius: 999px; border: 1px solid #55655E; color: #55655E; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center">Solo lectura</span></div>
+<span style="font-size: 15px; line-height: 22px; color: #24332D">El stock no se edita a mano. Según la propuesta del proyecto, cambia con las operaciones del negocio.</span>
+</section>
+</aside>
+</div>
+</main>
+</sc-if>
+
+<sc-if value="{{ delOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index: 50; background: rgba(16,62,50,0.6); display: flex; justify-content: center; align-items: flex-start; padding: 0 24px; box-sizing: border-box">
+<div role="alertdialog" aria-modal="true" aria-labelledby="dlg-t" aria-describedby="dlg-d" style="position: sticky; top: 120px; margin-top: 120px; width: 100%; max-width: 580px; box-sizing: border-box; background: #FFFFFF; border-radius: 20px; padding: 32px; box-shadow: 0 24px 64px rgba(16,62,50,0.35); display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; gap: 16px">
+<span style="flex: none; width: 52px; height: 52px; border-radius: 999px; background: #FDECEA; color: #B42318; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 16H3L12 4z"/><path d="M12 10v4.5M12 17.2v.1"/></svg></span>
+<h2 id="dlg-t" style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 26px; line-height: 32px; color: #103E32">¿Eliminar este producto?</h2>
+</div>
+<div style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 14px; background: #FAF8F2; border: 1px solid #E3DFD2">
+<div style="flex: none; width: 56px; height: 56px; border-radius: 10px; background: #E4F0EA; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#176B4D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></div>
+<div style="display: flex; flex-direction: column"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 20px; line-height: 28px; color: #103E32">{{delName}}</span><span style="font-size: 15px; line-height: 22px; color: #55655E">{{delCat}} · {{delPrice}}</span></div>
+</div>
+<div id="dlg-d" style="display: flex; flex-direction: column; gap: 8px; font-size: 17px; line-height: 26px">
+<span><b>Este producto dejará de mostrarse en la tienda</b> y los clientes no podrán comprarlo.</span>
+<span>No se borra de forma definitiva: queda marcado como desactivado en el listado.</span>
+</div>
+<span style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 28px; padding: 2px 12px; border-radius: 999px; border: 1px dashed #55655E; color: #55655E; font-weight: 600; font-size: 14px; line-height: 20px; box-sizing: border-box">Simulación visual: no hay backend conectado</span>
+<div style="display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; padding-top: 8px">
+<button type="button" onClick="{{ delCancel }}" style="height: 52px; padding: 0 24px; border: 2px solid #55655E; border-radius: 12px; background: #FFFFFF; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px">Cancelar</button>
+<button type="button" onClick="{{ delConfirm }}" style="height: 52px; padding: 0 24px; border: 0; border-radius: 12px; background: #B42318; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 16px; display: inline-flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10 11v6M14 11v6"/></svg>Confirmar eliminación</button>
+</div>
+</div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1800}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { view: 'list', mode: 'edit', editId: null, products: this.seed(), filter: 'all', f: { name: '', cat: '', price: '', desc: '' }, tried: false, imgName: null, delId: null, banner: null, savedId: null, nextId: 14 };
+}
+seed() {
+return [
+{ id: 1, name: 'Yerba mate 500 g', cat: 'Almacén', price: 4890, stock: 24, active: true, desc: 'Yerba mate con palo, en paquete de 500 g. Ideal para el mate de todos los días.' },
+{ id: 2, name: 'Fideos tirabuzón 500 g', cat: 'Almacén', price: 1250, stock: 40, active: true, desc: 'Pasta seca de sémola de trigo en paquete de 500 g. Se cocina en pocos minutos.' },
+{ id: 3, name: 'Arroz largo fino 1 kg', cat: 'Almacén', price: 1980, stock: 32, active: true, desc: 'Arroz largo fino en paquete de 1 kg. Un básico de la alacena.' },
+{ id: 4, name: 'Aceite de girasol 900 ml', cat: 'Almacén', price: 2350, stock: 18, active: true, desc: 'Aceite de girasol en botella de 900 ml, para cocinar y condimentar.' },
+{ id: 5, name: 'Azúcar 1 kg', cat: 'Almacén', price: 1450, stock: 27, active: true, desc: 'Azúcar blanca en paquete de 1 kg.' },
+{ id: 6, name: 'Harina 000 1 kg', cat: 'Almacén', price: 1100, stock: 0, active: true, desc: 'Harina de trigo 000 en paquete de 1 kg, para panificados y masas.' },
+{ id: 7, name: 'Gaseosa cola 1,5 L', cat: 'Bebidas sin alcohol', price: 2100, stock: 36, active: true, desc: 'Bebida gaseosa sabor cola en botella de 1,5 litros.' },
+{ id: 8, name: 'Agua mineral 2 L', cat: 'Bebidas sin alcohol', price: 1100, stock: 48, active: true, desc: 'Agua mineral sin gas en botella de 2 litros.' },
+{ id: 9, name: 'Jugo en polvo sabor naranja', cat: 'Bebidas sin alcohol', price: 450, stock: 60, active: true, desc: 'Jugo en polvo sabor naranja para preparar en jarra. Se vende por sobre.' },
+{ id: 10, name: 'Detergente para vajilla 750 ml', cat: 'Limpieza', price: 1890, stock: 15, active: true, desc: 'Detergente líquido para lavar la vajilla, en envase de 750 ml.' },
+{ id: 11, name: 'Lavandina 1 L', cat: 'Limpieza', price: 980, stock: 22, active: true, desc: 'Lavandina en botella de 1 litro, para limpiar y desinfectar superficies.' },
+{ id: 12, name: 'Tomate redondo, 1 kg', cat: 'Frescos', price: 2790, stock: 12, active: true, desc: 'Tomate redondo fresco. El precio es por kilo.' },
+{ id: 13, name: 'Banana, 1 kg', cat: 'Frescos', price: 2200, stock: 9, active: true, desc: 'Bananas frescas. El precio es por kilo.' }
+];
+}
+money(n) {
+const whole = Math.round(n * 100) % 100 === 0;
+const fixed = whole ? String(Math.round(n)) : n.toFixed(2);
+const parts = fixed.split('.');
+return '$ ' + parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + (parts[1] ? ',' + parts[1] : '');
+}
+top() {
+try { window.scrollTo(0, 0); } catch (e) {}
+}
+later(fn, ms) {
+setTimeout(fn, ms);
+}
+validate(f) {
+const out = { name: '', cat: '', price: '', desc: '', priceNum: 0 };
+const nm = String(f.name).trim();
+if (nm === '') out.name = 'Ingresá el nombre del producto.';
+else if (nm.length < 3) out.name = 'El nombre tiene que tener al menos 3 caracteres.';
+if (f.cat === '') out.cat = 'Elegí una categoría.';
+const raw = String(f.price).trim();
+if (raw === '') out.price = 'Ingresá el precio.';
+else {
+const s = raw.replace(/\./g, '').replace(',', '.');
+if (!/^\d+(\.\d{1,2})?$/.test(s)) out.price = 'Ingresá solo números, por ejemplo 2350 o 2350,50.';
+else {
+const n = parseFloat(s);
+if (n <= 0) out.price = 'El precio tiene que ser mayor a 0.';
+else if (n > 9999999) out.price = 'El precio es demasiado alto.';
+else out.priceNum = n;
+}
+}
+const d = String(f.desc).trim();
+if (d === '') out.desc = 'Escribí una descripción corta del producto.';
+else if (d.length < 10) out.desc = 'La descripción tiene que tener al menos 10 caracteres.';
+else if (d.length > 200) out.desc = 'La descripción no puede pasar de 200 caracteres.';
+return out;
+}
+setField(k, v) {
+const f = Object.assign({}, this.state.f);
+f[k] = v;
+this.setState({ f: f });
+}
+showBanner(type, title, text) {
+const stamp = Date.now();
+this.setState({ banner: { type: type, title: title, text: text }, bannerStamp: stamp });
+this.later(() => { if (this.state.bannerStamp === stamp) this.setState({ banner: null, savedId: null }); }, 9000);
+}
+openEdit(p) {
+this.setState({ view: 'form', mode: 'edit', editId: p.id, f: { name: p.name, cat: p.cat, price: String(p.price).replace('.', ','), desc: p.desc }, tried: false, imgName: null, banner: null, savedId: null });
+this.top();
+}
+openCreate() {
+this.setState({ view: 'form', mode: 'create', editId: null, f: { name: '', cat: '', price: '', desc: '' }, tried: false, imgName: null, banner: null, savedId: null });
+this.top();
+}
+save() {
+const st = this.state;
+const errs = this.validate(st.f);
+if (errs.name || errs.cat || errs.price || errs.desc) { this.setState({ tried: true }); return; }
+const name = st.f.name.trim();
+const desc = st.f.desc.trim();
+let products;
+let id;
+let title;
+let text;
+if (st.mode === 'edit') {
+id = st.editId;
+products = st.products.map((p) => p.id === id ? Object.assign({}, p, { name: name, cat: st.f.cat, price: errs.priceNum, desc: desc }) : p);
+title = 'Cambios guardados';
+text = '«' + name + '» se actualizó en el listado.';
+} else {
+id = st.nextId;
+products = st.products.concat([{ id: id, name: name, cat: st.f.cat, price: errs.priceNum, desc: desc, stock: 0, active: true }]);
+title = 'Producto agregado';
+text = '«' + name + '» ya figura en el listado. Su stock empieza en 0.';
+}
+this.setState({ products: products, view: 'list', filter: 'all', tried: false, savedId: id, nextId: st.nextId + (st.mode === 'create' ? 1 : 0) });
+this.showBanner('success', title, text);
+this.top();
+}
+confirmDelete() {
+const st = this.state;
+const p = st.products.find((x) => x.id === st.delId);
+if (!p) { this.setState({ delId: null }); return; }
+const products = st.products.map((x) => x.id === p.id ? Object.assign({}, x, { active: false }) : x);
+this.setState({ products: products, delId: null, savedId: null });
+this.showBanner('info', 'Producto desactivado', '«' + p.name + '» ya no se muestra en la tienda. Sigue en el listado, marcado como desactivado.');
+}
+renderVals() {
+const st = this.state;
+const all = st.products;
+const stateOf = (p) => !p.active ? 'inactive' : (p.stock > 0 ? 'ok' : 'soldout');
+const count = (k) => all.filter((p) => stateOf(p) === k).length;
+const defs = [['all', 'Todos', all.length], ['ok', 'Disponibles', count('ok')], ['soldout', 'Sin stock', count('soldout')], ['inactive', 'Desactivados', count('inactive')]];
+const filters = defs.map((d) => ({ label: d[1], count: d[2], on: st.filter === d[0], off: st.filter !== d[0], pick: () => this.setState({ filter: d[0] }) }));
+const list = all.filter((p) => st.filter === 'all' || stateOf(p) === st.filter);
+const rows = list.map((p) => {
+const s = stateOf(p);
+return {
+id: p.id, name: p.name, cat: p.cat, priceStr: this.money(p.price),
+stockText: p.stock === 1 ? '1 unidad' : p.stock + ' unidades',
+active: s !== 'inactive', inactive: s === 'inactive', isOk: s === 'ok', isSold: s === 'soldout',
+justSaved: st.savedId === p.id,
+rowBg: st.savedId === p.id ? '#F2F8F4' : '#FFFFFF',
+editLabel: 'Editar ' + p.name, delLabel: 'Eliminar ' + p.name,
+edit: () => this.openEdit(p),
+del: () => this.setState({ delId: p.id })
+};
+});
+const errs = this.validate(st.f);
+const show = st.tried;
+const labels = { name: 'Nombre', cat: 'Categoría', price: 'Precio', desc: 'Descripción' };
+const errKeys = ['name', 'cat', 'price', 'desc'].filter((k) => errs[k]);
+const bd = (k) => (show && errs[k]) ? '#B42318' : '#55655E';
+const cur = all.find((p) => p.id === st.editId);
+const catNames = ['Almacén', 'Bebidas sin alcohol', 'Limpieza', 'Cuidado personal', 'Frescos'];
+const cats = catNames.map((c) => ({ label: c, on: st.f.cat === c, off: st.f.cat !== c, pick: () => this.setField('cat', c) }));
+const dp = all.find((p) => p.id === st.delId);
+const b = st.banner;
+const isEdit = st.mode === 'edit';
+return {
+isList: st.view === 'list', isForm: st.view === 'form',
+goList: () => { this.setState({ view: 'list', tried: false, imgName: null }); this.top(); },
+openCreate: () => this.openCreate(),
+noSubmit: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+filters: filters, rows: rows, emptyRows: rows.length === 0,
+showAll: () => this.setState({ filter: 'all' }),
+countText: rows.length === all.length ? ('Mostrando ' + all.length + ' productos') : ('Mostrando ' + rows.length + ' de ' + all.length + ' productos'),
+bannerOn: !!b, bannerSuccess: !!b && b.type === 'success', bannerInfo: !!b && b.type === 'info',
+bannerBg: b && b.type === 'info' ? '#FDF1D8' : '#E4F0EA',
+bannerBorder: b && b.type === 'info' ? '#F5A623' : '#176B4D',
+bannerTitle: b ? b.title : '', bannerText: b ? b.text : '',
+closeBanner: () => this.setState({ banner: null, savedId: null }),
+formTitle: isEdit ? 'Editar producto' : 'Agregar producto',
+formLead: isEdit ? ('Modificá los datos de «' + (cur ? cur.name : '') + '» y guardá los cambios.') : 'Completá los datos del producto nuevo.',
+saveLabel: isEdit ? 'Guardar cambios' : 'Guardar producto',
+vName: st.f.name, vPrice: st.f.price, vDesc: st.f.desc,
+onName: (e) => this.setField('name', e && e.target ? e.target.value : ''),
+onPrice: (e) => this.setField('price', e && e.target ? e.target.value : ''),
+onDesc: (e) => this.setField('desc', e && e.target ? e.target.value : ''),
+bdName: bd('name'), bdPrice: bd('price'), bdDesc: bd('desc'),
+errName: show && !!errs.name, msgName: errs.name,
+errCat: show && !!errs.cat, msgCat: errs.cat,
+errPrice: show && !!errs.price, msgPrice: errs.price,
+errDesc: show && !!errs.desc, msgDesc: errs.desc,
+noErrDesc: !(show && !!errs.desc),
+descCount: String(st.f.desc).length,
+hasErrors: show && errKeys.length > 0,
+errSummary: errKeys.length === 1 ? 'Hay 1 campo para revisar.' : 'Hay ' + errKeys.length + ' campos para revisar.',
+errList: errKeys.map((k) => ({ text: labels[k] + ': ' + errs[k] })),
+cats: cats,
+save: () => this.save(),
+imgChosen: !!st.imgName, imgNone: !st.imgName,
+imgCurrentText: isEdit ? 'Imagen actual: foto de referencia' : 'Todavía no hay imagen',
+chooseImg: () => this.setState({ imgName: 'foto-ejemplo.jpg' }),
+clearImg: () => this.setState({ imgName: null }),
+stockNum: isEdit && cur ? String(cur.stock) : '0',
+delOpen: !!dp, delName: dp ? dp.name : '', delCat: dp ? dp.cat : '', delPrice: dp ? this.money(dp.price) : '',
+delCancel: () => this.setState({ delId: null }),
+delConfirm: () => this.confirmDelete()
+};
+}
+}
+</script>
+</body>
+</html>

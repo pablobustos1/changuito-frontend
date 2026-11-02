@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<title>Changuito · Contacto</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed}
+input,textarea{font-family:'Source Sans 3',system-ui,sans-serif}
+</style>
+</helmet>
+<div style="min-height: 1500px; background: #FAF8F2; color: #24332D; font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 17px; line-height: 26px">
+<header style="background: #FAF8F2; border-bottom: 1px solid #E3DFD2">
+<div style="max-width: 1312px; margin: 0 auto; padding: 12px 32px; box-sizing: border-box; min-height: 80px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+<a href="Landing-Escritorio.dc.html" style="display: flex; align-items: center; gap: 10px"><img src="img/pulgar.png" alt="" style="height: 52px; width: auto; display: block"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 28px; line-height: 34px; color: #176B4D; letter-spacing: -0.02em">Changuito</span></a>
+<nav aria-label="Principal" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 36px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px">
+<a href="Landing-Escritorio.dc.html" style="color: #24332D; padding: 10px 0">Inicio</a>
+<a href="Catalogo-Escritorio.dc.html" style="color: #24332D; padding: 10px 0">Productos</a>
+<a href="Nosotros-Escritorio.dc.html" style="color: #24332D; padding: 10px 0">Nosotros</a>
+<a href="Contacto-Escritorio.dc.html" aria-current="page" style="color: #176B4D; border-bottom: 3px solid #F5A623; padding: 10px 0">Contacto</a>
+</nav>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<a href="Compra-Escritorio.dc.html" style="height: 48px; padding: 0 18px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; display: inline-flex; align-items: center; gap: 8px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M2.5 3.5h2.7l2.3 11.2a1.6 1.6 0 0 0 1.6 1.3h8.1a1.6 1.6 0 0 0 1.6-1.2L20.5 8H6.2"/></svg>Carrito</a>
+<a href="Admin-Escritorio.dc.html" style="height: 48px; padding: 0 16px; box-sizing: border-box; border-radius: 12px; background: #103E32; color: #FAF8F2; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 10px">Administración<span style="height: 22px; padding: 0 8px; border-radius: 999px; background: #F5A623; color: #24332D; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; display: inline-flex; align-items: center">Demo</span></a>
+</div>
+</div>
+</header>
+<main style="max-width: 1312px; margin: 0 auto; padding: 40px 32px 112px; box-sizing: border-box">
+<nav aria-label="Ruta" style="display: flex; align-items: center; gap: 8px; font-size: 15px; line-height: 22px; color: #55655E"><a href="Landing-Escritorio.dc.html" style="color: #176B4D; font-weight: 600">Inicio</a><span>/</span><span>Contacto</span></nav>
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 32px; margin-top: 16px">
+<div style="display: flex; flex-direction: column; gap: 8px"><h1 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 52px; line-height: 60px; letter-spacing: -0.02em; color: #103E32">Contacto</h1><p style="margin: 0; max-width: 640px; font-size: 19px; line-height: 28px">Si tenés una consulta sobre Changuito, completá el formulario y contanos.</p></div>
+<span style="display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px dashed #55655E; color: #55655E; font-weight: 600; font-size: 14px; box-sizing: border-box">Formulario simulado</span>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; align-items: start; margin-top: 36px">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<sc-if value="{{ isForm }}" hint-placeholder-val="{{ true }}">
+<form onSubmit="{{ noSubmit }}" novalidate style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 22px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 24px; line-height: 32px; color: #103E32">Escribinos tu consulta</h2><span style="font-size: 15px; line-height: 22px; color: #55655E"><span style="color: #B42318" aria-hidden="true">*</span> Campo obligatorio</span></div>
+
+<sc-if value="{{ sendFailed }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="display: flex; flex-direction: column; gap: 12px; padding: 16px 18px; border-radius: 14px; background: #FDECEA; border: 1px solid #B42318; color: #7A1B12">
+<div style="display: flex; gap: 12px"><span style="flex: none; width: 32px; height: 32px; border-radius: 999px; background: #B42318; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v8M12 18v.2"/></svg></span>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 18px; line-height: 26px">No pudimos enviar tu consulta</span><span style="font-size: 16px; line-height: 24px">Es un error simulado. Tus datos siguen en el formulario: probá de nuevo.</span></div></div>
+<button type="button" onClick="{{ submit }}" style="align-self: flex-start; height: 44px; padding: 0 18px; border: 2px solid #B42318; border-radius: 12px; background: #FFFFFF; color: #B42318; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px">Reintentar envío</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="display: flex; gap: 12px; padding: 16px 18px; border-radius: 14px; background: #FDECEA; border: 1px solid #B42318; color: #7A1B12">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 999px; background: #B42318; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v8M12 18v.2"/></svg></span>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 18px; line-height: 26px">No se pudo enviar. {{errSummary}}</span>
+<sc-for list="{{ errList }}" as="e" hint-placeholder-count="2"><span style="font-size: 16px; line-height: 24px">· {{e.text}}</span></sc-for></div>
+</div>
+</sc-if>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="k-nombre" style="font-weight: 700; font-size: 16px; line-height: 22px">Nombre y apellido <span style="color: #B42318" aria-hidden="true">*</span></label>
+<span id="h-k-nombre" style="font-size: 14px; line-height: 20px; color: #55655E">Escribí tu nombre y tu apellido.</span>
+<input id="k-nombre" type="text" value="{{ vName }}" onInput="{{ onName }}"  aria-required="true" aria-describedby="h-k-nombre e-k-nombre" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 16px; border: 2px solid {{ bdName }}; border-radius: 12px; background: #FFFFFF; color: #24332D; font-size: 17px">
+
+<sc-if value="{{ errName }}" hint-placeholder-val="{{ false }}"><span id="e-k-nombre" style="display: flex; align-items: flex-start; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg style="flex: none; margin-top: 2px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>{{msgName}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="k-correo" style="font-weight: 700; font-size: 16px; line-height: 22px">Correo electrónico <span style="color: #B42318" aria-hidden="true">*</span></label>
+<span id="h-k-correo" style="font-size: 14px; line-height: 20px; color: #55655E">Usá el formato nombre@ejemplo.com. Es solo para esta demostración.</span>
+<input id="k-correo" type="text" value="{{ vEmail }}" onInput="{{ onEmail }}" inputmode="email" onBlur="{{ onEmailBlur }}" aria-required="true" aria-describedby="h-k-correo e-k-correo" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 16px; border: 2px solid {{ bdEmail }}; border-radius: 12px; background: #FFFFFF; color: #24332D; font-size: 17px">
+<sc-if value="{{ emailOk }}" hint-placeholder-val="{{ false }}"><span style="display: flex; align-items: flex-start; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #176B4D"><svg style="flex: none; margin-top: 2px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> El formato del correo es válido.</span></sc-if>
+<sc-if value="{{ errEmail }}" hint-placeholder-val="{{ false }}"><span id="e-k-correo" style="display: flex; align-items: flex-start; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg style="flex: none; margin-top: 2px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>{{msgEmail}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="k-asunto" style="font-weight: 700; font-size: 16px; line-height: 22px">Asunto <span style="color: #B42318" aria-hidden="true">*</span></label>
+<span id="h-k-asunto" style="font-size: 14px; line-height: 20px; color: #55655E">Resumí el motivo en pocas palabras.</span>
+<input id="k-asunto" type="text" value="{{ vSubject }}" onInput="{{ onSubject }}"  aria-required="true" aria-describedby="h-k-asunto e-k-asunto" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 16px; border: 2px solid {{ bdSubject }}; border-radius: 12px; background: #FFFFFF; color: #24332D; font-size: 17px">
+
+<sc-if value="{{ errSubject }}" hint-placeholder-val="{{ false }}"><span id="e-k-asunto" style="display: flex; align-items: flex-start; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg style="flex: none; margin-top: 2px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>{{msgSubject}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="k-mensaje" style="font-weight: 700; font-size: 16px; line-height: 22px">Mensaje <span style="color: #B42318" aria-hidden="true">*</span></label>
+<span id="h-k-mensaje" style="font-size: 14px; line-height: 20px; color: #55655E">Contanos tu consulta con tus palabras. Entre 10 y 500 caracteres.</span>
+<textarea id="k-mensaje" rows="6" value="{{ vMessage }}" onInput="{{ onMessage }}" aria-required="true" aria-describedby="h-k-mensaje e-k-mensaje" style="width: 100%; box-sizing: border-box; padding: 12px 16px; border: 2px solid {{ bdMessage }}; border-radius: 12px; background: #FFFFFF; color: #24332D; font-size: 17px; line-height: 26px; resize: vertical"></textarea>
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px">
+<sc-if value="{{ errMessage }}" hint-placeholder-val="{{ false }}"><span id="e-k-mensaje" style="display: flex; align-items: flex-start; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg style="flex: none; margin-top: 2px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>{{msgMessage}}</span></sc-if>
+<span style="margin-left: auto; font-size: 14px; line-height: 20px; color: #55655E">{{messageCount}} / 500</span>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; padding-top: 4px">
+<button type="button" onClick="{{ submit }}" style="height: 56px; padding: 0 28px; border: 0; border-radius: 12px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 18px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; "><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l16-8-6 16-3-7-7-1z"/></svg>Enviar consulta</button>
+<span style="flex: 1 1 220px; font-size: 15px; line-height: 22px; color: #55655E">Envío simulado: no se manda ningún mensaje ni se guarda nada.</span>
+</div>
+</form>
+</sc-if>
+
+<sc-if value="{{ isSent }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="background: #E4F0EA; border: 1px solid #176B4D; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; align-items: flex-start; gap: 16px">
+<span style="width: 56px; height: 56px; border-radius: 999px; background: #176B4D; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+<h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 34px; line-height: 42px; letter-spacing: -0.01em; color: #103E32">Consulta enviada (simulado)</h2>
+<p style="margin: 0; font-size: 19px; line-height: 28px">Gracias, {{sentName}}. Esto es una demostración: tu consulta no se envió a nadie ni se guardó.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-self: stretch">
+<button type="button" onClick="{{ again }}" style="height: 52px; padding: 0 24px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; ">Enviar otra consulta</button>
+<a href="Landing-Escritorio.dc.html" style="height: 52px; padding: 0 24px; box-sizing: border-box; border-radius: 12px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; display: inline-flex; align-items: center; justify-content: center; ">Volver al inicio</a>
+</div>
+</div>
+</sc-if>
+<div style="border: 1px dashed #55655E; border-radius: 14px; padding: 16px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; line-height: 22px; color: #55655E">Solo para la demo, no es parte de la página:</span>
+<sc-if value="{{ simOff }}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" onClick="{{ toggleSim }}" style="min-height: 44px; padding: 0 16px; border: 1px solid #55655E; border-radius: 12px; background: #FFFFFF; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px">Simular error de envío: desactivado</button></sc-if>
+<sc-if value="{{ simOn }}" hint-placeholder-val="{{ false }}"><button type="button" aria-pressed="true" onClick="{{ toggleSim }}" style="min-height: 44px; padding: 0 16px; border: 2px solid #B42318; border-radius: 12px; background: #FDECEA; color: #7A1B12; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px">Simular error de envío: activado</button></sc-if>
+</div>
+</div>
+<aside aria-labelledby="otras" style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+<h2 id="otras" style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 22px; line-height: 30px; color: #103E32">Otros datos de contacto</h2>
+<p style="margin: 0; font-size: 16px; line-height: 24px; color: #55655E">Espacios para completar con los datos reales del comercio. Por ahora no hay ninguno cargado.</p>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Correo de contacto</span><span style="font-size: 17px; line-height: 26px"><span style="color: #55655E; border-bottom: 1px dashed #55655E">[Correo de contacto]</span></span></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Teléfono</span><span style="font-size: 17px; line-height: 26px"><span style="color: #55655E; border-bottom: 1px dashed #55655E">[Teléfono]</span></span></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Dirección del local</span><span style="font-size: 17px; line-height: 26px"><span style="color: #55655E; border-bottom: 1px dashed #55655E">[Dirección del local]</span></span></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Horario de atención</span><span style="font-size: 17px; line-height: 26px"><span style="color: #55655E; border-bottom: 1px dashed #55655E">[Horario de atención]</span></span></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 13px; line-height: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: #176B4D">Redes sociales</span><span style="font-size: 17px; line-height: 26px"><span style="color: #55655E; border-bottom: 1px dashed #55655E">[Redes sociales]</span></span></div>
+</aside>
+</div>
+</main>
+<footer id="contacto" style="background: #103E32; color: #FAF8F2; padding: 80px 0 32px">
+<div style="max-width: 1312px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 56px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 40px">
+
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+<div style="display: flex; align-items: center; gap: 12px">
+<span style="width: 64px; height: 64px; border-radius: 999px; background: #FAF8F2; display: flex; align-items: center; justify-content: center"><img src="img/pulgar.png" alt="" style="width: 46px; height: auto; display: block"></span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 28px; line-height: 34px; letter-spacing: -0.02em">Changuito</span>
+</div>
+<span style="font-size: 17px; line-height: 26px; color: #E4F0EA; max-width: 280px">Tu almacén de siempre, ahora a un clic.</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; line-height: 20px; letter-spacing: 0.08em; text-transform: uppercase; color: #F5A623; margin-bottom: 8px">Navegación</span>
+<a href="Landing-Escritorio.dc.html" style="display: inline-flex; align-items: center; min-height: 36px; font-size: 17px">Inicio</a>
+<a href="Catalogo-Escritorio.dc.html" style="display: inline-flex; align-items: center; min-height: 36px; font-size: 17px">Productos</a>
+<a href="Nosotros-Escritorio.dc.html" style="display: inline-flex; align-items: center; min-height: 36px; font-size: 17px">Nosotros</a>
+<a href="Contacto-Escritorio.dc.html" style="display: inline-flex; align-items: center; min-height: 36px; font-size: 17px">Contacto</a>
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; line-height: 20px; letter-spacing: 0.08em; text-transform: uppercase; color: #F5A623; margin-bottom: 8px">Contacto</span>
+<a href="Contacto-Escritorio.dc.html" style="height: 48px; padding: 0 20px; box-sizing: border-box; border: 2px solid #FAF8F2; border-radius: 12px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; display: inline-flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.500" width="18" height="13" rx="2"/><path d="M3.500 7l8.500 6 8.500-6"/></svg>Escribinos</a>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Correo de contacto]</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Teléfono]</span>
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; line-height: 20px; letter-spacing: 0.08em; text-transform: uppercase; color: #F5A623; margin-bottom: 8px">Información institucional</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Nombre del comercio]</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Dirección del local]</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Horario de atención]</span>
+</div>
+
+</div>
+
+<div style="border-top: 1px solid rgba(250,248,242,0.25); padding-top: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; font-size: 15px; line-height: 22px; color: #E4F0EA">
+<span>© <span style="color: #F5A623; border-bottom: 1px dashed #F5A623">[Año]</span> Changuito · Prototipo de diseño, Aplicaciones Interactivas, UADE</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 24px">
+<span style="color: #F5A623; border-bottom: 1px dashed #F5A623">[Términos y condiciones]</span>
+<span style="color: #F5A623; border-bottom: 1px dashed #F5A623">[Política de privacidad]</span>
+<a href="Admin-Escritorio.dc.html" style="text-decoration: underline; text-underline-offset: 3px">Administración (demo)</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { f: { name: '', email: '', subject: '', message: '' }, tried: false, emailTouched: false, sent: false, failed: false, simError: false, sentName: '', menu: false };
+}
+validate(f) {
+const out = { name: '', email: '', subject: '', message: '' };
+const nm = f.name.trim();
+if (nm === '') out.name = 'Ingresá tu nombre y apellido.';
+else if (nm.split(/\s+/).length < 2) out.name = 'Ingresá tu nombre y tu apellido.';
+const em = f.email.trim();
+if (em === '') out.email = 'Ingresá tu correo electrónico.';
+else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) out.email = 'El correo no es válido. Revisá que tenga el formato nombre@ejemplo.com.';
+const sb = f.subject.trim();
+if (sb === '') out.subject = 'Escribí un asunto.';
+else if (sb.length < 3) out.subject = 'El asunto tiene que tener al menos 3 caracteres.';
+const ms = f.message.trim();
+if (ms === '') out.message = 'Escribí tu mensaje.';
+else if (ms.length < 10) out.message = 'El mensaje tiene que tener al menos 10 caracteres.';
+else if (ms.length > 500) out.message = 'El mensaje no puede pasar de 500 caracteres.';
+return out;
+}
+setField(k, v) {
+const f = Object.assign({}, this.state.f);
+f[k] = v;
+this.setState({ f: f, failed: false });
+}
+submit() {
+const st = this.state;
+const errs = this.validate(st.f);
+if (errs.name || errs.email || errs.subject || errs.message) { this.setState({ tried: true, failed: false }); return; }
+if (st.simError) { this.setState({ tried: true, failed: true }); return; }
+this.setState({ sent: true, failed: false, sentName: st.f.name.trim().split(/\s+/)[0] });
+try { window.scrollTo(0, 0); } catch (e) {}
+}
+renderVals() {
+const st = this.state;
+const f = st.f;
+const errs = this.validate(f);
+const emailTxt = f.email.trim();
+const emailShow = !!errs.email && (st.tried || (st.emailTouched && emailTxt !== ''));
+const emailOk = emailTxt !== '' && !errs.email;
+const show = (k) => k === 'email' ? emailShow : (st.tried && !!errs[k]);
+const bd = (k) => show(k) ? '#B42318' : (k === 'email' && emailOk ? '#176B4D' : '#55655E');
+const labels = { name: 'Nombre y apellido', email: 'Correo electrónico', subject: 'Asunto', message: 'Mensaje' };
+const keys = ['name', 'email', 'subject', 'message'].filter((k) => st.tried && errs[k]);
+const open = !!st.menu;
+return {
+menuOpen: open, menuClosed: !open, toggleMenu: () => this.setState({ menu: !this.state.menu }),
+isForm: !st.sent, isSent: st.sent,
+noSubmit: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+vName: f.name, vEmail: f.email, vSubject: f.subject, vMessage: f.message,
+onName: (e) => this.setField('name', e && e.target ? e.target.value : ''),
+onEmail: (e) => this.setField('email', e && e.target ? e.target.value : ''),
+onEmailBlur: () => this.setState({ emailTouched: true }),
+onSubject: (e) => this.setField('subject', e && e.target ? e.target.value : ''),
+onMessage: (e) => this.setField('message', e && e.target ? e.target.value : ''),
+bdName: bd('name'), bdEmail: bd('email'), bdSubject: bd('subject'), bdMessage: bd('message'),
+errName: show('name'), msgName: errs.name,
+errEmail: show('email'), msgEmail: errs.email, emailOk: emailOk,
+errSubject: show('subject'), msgSubject: errs.subject,
+errMessage: show('message'), msgMessage: errs.message,
+messageCount: f.message.length,
+hasErrors: keys.length > 0,
+errSummary: keys.length === 1 ? 'Hay 1 campo para revisar.' : 'Hay ' + keys.length + ' campos para revisar.',
+errList: keys.map((k) => ({ text: labels[k] + ': ' + errs[k] })),
+sendFailed: st.failed,
+submit: () => this.submit(),
+again: () => this.setState({ f: { name: '', email: '', subject: '', message: '' }, tried: false, emailTouched: false, sent: false, failed: false }),
+sentName: st.sentName,
+simOn: st.simError, simOff: !st.simError,
+toggleSim: () => this.setState({ simError: !this.state.simError, failed: false })
+};
+}
+}
+</script>
+</body>
+</html>

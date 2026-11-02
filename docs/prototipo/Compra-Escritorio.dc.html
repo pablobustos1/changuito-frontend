@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<title>Changuito · Carrito y compra simulada</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed}
+input,textarea{font-family:'Source Sans 3',system-ui,sans-serif}
+</style>
+</helmet>
+<div style="min-height: 2000px; background: #FAF8F2; color: #24332D; font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 17px; line-height: 26px">
+<header style="background: #FAF8F2; border-bottom: 1px solid #E3DFD2">
+<div style="max-width: 1312px; margin: 0 auto; padding: 12px 32px; box-sizing: border-box; min-height: 80px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+<a href="Landing-Escritorio.dc.html" style="display: flex; align-items: center; gap: 10px"><img src="img/pulgar.png" alt="" style="height: 52px; width: auto; display: block"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 28px; line-height: 34px; color: #176B4D; letter-spacing: -0.02em">Changuito</span></a>
+<nav aria-label="Principal" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 36px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px">
+<a href="Landing-Escritorio.dc.html" style="color: #24332D; padding: 10px 0">Inicio</a>
+<a href="Catalogo-Escritorio.dc.html" style="color: #24332D; padding: 10px 0">Productos</a>
+<a href="Nosotros-Escritorio.dc.html" style="color: #24332D; padding: 10px 0">Nosotros</a>
+<a href="Contacto-Escritorio.dc.html" style="color: #24332D; padding: 10px 0">Contacto</a>
+</nav>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<button type="button" onClick="{{ goCart }}" aria-current="page" style="height: 48px; padding: 0 18px; border: 2px solid #176B4D; border-radius: 12px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; display: inline-flex; align-items: center; gap: 8px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M2.5 3.5h2.7l2.3 11.2a1.6 1.6 0 0 0 1.6 1.3h8.1a1.6 1.6 0 0 0 1.6-1.2L20.5 8H6.2"/></svg>Carrito<span style="min-width: 24px; height: 24px; padding: 0 6px; box-sizing: border-box; border-radius: 999px; background: #F5A623; color: #24332D; font-size: 14px; display: inline-flex; align-items: center; justify-content: center">{{cartCount}}</span></button>
+<a href="Admin-Escritorio.dc.html" style="height: 48px; padding: 0 16px; box-sizing: border-box; border-radius: 12px; background: #103E32; color: #FAF8F2; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 10px">Administración<span style="height: 22px; padding: 0 8px; border-radius: 999px; background: #F5A623; color: #24332D; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; display: inline-flex; align-items: center">Demo</span></a>
+</div>
+</div>
+</header>
+<main style="max-width: 1312px; margin: 0 auto; padding: 36px 32px 112px; box-sizing: border-box">
+
+<nav aria-label="Ruta" style="display: flex; align-items: center; gap: 8px; font-size: 15px; line-height: 22px; color: #55655E"><a href="Landing-Escritorio.dc.html" style="color: #176B4D; font-weight: 600">Inicio</a><span>/</span><sc-if value="{{ isCart }}" hint-placeholder-val="{{ true }}"><span>Carrito</span></sc-if><sc-if value="{{ isCheckout }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ goCart }}" style="padding: 0; border: 0; background: transparent; color: #176B4D; font: inherit; font-weight: 600">Carrito</button><span>/</span><span>Finalizar compra</span></sc-if><sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}"><span>Compra confirmada</span></sc-if></nav>
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 32px; margin-top: 16px">
+<h1 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 48px; line-height: 56px; letter-spacing: -0.02em; color: #103E32">{{pageTitle}}</h1>
+<span style="display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px dashed #55655E; color: #55655E; font-weight: 600; font-size: 14px; box-sizing: border-box">Compra simulada · datos de ejemplo</span>
+</div>
+
+<ol aria-label="Pasos de la compra" style="list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 8px">
+<sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+<li style="display: flex; align-items: center; gap: 8px">
+<sc-if value="{{ s.done }}" hint-placeholder-val="{{ false }}"><span style="display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 18px 0 8px; border-radius: 999px; background: #E4F0EA; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px"><span style="width: 28px; height: 28px; border-radius: 999px; background: #176B4D; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>{{s.label}}</span></sc-if>
+<sc-if value="{{ s.cur }}" hint-placeholder-val="{{ true }}"><span aria-current="step" style="display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 18px 0 8px; border-radius: 999px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px"><span style="width: 28px; height: 28px; border-radius: 999px; background: #FFFFFF; color: #176B4D; display: inline-flex; align-items: center; justify-content: center; font-size: 14px">{{s.n}}</span>{{s.label}}</span></sc-if>
+<sc-if value="{{ s.todo }}" hint-placeholder-val="{{ false }}"><span style="display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 18px 0 8px; border-radius: 999px; border: 1px solid #55655E; box-sizing: border-box; background: #FFFFFF; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px"><span style="width: 28px; height: 28px; border-radius: 999px; background: #ECE9DE; color: #24332D; display: inline-flex; align-items: center; justify-content: center; font-size: 14px">{{s.n}}</span>{{s.label}}</span></sc-if>
+<sc-if value="{{ s.sep }}" hint-placeholder-val="{{ true }}"><span style="width: 28px; height: 2px; background: #C9C5B6; margin-left: 4px"></span></sc-if>
+</li>
+</sc-for>
+</ol>
+
+<!-- ======================= CARRITO ======================= -->
+<sc-if value="{{ isCart }}" hint-placeholder-val="{{ true }}">
+
+<sc-if value="{{ cartAlertOn }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="margin-top: 28px; display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-radius: 14px; background: #FDECEA; border: 1px solid #B42318; color: #7A1B12; font-weight: 600; font-size: 17px; line-height: 26px">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 999px; background: #B42318; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v8M12 18v.2"/></svg></span>{{cartAlert}}</div>
+</sc-if>
+<sc-if value="{{ hasUnavail }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="margin-top: 28px; display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-radius: 14px; background: #FDF1D8; border: 1px solid #F5A623; color: #24332D; font-size: 17px; line-height: 26px">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 999px; background: #F5A623; color: #24332D; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v8M12 18v.2"/></svg></span><span><b>Hay productos que ya no están disponibles.</b> No se incluyen en el total. Podés quitarlos del carrito.</span></div>
+</sc-if>
+
+<sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 40px; align-items: start; margin-top: 28px">
+<section aria-label="Productos del carrito" style="display: flex; flex-direction: column; gap: 16px">
+<sc-for list="{{ items }}" as="item" hint-placeholder-count="3">
+
+<sc-if value="{{ item.avail }}" hint-placeholder-val="{{ true }}">
+<article style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 20px; display: grid; grid-template-columns: 104px minmax(0, 1fr) 190px; gap: 24px; align-items: start; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<div style="width: 104px; height: 104px; border-radius: 12px; background: #E4F0EA; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #55655E; font-size: 12px; line-height: 16px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#176B4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>Foto</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 20px; line-height: 28px; color: #103E32">{{item.name}}</span>
+<span style="font-size: 15px; line-height: 22px; color: #55655E">{{item.cat}}</span>
+<span style="font-size: 17px; line-height: 26px">Precio unitario: <b>{{item.unitStr}}</b></span>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 10px">
+<label for="{{ item.qid }}" style="font-weight: 600; font-size: 15px">Cantidad</label>
+<div style="display: inline-flex; align-items: center; gap: 6px">
+<sc-if value="{{ item.canMinus }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ item.minus }}" aria-label="{{ item.minusLabel }}" style="width: 44px; height: 44px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; display: inline-flex; align-items: center; justify-content: center; padding: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button></sc-if>
+<sc-if value="{{ item.noMinus }}" hint-placeholder-val="{{ false }}"><button type="button" disabled aria-label="{{ item.minusLabel }}" style="width: 44px; height: 44px; border: 1px solid #C9C5B6; border-radius: 12px; background: #F3F0E6; color: #55655E; display: inline-flex; align-items: center; justify-content: center; padding: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button></sc-if>
+<input id="{{ item.qid }}" type="text" inputmode="numeric" value="{{ item.qtyRaw }}" onInput="{{ item.onQty }}" aria-describedby="{{ item.qerrId }}" style="width: 64px; height: 44px; box-sizing: border-box; text-align: center; border: 2px solid {{ item.qtyBd }}; border-radius: 12px; background: #FFFFFF; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; padding: 0 4px">
+<sc-if value="{{ item.canPlus }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ item.plus }}" aria-label="{{ item.plusLabel }}" style="width: 44px; height: 44px; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; display: inline-flex; align-items: center; justify-content: center; padding: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></sc-if>
+<sc-if value="{{ item.noPlus }}" hint-placeholder-val="{{ false }}"><button type="button" disabled aria-label="{{ item.plusLabel }}" style="width: 44px; height: 44px; border: 1px solid #C9C5B6; border-radius: 12px; background: #F3F0E6; color: #55655E; display: inline-flex; align-items: center; justify-content: center; padding: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></sc-if>
+</div>
+<span style="font-size: 14px; line-height: 20px; color: #55655E">Máximo 12 por compra</span>
+</div>
+<sc-if value="{{ item.badQty }}" hint-placeholder-val="{{ false }}"><span id="{{ item.qerrId }}" style="display: flex; align-items: center; gap: 6px; margin-top: 4px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>Ingresá un número entero entre 1 y 12.</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 14px; text-align: right">
+<div style="display: flex; flex-direction: column"><span style="font-size: 14px; line-height: 20px; color: #55655E">Subtotal</span><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 26px; line-height: 32px; color: {{ item.subColor }}">{{item.subStr}}</span></div>
+<button type="button" onClick="{{ item.remove }}" aria-label="{{ item.removeLabel }}" style="height: 44px; padding: 0 14px; border: 0; border-radius: 12px; background: transparent; color: #B42318; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; text-decoration: underline; text-underline-offset: 4px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10 11v6M14 11v6"/></svg>Quitar del carrito</button>
+</div>
+</article>
+</sc-if>
+
+<sc-if value="{{ item.unavail }}" hint-placeholder-val="{{ false }}">
+<article style="background: #F3F0E6; border: 1px solid #E3DFD2; border-radius: 16px; padding: 20px; display: grid; grid-template-columns: 104px minmax(0, 1fr) 190px; gap: 24px; align-items: start">
+<div style="width: 104px; height: 104px; border-radius: 12px; background: #E3DFD2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #55655E; font-size: 12px; line-height: 16px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#55655E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>Foto</div>
+<div style="display: flex; flex-direction: column; gap: 6px; align-items: flex-start">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 20px; line-height: 28px; color: #55655E">{{item.name}}</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: #55655E; color: #FFFFFF; font-weight: 700; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>No disponible</span>
+<span style="font-size: 17px; line-height: 26px">Este producto ya no está disponible. No se incluye en el total.</span>
+<span style="font-size: 15px; line-height: 22px; color: #55655E">Precio unitario: {{item.unitStr}} · Cantidad: {{item.qtyNum}}</span>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 14px; text-align: right">
+<div style="display: flex; flex-direction: column"><span style="font-size: 14px; line-height: 20px; color: #55655E">Subtotal</span><span style="font-size: 17px; line-height: 26px; color: #55655E">No se incluye</span></div>
+<button type="button" onClick="{{ item.remove }}" aria-label="{{ item.removeLabel }}" style="height: 44px; padding: 0 14px; border: 0; border-radius: 12px; background: transparent; color: #B42318; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; text-decoration: underline; text-underline-offset: 4px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10 11v6M14 11v6"/></svg>Quitar del carrito</button>
+</div>
+</article>
+</sc-if>
+
+</sc-for>
+</section>
+
+<aside aria-label="Resumen del carrito" style="position: sticky; top: 24px; background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 24px; line-height: 32px; color: #103E32">Resumen</h2>
+<div style="display: flex; justify-content: space-between; gap: 16px; font-size: 17px; line-height: 26px"><span>{{unitsText}}</span><span>{{totalStr}}</span></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-top: 16px; border-top: 1px solid #E3DFD2"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px">Total general</span><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 34px; line-height: 40px; color: #176B4D">{{totalStr}}</span></div>
+<button type="button" onClick="{{ goCheckout }}" style="height: 60px; border: 0; border-radius: 12px; background: #F5A623; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 19px; display: flex; align-items: center; justify-content: center; gap: 10px">Finalizar compra<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+<a href="{{ shopHref }}" style="height: 52px; box-sizing: border-box; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Seguir comprando</a>
+<span style="font-size: 14px; line-height: 20px; color: #55655E">Compra simulada: no se procesa dinero real.</span>
+</aside>
+</div>
+</sc-if>
+
+<sc-if value="{{ emptyCart }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top: 28px; background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 56px 32px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+<img src="img/senalando.png" alt="" style="height: 150px; width: auto; display: block">
+<h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 32px; line-height: 40px; color: #103E32">Tu carrito está vacío</h2>
+<p style="margin: 0; max-width: 460px; font-size: 19px; line-height: 28px">Todavía no agregaste productos. Mirá el catálogo y elegí lo que necesites.</p>
+<a href="{{ shopHref }}" style="margin-top: 8px; height: 56px; padding: 0 28px; box-sizing: border-box; border-radius: 12px; background: #F5A623; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 17px; display: inline-flex; align-items: center">Ver productos</a>
+</div>
+</sc-if>
+
+<div style="margin-top: 40px; border: 1px dashed #55655E; border-radius: 14px; padding: 18px 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; color: #55655E">Solo para la demo, no es parte de la tienda:</span>
+<button type="button" onClick="{{ loadDemo }}" style="height: 44px; padding: 0 16px; border: 1px solid #55655E; border-radius: 12px; background: #FFFFFF; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px">Cargar carrito de ejemplo</button>
+<button type="button" onClick="{{ toggleUnavail }}" style="height: 44px; padding: 0 16px; border: 1px solid #55655E; border-radius: 12px; background: #FFFFFF; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px">{{unavailLabel}}</button>
+<button type="button" onClick="{{ clearCart }}" style="height: 44px; padding: 0 16px; border: 1px solid #55655E; border-radius: 12px; background: #FFFFFF; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px">Vaciar carrito</button>
+</div>
+</sc-if>
+
+<!-- ======================= CHECKOUT ======================= -->
+<sc-if value="{{ isCheckout }}" hint-placeholder-val="{{ false }}">
+
+<div role="note" style="margin-top: 28px; display: flex; align-items: flex-start; gap: 14px; padding: 18px 22px; border-radius: 14px; background: #FDF1D8; border: 1px solid #F5A623; color: #24332D">
+<span style="flex: none; width: 36px; height: 36px; border-radius: 999px; background: #F5A623; color: #24332D; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.1"/></svg></span>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 19px; line-height: 28px; color: #103E32">Esto es una simulación académica</span><span style="font-size: 17px; line-height: 26px">No se procesa dinero real ni se guarda ningún pedido. Completá datos ilustrativos y no escribas números de tarjeta ni datos bancarios.</span></div>
+</div>
+
+<sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="margin-top: 20px; display: flex; gap: 14px; padding: 16px 20px; border-radius: 14px; background: #FDECEA; border: 1px solid #B42318; color: #7A1B12">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 999px; background: #B42318; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v8M12 18v.2"/></svg></span>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 18px; line-height: 26px">No se pudo confirmar. {{errSummary}}</span>
+<sc-for list="{{ errList }}" as="e" hint-placeholder-count="2"><span style="font-size: 16px; line-height: 24px">· {{e.text}}</span></sc-for></div>
+</div>
+</sc-if>
+
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 40px; align-items: start; margin-top: 28px">
+<form onSubmit="{{ noSubmit }}" style="display: flex; flex-direction: column; gap: 24px">
+
+<section aria-labelledby="s-datos" style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 28px 32px; display: flex; flex-direction: column; gap: 22px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<h2 id="s-datos" style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 24px; line-height: 32px; color: #103E32">Tus datos</h2>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="c-nombre" style="font-weight: 700; font-size: 16px; line-height: 22px">Nombre y apellido <span style="color: #B42318" aria-hidden="true">*</span></label>
+<input id="c-nombre" type="text" value="{{ vName }}" onInput="{{ onName }}" aria-required="true" aria-describedby="ce-nombre" placeholder="Por ejemplo: Ana Pérez" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 16px; border: 2px solid {{ bdName }}; border-radius: 12px; background: #FFFFFF; color: #24332D; font-size: 17px">
+<sc-if value="{{ errName }}" hint-placeholder-val="{{ false }}"><span id="ce-nombre" style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>{{msgName}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="c-correo" style="font-weight: 700; font-size: 16px; line-height: 22px">Correo electrónico <span style="color: #B42318" aria-hidden="true">*</span></label>
+<input id="c-correo" type="text" inputmode="email" value="{{ vEmail }}" onInput="{{ onEmail }}" aria-required="true" aria-describedby="ce-correo" placeholder="nombre@ejemplo.com" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 16px; border: 2px solid {{ bdEmail }}; border-radius: 12px; background: #FFFFFF; color: #24332D; font-size: 17px">
+<sc-if value="{{ errEmail }}" hint-placeholder-val="{{ false }}"><span id="ce-correo" style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>{{msgEmail}}</span></sc-if>
+</div>
+</section>
+
+<section aria-labelledby="s-entrega" style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 28px 32px; display: flex; flex-direction: column; gap: 22px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<h2 id="s-entrega" style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 24px; line-height: 32px; color: #103E32">Entrega</h2>
+<div role="radiogroup" aria-labelledby="s-entrega" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px">
+<sc-for list="{{ delivs }}" as="d" hint-placeholder-count="2">
+<sc-if value="{{ d.on }}" hint-placeholder-val="{{ true }}"><button type="button" role="radio" aria-checked="true" onClick="{{ d.pick }}" style="text-align: left; padding: 16px 18px; border: 2px solid #176B4D; border-radius: 14px; background: #E4F0EA; color: #24332D; display: flex; flex-direction: column; gap: 2px"><span style="display: flex; align-items: center; gap: 10px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px; color: #103E32"><span style="width: 22px; height: 22px; border-radius: 999px; border: 2px solid #176B4D; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 999px; background: #176B4D"></span></span>{{d.label}}</span><span style="padding-left: 32px; font-size: 15px; line-height: 22px">{{d.help}}</span></button></sc-if>
+<sc-if value="{{ d.off }}" hint-placeholder-val="{{ false }}"><button type="button" role="radio" aria-checked="false" onClick="{{ d.pick }}" style="text-align: left; padding: 16px 18px; border: 1px solid #55655E; border-radius: 14px; background: #FFFFFF; color: #24332D; display: flex; flex-direction: column; gap: 2px"><span style="display: flex; align-items: center; gap: 10px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px; color: #103E32"><span style="width: 22px; height: 22px; border-radius: 999px; border: 2px solid #55655E; background: #FFFFFF; display: inline-flex"></span>{{d.label}}</span><span style="padding-left: 32px; font-size: 15px; line-height: 22px; color: #55655E">{{d.help}}</span></button></sc-if>
+</sc-for>
+</div>
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="c-dir" style="font-weight: 700; font-size: 16px; line-height: 22px">Dirección de entrega simulada <span style="color: #B42318" aria-hidden="true">*</span></label>
+<input id="c-dir" type="text" value="{{ vAddr }}" onInput="{{ onAddr }}" aria-required="true" aria-describedby="ce-dir" placeholder="Calle y número de ejemplo" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 16px; border: 2px solid {{ bdAddr }}; border-radius: 12px; background: #FFFFFF; color: #24332D; font-size: 17px">
+<span style="font-size: 14px; line-height: 20px; color: #55655E">Puede ser una dirección ilustrativa. No se usa para ningún envío.</span>
+<sc-if value="{{ errAddr }}" hint-placeholder-val="{{ false }}"><span id="ce-dir" style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>{{msgAddr}}</span></sc-if>
+</div>
+</sc-if>
+<sc-if value="{{ isPickup }}" hint-placeholder-val="{{ false }}">
+<div style="padding: 14px 16px; border-radius: 12px; background: #F3F0E6; font-size: 16px; line-height: 24px">Retirarías en el local: <span style="color: #55655E; border-bottom: 1px dashed #55655E">[Dirección del local]</span> · <span style="color: #55655E; border-bottom: 1px dashed #55655E">[Horario de atención]</span></div>
+</sc-if>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="c-obs" style="font-weight: 700; font-size: 16px; line-height: 22px">Observaciones <span style="font-weight: 600; font-size: 15px; color: #55655E">(opcional)</span></label>
+<textarea id="c-obs" rows="3" value="{{ vNotes }}" onInput="{{ onNotes }}" aria-describedby="ce-obs" style="width: 100%; box-sizing: border-box; padding: 12px 16px; border: 2px solid {{ bdNotes }}; border-radius: 12px; background: #FFFFFF; color: #24332D; font-size: 17px; line-height: 26px; resize: vertical"></textarea>
+<div style="display: flex; justify-content: space-between; gap: 16px">
+<sc-if value="{{ errNotes }}" hint-placeholder-val="{{ false }}"><span id="ce-obs" style="font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318">{{msgNotes}}</span></sc-if>
+<sc-if value="{{ noErrNotes }}" hint-placeholder-val="{{ true }}"><span style="font-size: 14px; line-height: 20px; color: #55655E">Por ejemplo: un aviso para quien recibe.</span></sc-if>
+<span style="font-size: 14px; line-height: 20px; color: #55655E">{{notesCount}} / 200</span>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="s-pago" style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 id="s-pago" style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 24px; line-height: 32px; color: #103E32">Medio de pago simulado <span style="color: #B42318; font-size: 18px" aria-hidden="true">*</span></h2><span style="font-size: 16px; line-height: 24px; color: #55655E">Elegí uno. No se cobra nada ni se piden datos financieros.</span></div>
+<div role="radiogroup" aria-labelledby="s-pago" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px">
+<sc-for list="{{ pays }}" as="p" hint-placeholder-count="3">
+<sc-if value="{{ p.on }}" hint-placeholder-val="{{ false }}"><button type="button" role="radio" aria-checked="true" onClick="{{ p.pick }}" style="text-align: left; padding: 18px; border: 2px solid #176B4D; border-radius: 14px; background: #E4F0EA; color: #24332D; display: flex; flex-direction: column; gap: 8px">
+<span style="display: flex; align-items: center; justify-content: space-between; color: #176B4D">
+<sc-if value="{{ p.cash }}" hint-placeholder-val="{{ true }}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v.1M18 14.5v.1"/></svg></sc-if>
+<sc-if value="{{ p.card }}" hint-placeholder-val="{{ false }}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6 15h4"/></svg></sc-if>
+<sc-if value="{{ p.transfer }}" hint-placeholder-val="{{ false }}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h14M14 4l4 4-4 4M20 16H6M10 12l-4 4 4 4"/></svg></sc-if>
+<span style="width: 22px; height: 22px; border-radius: 999px; border: 2px solid #176B4D; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 999px; background: #176B4D"></span></span></span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #103E32">{{p.label}}</span><span style="font-size: 15px; line-height: 22px">{{p.help}}</span></button></sc-if>
+<sc-if value="{{ p.off }}" hint-placeholder-val="{{ true }}"><button type="button" role="radio" aria-checked="false" onClick="{{ p.pick }}" style="text-align: left; padding: 18px; border: 1px solid #55655E; border-radius: 14px; background: #FFFFFF; color: #24332D; display: flex; flex-direction: column; gap: 8px">
+<span style="display: flex; align-items: center; justify-content: space-between; color: #55655E">
+<sc-if value="{{ p.cash }}" hint-placeholder-val="{{ true }}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v.1M18 14.5v.1"/></svg></sc-if>
+<sc-if value="{{ p.card }}" hint-placeholder-val="{{ false }}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6 15h4"/></svg></sc-if>
+<sc-if value="{{ p.transfer }}" hint-placeholder-val="{{ false }}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h14M14 4l4 4-4 4M20 16H6M10 12l-4 4 4 4"/></svg></sc-if>
+<span style="width: 22px; height: 22px; border-radius: 999px; border: 2px solid #55655E; background: #FFFFFF; display: inline-flex"></span></span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #103E32">{{p.label}}</span><span style="font-size: 15px; line-height: 22px; color: #55655E">{{p.help}}</span></button></sc-if>
+</sc-for>
+</div>
+<sc-if value="{{ errPay }}" hint-placeholder-val="{{ false }}"><span style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 15px; line-height: 22px; color: #B42318"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>{{msgPay}}</span></sc-if>
+<sc-if value="{{ payHint }}" hint-placeholder-val="{{ false }}"><div style="padding: 14px 16px; border-radius: 12px; background: #F3F0E6; font-size: 16px; line-height: 24px">{{payHintText}}</div></sc-if>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px 16px">
+<button type="button" onClick="{{ confirm }}" style="height: 60px; padding: 0 32px; border: 0; border-radius: 12px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 19px; display: inline-flex; align-items: center; gap: 10px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Confirmar compra simulada</button>
+<button type="button" onClick="{{ goCart }}" style="height: 60px; padding: 0 28px; border: 2px solid #55655E; border-radius: 12px; background: #FFFFFF; color: #24332D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px">Volver al carrito</button>
+<span style="flex: 1 1 100%; font-size: 15px; line-height: 22px; color: #55655E">Al confirmar no se cobra nada ni se guarda un pedido: solo se muestra la pantalla de confirmación.</span>
+</div>
+</form>
+
+<aside aria-label="Resumen del pedido" style="position: sticky; top: 24px; background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 24px; line-height: 32px; color: #103E32">Resumen del pedido</h2>
+<div style="display: flex; flex-direction: column">
+<sc-for list="{{ sumLines }}" as="l" hint-placeholder-count="3">
+<div style="display: flex; justify-content: space-between; gap: 14px; padding: 12px 0; border-bottom: 1px solid #E3DFD2"><div style="display: flex; flex-direction: column"><span style="font-weight: 700; font-size: 17px; line-height: 24px">{{l.name}}</span><span style="font-size: 15px; line-height: 22px; color: #55655E">{{l.qty}} × {{l.unitStr}}</span></div><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 17px; white-space: nowrap">{{l.subStr}}</span></div>
+</sc-for>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px">Total</span><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 34px; line-height: 40px; color: #176B4D">{{totalStr}}</span></div>
+<button type="button" onClick="{{ goCart }}" style="align-self: flex-start; height: 44px; padding: 0; border: 0; background: transparent; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 15px; text-decoration: underline; text-underline-offset: 4px">Editar carrito</button>
+<span style="font-size: 14px; line-height: 20px; color: #55655E">Precios de ejemplo. Compra simulada: no se procesa dinero real.</span>
+</aside>
+</div>
+</sc-if>
+
+<!-- ======================= CONFIRMACIÓN ======================= -->
+<sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top: 28px; background: #E4F0EA; border: 1px solid #176B4D; border-radius: 20px; padding: 36px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px">
+<img src="img/festejo.png" alt="" style="height: 170px; width: auto; display: block">
+<div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 12px">
+<span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 14px; border-radius: 999px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Compra simulada confirmada</span>
+<h2 style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 40px; line-height: 48px; letter-spacing: -0.02em; color: #103E32">¡Listo, {{firstName}}! Tu compra simulada quedó confirmada.</h2>
+<p style="margin: 0; font-size: 19px; line-height: 28px">Esto es una demostración: no se procesó ningún pago, no se guardó el pedido y no se envió ningún correo.</p>
+</div>
+<div style="flex: 0 0 auto; background: #FFFFFF; border: 1px dashed #176B4D; border-radius: 14px; padding: 18px 24px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 14px; line-height: 20px; color: #55655E">Número de operación demostrativo</span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 32px; line-height: 40px; color: #103E32; letter-spacing: 0.02em">{{orderNum}}</span>
+<span style="font-size: 14px; line-height: 20px; color: #55655E">Número ficticio: no corresponde a un pedido real.</span>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 32px; align-items: start; margin-top: 32px">
+<section aria-labelledby="r-ped" style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 28px 32px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 1px 2px rgba(16,62,50,0.08), 0 6px 16px rgba(16,62,50,0.06)">
+<h2 id="r-ped" style="margin: 0 0 8px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 24px; line-height: 32px; color: #103E32">Resumen del pedido</h2>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 70px 110px 120px; gap: 12px; padding-bottom: 8px; border-bottom: 1px solid #E3DFD2; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; line-height: 20px; color: #55655E"><span>Producto</span><span style="text-align: right">Cant.</span><span style="text-align: right">Precio</span><span style="text-align: right">Subtotal</span></div>
+<sc-for list="{{ doneLines }}" as="l" hint-placeholder-count="3">
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 70px 110px 120px; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E3DFD2; font-size: 17px; line-height: 24px"><span style="font-weight: 700">{{l.name}}</span><span style="text-align: right">{{l.qty}}</span><span style="text-align: right">{{l.unitStr}}</span><span style="text-align: right; font-family: Manrope, system-ui, sans-serif; font-weight: 700">{{l.subStr}}</span></div>
+</sc-for>
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-top: 12px"><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 18px">Total</span><span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 34px; line-height: 40px; color: #176B4D">{{doneTotal}}</span></div>
+</section>
+<section aria-labelledby="r-dat" style="background: #FFFFFF; border: 1px solid #E3DFD2; border-radius: 16px; padding: 28px 32px; display: flex; flex-direction: column; gap: 14px">
+<h2 id="r-dat" style="margin: 0; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 24px; line-height: 32px; color: #103E32">Datos ilustrativos</h2>
+<div style="display: flex; flex-direction: column; gap: 12px; font-size: 17px; line-height: 24px">
+<div><span style="display: block; font-size: 14px; line-height: 20px; color: #55655E">Nombre y apellido</span>{{doneName}}</div>
+<div><span style="display: block; font-size: 14px; line-height: 20px; color: #55655E">Correo electrónico</span>{{doneEmail}}</div>
+<div><span style="display: block; font-size: 14px; line-height: 20px; color: #55655E">Entrega</span>{{doneDeliv}}</div>
+<div><span style="display: block; font-size: 14px; line-height: 20px; color: #55655E">Medio de pago simulado</span>{{donePay}}</div>
+<sc-if value="{{ doneHasNotes }}" hint-placeholder-val="{{ false }}"><div><span style="display: block; font-size: 14px; line-height: 20px; color: #55655E">Observaciones</span>{{doneNotes}}</div></sc-if>
+</div>
+</section>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 14px 16px; margin-top: 32px">
+<a href="Landing-Escritorio.dc.html" style="height: 60px; padding: 0 32px; box-sizing: border-box; border-radius: 12px; background: #176B4D; color: #FFFFFF; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 18px; display: inline-flex; align-items: center">Volver al inicio</a>
+<a href="Catalogo-Escritorio.dc.html" style="height: 60px; padding: 0 32px; box-sizing: border-box; border: 2px solid #176B4D; border-radius: 12px; background: #FFFFFF; color: #176B4D; font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 18px; display: inline-flex; align-items: center">Seguir comprando</a>
+</div>
+</sc-if>
+
+</main>
+
+<footer id="contacto" style="background: #103E32; color: #FAF8F2; padding: 80px 0 32px">
+<div style="max-width: 1312px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 56px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 40px">
+
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+<div style="display: flex; align-items: center; gap: 12px">
+<span style="width: 64px; height: 64px; border-radius: 999px; background: #FAF8F2; display: flex; align-items: center; justify-content: center"><img src="img/pulgar.png" alt="" style="width: 46px; height: auto; display: block"></span>
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 800; font-size: 28px; line-height: 34px; letter-spacing: -0.02em">Changuito</span>
+</div>
+<span style="font-size: 17px; line-height: 26px; color: #E4F0EA; max-width: 280px">Tu almacén de siempre, ahora a un clic.</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; line-height: 20px; letter-spacing: 0.08em; text-transform: uppercase; color: #F5A623; margin-bottom: 8px">Navegación</span>
+<a href="Landing-Escritorio.dc.html" style="display: inline-flex; align-items: center; min-height: 36px; font-size: 17px">Inicio</a>
+<a href="Catalogo-Escritorio.dc.html" style="display: inline-flex; align-items: center; min-height: 36px; font-size: 17px">Productos</a>
+<a href="Nosotros-Escritorio.dc.html" style="display: inline-flex; align-items: center; min-height: 36px; font-size: 17px">Nosotros</a>
+<a href="Contacto-Escritorio.dc.html" style="display: inline-flex; align-items: center; min-height: 36px; font-size: 17px">Contacto</a>
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; line-height: 20px; letter-spacing: 0.08em; text-transform: uppercase; color: #F5A623; margin-bottom: 8px">Contacto</span>
+<a href="Contacto-Escritorio.dc.html" style="height: 48px; padding: 0 20px; box-sizing: border-box; border: 2px solid #FAF8F2; border-radius: 12px; font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 16px; display: inline-flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.500" width="18" height="13" rx="2"/><path d="M3.500 7l8.500 6 8.500-6"/></svg>Escribinos</a>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Correo de contacto]</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Teléfono]</span>
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px">
+<span style="font-family: Manrope, system-ui, sans-serif; font-weight: 700; font-size: 14px; line-height: 20px; letter-spacing: 0.08em; text-transform: uppercase; color: #F5A623; margin-bottom: 8px">Información institucional</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Nombre del comercio]</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Dirección del local]</span>
+<span style="font-size: 16px; line-height: 24px; color: #F5A623; border-bottom: 1px dashed #F5A623">[Horario de atención]</span>
+</div>
+
+</div>
+
+<div style="border-top: 1px solid rgba(250,248,242,0.25); padding-top: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; font-size: 15px; line-height: 22px; color: #E4F0EA">
+<span>© <span style="color: #F5A623; border-bottom: 1px dashed #F5A623">[Año]</span> Changuito · Prototipo de diseño, Aplicaciones Interactivas, UADE</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 24px">
+<span style="color: #F5A623; border-bottom: 1px dashed #F5A623">[Términos y condiciones]</span>
+<span style="color: #F5A623; border-bottom: 1px dashed #F5A623">[Política de privacidad]</span>
+<a href="Admin-Escritorio.dc.html" style="text-decoration: underline; text-underline-offset: 3px">Administración (demo)</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2000}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { view: 'cart', cart: this.loadCart(), unavailId: null, qtyRaw: {}, cartAlert: '', form: { name: '', email: '', deliv: 'home', addr: '', notes: '', pay: '' }, tried: false, order: null };
+}
+loadCart() {
+const cart = {};
+try {
+const m = /[?&]c=([^&]*)/.exec(window.location.search || '');
+if (m && m[1]) {
+m[1].split(',').forEach((t) => { const a = t.split('.'); const id = parseInt(a[0], 10); const n = parseInt(a[1], 10); if (id > 0 && n > 0) cart[id] = n; });
+return cart;
+}
+} catch (e) {}
+try {
+const raw = window.localStorage.getItem('changuito-carrito');
+if (raw) { const o = JSON.parse(raw); Object.keys(o).forEach((k) => { if (o[k] > 0) cart[k] = o[k]; }); }
+} catch (e) {}
+return cart;
+}
+saveCart(cart) {
+try { window.localStorage.setItem('changuito-carrito', JSON.stringify(cart)); } catch (e) {}
+}
+products() {
+return [
+{ id: 1, name: 'Yerba mate 500 g', cat: 'Almacén', price: 4890, ok: true },
+{ id: 2, name: 'Fideos tirabuzón 500 g', cat: 'Almacén', price: 1250, ok: true },
+{ id: 3, name: 'Arroz largo fino 1 kg', cat: 'Almacén', price: 1980, ok: true },
+{ id: 4, name: 'Aceite de girasol 900 ml', cat: 'Almacén', price: 2350, ok: true },
+{ id: 5, name: 'Azúcar 1 kg', cat: 'Almacén', price: 1450, ok: true },
+{ id: 6, name: 'Harina 000 1 kg', cat: 'Almacén', price: 1100, ok: false },
+{ id: 7, name: 'Gaseosa cola 1,5 L', cat: 'Bebidas sin alcohol', price: 2100, ok: true },
+{ id: 8, name: 'Agua mineral 2 L', cat: 'Bebidas sin alcohol', price: 1100, ok: true },
+{ id: 9, name: 'Jugo en polvo sabor naranja', cat: 'Bebidas sin alcohol', price: 450, ok: true },
+{ id: 10, name: 'Detergente para vajilla 750 ml', cat: 'Limpieza', price: 1890, ok: true },
+{ id: 11, name: 'Lavandina 1 L', cat: 'Limpieza', price: 980, ok: true },
+{ id: 12, name: 'Tomate redondo, 1 kg', cat: 'Frescos', price: 2790, ok: true },
+{ id: 13, name: 'Banana, 1 kg', cat: 'Frescos', price: 2200, ok: true }
+];
+}
+money(n) {
+return '$ ' + String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+top() {
+try { window.scrollTo(0, 0); } catch (e) {}
+}
+lines() {
+const st = this.state;
+const prods = this.products();
+return Object.keys(st.cart).map((k) => Number(k)).sort((a, b) => a - b).map((id) => {
+const p = prods.find((x) => x.id === id);
+if (!p) return null;
+const raw = st.qtyRaw[id] !== undefined ? st.qtyRaw[id] : String(st.cart[id]);
+const t = String(raw).trim();
+const n = parseInt(t, 10);
+const valid = /^\d+$/.test(t) && n >= 1 && n <= 12;
+return { p: p, id: id, raw: raw, valid: valid, qty: valid ? n : st.cart[id], avail: p.ok && st.unavailId !== id };
+}).filter(Boolean);
+}
+qs() {
+const c = this.state.cart;
+const ks = Object.keys(c);
+return ks.length ? '?c=' + ks.map((k) => k + '.' + c[k]).join(',') : '';
+}
+setQty(id, n) {
+const cart = Object.assign({}, this.state.cart);
+cart[id] = n;
+const raw = Object.assign({}, this.state.qtyRaw);
+delete raw[id];
+this.saveCart(cart);
+this.setState({ cart: cart, qtyRaw: raw, cartAlert: '' });
+}
+onQty(id, v) {
+const t = String(v).trim();
+const n = parseInt(t, 10);
+if (/^\d+$/.test(t) && n >= 1 && n <= 12) { this.setQty(id, n); return; }
+const raw = Object.assign({}, this.state.qtyRaw);
+raw[id] = v;
+this.setState({ qtyRaw: raw, cartAlert: '' });
+}
+removeItem(id) {
+const cart = Object.assign({}, this.state.cart);
+delete cart[id];
+const raw = Object.assign({}, this.state.qtyRaw);
+delete raw[id];
+this.saveCart(cart);
+this.setState({ cart: cart, qtyRaw: raw, cartAlert: '', unavailId: this.state.unavailId === id ? null : this.state.unavailId });
+}
+setForm(k, v) {
+const f = Object.assign({}, this.state.form);
+f[k] = v;
+this.setState({ form: f });
+}
+validate(f) {
+const out = { name: '', email: '', addr: '', notes: '', pay: '' };
+const nm = f.name.trim();
+if (nm === '') out.name = 'Ingresá tu nombre y apellido.';
+else if (nm.split(/\s+/).length < 2) out.name = 'Ingresá tu nombre y tu apellido.';
+const em = f.email.trim();
+if (em === '') out.email = 'Ingresá tu correo electrónico.';
+else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) out.email = 'El correo no es válido. Revisá que tenga el formato nombre@ejemplo.com.';
+if (f.deliv === 'home' && f.addr.trim() === '') out.addr = 'Ingresá la dirección de entrega. Puede ser ilustrativa.';
+if (f.notes.length > 200) out.notes = 'Las observaciones no pueden pasar de 200 caracteres.';
+if (f.pay === '') out.pay = 'Elegí un medio de pago simulado.';
+return out;
+}
+goCheckout() {
+const ls = this.lines();
+if (ls.some((l) => !l.valid)) { this.setState({ cartAlert: 'Corregí las cantidades marcadas en rojo antes de continuar.' }); return; }
+if (!ls.some((l) => l.avail)) { this.setState({ cartAlert: 'No hay productos disponibles para comprar. Quitá los que no están disponibles o agregá otros.' }); return; }
+this.setState({ view: 'checkout', tried: false, cartAlert: '' });
+this.top();
+}
+confirm() {
+const st = this.state;
+const errs = this.validate(st.form);
+if (errs.name || errs.email || errs.addr || errs.notes || errs.pay) { this.setState({ tried: true }); return; }
+const ls = this.lines().filter((l) => l.avail && l.valid);
+const rows = ls.map((l) => ({ name: l.p.name, qty: l.qty, unitStr: this.money(l.p.price), subStr: this.money(l.p.price * l.qty), sub: l.p.price * l.qty }));
+const total = rows.reduce((t, r) => t + r.sub, 0);
+const order = { num: 'DEMO-' + String(Math.floor(100000 + Math.random() * 900000)), rows: rows, total: total, form: Object.assign({}, st.form) };
+this.saveCart({});
+this.setState({ view: 'done', order: order, cart: {}, qtyRaw: {}, unavailId: null });
+this.top();
+}
+renderVals() {
+const st = this.state;
+const ls = this.lines();
+const counted = ls.filter((l) => l.avail && l.valid);
+const units = counted.reduce((t, l) => t + l.qty, 0);
+const total = counted.reduce((t, l) => t + l.p.price * l.qty, 0);
+const cartCount = Object.keys(st.cart).reduce((t, k) => t + st.cart[k], 0);
+const items = ls.map((l) => {
+const sub = l.p.price * l.qty;
+return {
+id: l.id, name: l.p.name, cat: l.p.cat, unitStr: this.money(l.p.price), qtyNum: l.qty,
+avail: l.avail, unavail: !l.avail,
+qid: 'q-' + l.id, qerrId: 'qe-' + l.id, qtyRaw: l.raw,
+qtyBd: l.valid ? '#55655E' : '#B42318',
+badQty: !l.valid,
+canMinus: l.valid && l.qty > 1, noMinus: !(l.valid && l.qty > 1),
+canPlus: l.valid && l.qty < 12, noPlus: !(l.valid && l.qty < 12),
+minusLabel: 'Disminuir cantidad de ' + l.p.name, plusLabel: 'Aumentar cantidad de ' + l.p.name,
+removeLabel: 'Quitar ' + l.p.name + ' del carrito',
+subStr: l.valid ? this.money(sub) : '—', subColor: l.valid ? '#176B4D' : '#55655E',
+onQty: (e) => this.onQty(l.id, e && e.target ? e.target.value : ''),
+minus: () => this.setQty(l.id, Math.max(1, l.qty - 1)),
+plus: () => this.setQty(l.id, Math.min(12, l.qty + 1)),
+remove: () => this.removeItem(l.id)
+};
+});
+const step = st.view === 'cart' ? 0 : (st.view === 'checkout' ? 1 : 2);
+const steps = [{ n: 1, label: 'Carrito' }, { n: 2, label: 'Datos y pago' }, { n: 3, label: 'Confirmación' }].map((s, i) => ({ n: s.n, label: s.label, done: i < step, cur: i === step, todo: i > step, sep: i < 2 }));
+const f = st.form;
+const errs = this.validate(f);
+const show = st.tried;
+const labels = { name: 'Nombre y apellido', email: 'Correo electrónico', addr: 'Dirección de entrega', notes: 'Observaciones', pay: 'Medio de pago' };
+const errKeys = ['name', 'email', 'addr', 'notes', 'pay'].filter((k) => errs[k]);
+const bd = (k) => (show && errs[k]) ? '#B42318' : '#55655E';
+const delivs = [{ k: 'home', label: 'Entrega a domicilio', help: 'Con dirección de entrega simulada.' }, { k: 'pickup', label: 'Retiro en el local', help: 'Sin dirección de entrega.' }].map((d) => ({ label: d.label, help: d.help, on: f.deliv === d.k, off: f.deliv !== d.k, pick: () => this.setForm('deliv', d.k) }));
+const pays = [
+{ k: 'cash', label: 'Efectivo', help: 'Simulado: se pagaría al recibir o retirar.' },
+{ k: 'card', label: 'Tarjeta', help: 'Simulado: no se piden números ni códigos.' },
+{ k: 'transfer', label: 'Transferencia', help: 'Simulado: no se muestran datos bancarios.' }
+].map((p) => ({ label: p.label, help: p.help, cash: p.k === 'cash', card: p.k === 'card', transfer: p.k === 'transfer', on: f.pay === p.k, off: f.pay !== p.k, pick: () => this.setForm('pay', p.k) }));
+const payTexts = { cash: 'Elegiste efectivo. En una compra real se pagaría al recibir o retirar; acá no se cobra nada.', card: 'Elegiste tarjeta. Esta demo no pide número, vencimiento ni código de seguridad, y no se cobra nada.', transfer: 'Elegiste transferencia. Esta demo no muestra datos bancarios reales y no se cobra nada.' };
+const payNames = { cash: 'Efectivo', card: 'Tarjeta', transfer: 'Transferencia' };
+const o = st.order;
+const of = o ? o.form : null;
+return {
+cartCount: cartCount,
+shopHref: 'Catalogo-Escritorio.dc.html' + this.qs(),
+goCart: () => { this.setState({ view: 'cart' }); this.top(); },
+isCart: st.view === 'cart', isCheckout: st.view === 'checkout', isDone: st.view === 'done',
+pageTitle: st.view === 'cart' ? 'Tu carrito' : (st.view === 'checkout' ? 'Finalizar compra' : 'Compra confirmada'),
+steps: steps,
+cartAlertOn: st.cartAlert !== '', cartAlert: st.cartAlert,
+hasUnavail: ls.some((l) => !l.avail),
+hasItems: ls.length > 0, emptyCart: ls.length === 0,
+items: items,
+unitsText: 'Productos · ' + (units === 1 ? '1 unidad' : units + ' unidades'),
+totalStr: this.money(total),
+goCheckout: () => this.goCheckout(),
+loadDemo: () => { const c = { 1: 2, 2: 3, 4: 1 }; this.saveCart(c); this.setState({ cart: c, qtyRaw: {}, unavailId: null, cartAlert: '' }); },
+toggleUnavail: () => {
+if (st.unavailId) { this.setState({ unavailId: null }); return; }
+const first = ls.find((l) => l.p.ok);
+if (first) this.setState({ unavailId: first.id });
+},
+unavailLabel: st.unavailId ? 'Volver a disponible el producto' : 'Marcar un producto como no disponible',
+clearCart: () => { this.saveCart({}); this.setState({ cart: {}, qtyRaw: {}, unavailId: null, cartAlert: '' }); },
+noSubmit: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+vName: f.name, vEmail: f.email, vAddr: f.addr, vNotes: f.notes,
+onName: (e) => this.setForm('name', e && e.target ? e.target.value : ''),
+onEmail: (e) => this.setForm('email', e && e.target ? e.target.value : ''),
+onAddr: (e) => this.setForm('addr', e && e.target ? e.target.value : ''),
+onNotes: (e) => this.setForm('notes', e && e.target ? e.target.value : ''),
+bdName: bd('name'), bdEmail: bd('email'), bdAddr: bd('addr'), bdNotes: bd('notes'),
+errName: show && !!errs.name, msgName: errs.name,
+errEmail: show && !!errs.email, msgEmail: errs.email,
+errAddr: show && !!errs.addr, msgAddr: errs.addr,
+errNotes: show && !!errs.notes, msgNotes: errs.notes, noErrNotes: !(show && !!errs.notes),
+errPay: show && !!errs.pay, msgPay: errs.pay,
+notesCount: f.notes.length,
+isHome: f.deliv === 'home', isPickup: f.deliv === 'pickup',
+delivs: delivs, pays: pays,
+payHint: f.pay !== '', payHintText: f.pay !== '' ? payTexts[f.pay] : '',
+hasErrors: show && errKeys.length > 0,
+errSummary: errKeys.length === 1 ? 'Hay 1 campo para revisar.' : 'Hay ' + errKeys.length + ' campos para revisar.',
+errList: errKeys.map((k) => ({ text: labels[k] + ': ' + errs[k] })),
+sumLines: counted.map((l) => ({ name: l.p.name, qty: l.qty, unitStr: this.money(l.p.price), subStr: this.money(l.p.price * l.qty) })),
+confirm: () => this.confirm(),
+orderNum: o ? o.num : '',
+firstName: of ? of.name.trim().split(/\s+/)[0] : '',
+doneLines: o ? o.rows : [], doneTotal: o ? this.money(o.total) : '',
+doneName: of ? of.name.trim() : '', doneEmail: of ? of.email.trim() : '',
+doneDeliv: of ? (of.deliv === 'home' ? 'Entrega a domicilio · ' + of.addr.trim() : 'Retiro en el local') : '',
+donePay: of ? payNames[of.pay] + ' (simulado)' : '',
+doneHasNotes: !!of && of.notes.trim() !== '', doneNotes: of ? of.notes.trim() : ''
+};
+}
+}
+</script>
+</body>
+</html>
