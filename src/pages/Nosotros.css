@@ -1,0 +1,201 @@
+.pagina-nosotros {
+  padding-bottom: var(--espacio-5);
+}
+
+.nosotros-eyebrow {
+  display: block;
+  font: 700 13px var(--fuente-texto);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-verde-principal);
+  margin-bottom: 6px;
+}
+.nosotros-eyebrow-claro {
+  color: var(--color-mostaza);
+}
+
+/* --------------------------------------------------------------- Hero */
+.nosotros-hero {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--espacio-4);
+  align-items: center;
+  margin-top: var(--espacio-3);
+}
+
+.nosotros-hero p {
+  color: var(--color-texto);
+  margin: var(--espacio-2) 0 var(--espacio-2);
+  max-width: 56ch;
+}
+
+.nosotros-pill {
+  display: inline-flex;
+  font: 600 13px var(--fuente-texto);
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px dashed var(--color-borde);
+  color: var(--color-texto-suave);
+}
+
+.nosotros-hero-imagen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+  padding: var(--espacio-4);
+}
+
+/* ---------------------------------------------------- Qué es / propone */
+.nosotros-seccion {
+  margin-top: var(--espacio-5);
+}
+.nosotros-seccion h2 {
+  margin-bottom: var(--espacio-3);
+}
+
+.nosotros-grilla-que-es {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espacio-2);
+  margin-bottom: var(--espacio-3);
+}
+
+.nosotros-tarjeta-que-es {
+  background: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+  padding: var(--espacio-3);
+}
+.nosotros-tarjeta-que-es-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radio-campo);
+  background: var(--color-verde-suave);
+  color: var(--color-verde-principal);
+  margin-bottom: var(--espacio-2);
+}
+.nosotros-tarjeta-que-es h3 {
+  margin-bottom: 6px;
+}
+.nosotros-tarjeta-que-es p {
+  font-size: 14px;
+  color: var(--color-texto-suave);
+}
+
+/* -------------------------------------------------------------- Equipo */
+.nosotros-equipo {
+  background: var(--color-verde-oscuro);
+  margin-top: var(--espacio-5);
+  padding: var(--espacio-5) 0;
+}
+.nosotros-equipo h2 {
+  color: var(--color-blanco);
+}
+.nosotros-equipo-subtitulo {
+  color: var(--color-crema);
+  margin-top: 4px;
+  margin-bottom: var(--espacio-3);
+}
+
+.nosotros-grilla-equipo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espacio-3);
+  max-width: 760px;
+}
+
+.tarjeta-integrante {
+  background: var(--color-blanco);
+  border-radius: var(--radio-tarjeta);
+  padding: var(--espacio-3);
+}
+
+.tarjeta-integrante-foto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1.6 / 1;
+  border: 1px dashed var(--color-borde);
+  border-radius: var(--radio-campo);
+  background: var(--color-verde-suave);
+  color: var(--color-verde-principal);
+  margin-bottom: var(--espacio-2);
+}
+
+.tarjeta-integrante-etiqueta {
+  display: block;
+  font: 700 11px var(--fuente-texto);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+  margin-top: var(--espacio-2);
+}
+.tarjeta-integrante-etiqueta:first-of-type {
+  margin-top: 0;
+}
+.tarjeta-integrante h3 {
+  margin-top: 2px;
+}
+.tarjeta-integrante-rol {
+  font: 600 14px var(--fuente-texto);
+  color: var(--color-verde-principal);
+}
+.tarjeta-integrante p:not(.tarjeta-integrante-rol) {
+  font-size: 14px;
+  color: var(--color-texto-suave);
+  margin-top: 2px;
+}
+
+/* ----------------------------------------------------------------- CTA */
+.nosotros-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--espacio-2);
+  flex-wrap: wrap;
+  background: var(--color-verde-suave);
+  border-radius: var(--radio-tarjeta);
+  padding: var(--espacio-4);
+  margin-top: var(--espacio-5);
+}
+.nosotros-cta h2 {
+  margin-bottom: 2px;
+}
+.nosotros-cta p {
+  color: var(--color-texto-suave);
+}
+
+/* ---------------------------------------------------------------- Mobile */
+@media (max-width: 900px) {
+  .nosotros-hero {
+    grid-template-columns: 1fr;
+  }
+  .nosotros-hero-imagen {
+    order: -1;
+    padding: var(--espacio-3);
+  }
+  .nosotros-hero-imagen img {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+@media (max-width: 640px) {
+  .nosotros-grilla-que-es {
+    grid-template-columns: 1fr;
+  }
+  .nosotros-grilla-equipo {
+    grid-template-columns: 1fr;
+  }
+  .nosotros-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,7 +1,7 @@
 /**
  * Set de íconos propios de Changuito: trazo de 24px, línea de 1,75px, puntas
- * redondeadas, sin relleno — la regla de Identidad-Componentes.dc.html. Son
- * los únicos ocho que usa la app, nada de librerías externas.
+ * redondeadas, sin relleno — la regla de Identidad-Componentes.dc.html. Nada
+ * de librerías externas, todos a mano con el mismo trazo.
  *
  * Decorativos por defecto (aria-hidden, focusable="false"): cuando un botón
  * lleva solo ícono, el texto accesible va en el propio botón (aria-label),
@@ -115,6 +115,18 @@ export function IconoCerrar(props) {
     <svg {...basePropiedades} {...props}>
       <path d="M6 6l12 12" />
       <path d="M18 6L6 18" />
+    </svg>
+  );
+}
+
+/* Silueta de persona — placeholder de foto en las tarjetas del equipo de
+ * Nosotros (Nosotros-Escritorio.dc.html), que tampoco estaba en la lista
+ * original. */
+export function IconoPersona(props) {
+  return (
+    <svg {...basePropiedades} {...props}>
+      <circle cx="12" cy="8" r="3.5" />
+      <path d="M5 20c0-3.6 3.1-6.5 7-6.5s7 2.9 7 6.5" />
     </svg>
   );
 }

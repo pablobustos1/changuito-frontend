@@ -9,7 +9,7 @@
  * PLAN_FRONTEND.md, tabla de validaciones de Registrarse.
  */
 
-const PATRON_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+export const PATRON_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PATRON_TELEFONO = /^\d{10}$/;
 
 export function validarObligatorio(valor, mensaje) {

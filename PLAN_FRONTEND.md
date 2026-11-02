@@ -312,6 +312,48 @@ que ahí está. Archivos clave a abrir antes de escribir código:
   [completar]" y ahora se ve también en "Comprando como..." de Finalizar
   compra y en el saludo de Compra confirmada.
 
+### Paso 6 — Nosotros y Contacto
+
+- `Nosotros.jsx` (+ css, C7): hero con el mascota (`pulgar.png`), las 4
+  tarjetas "Qué es Changuito y qué propone" y el Recuadro "Qué es real y
+  qué es simulado hoy" — este último **adaptado, no copiado**: el texto
+  del prototipo describe un mockup de diseño sin nada funcional; el de la
+  app real dice que el catálogo, el carrito, la compra y la administración
+  sí funcionan de punta a punta, solo que todo vive en localStorage, sin
+  backend ni pasarela de pagos. Después, la banda "El equipo detrás de
+  Changuito" con **dos** tarjetas (Pablo Bustos y Tobias Rossi, confirmado
+  por el usuario que el equipo real es de dos personas, no de tres como
+  trae el prototipo de ejemplo) — a diferencia del prototipo, acá el rol y
+  la presentación de cada uno están completos, no son placeholders: Pablo
+  "Desarrollo full-stack" (backend Spring Boot + este frontend), Tobias
+  "Desarrollo", ambos con una presentación genérica de estudiante de
+  Aplicaciones Interactivas en UADE (texto redactado por decisión
+  explícita del usuario, que pidió un perfil genérico en vez de dictarlo).
+- `Contacto.jsx` (+ css, C8): formulario de consulta (nombre y apellido,
+  correo, asunto, mensaje con tope duro de 500 caracteres) con los
+  mensajes de validación copiados tal cual de
+  `Contacto-Escritorio.dc.html` (extraídos del HTML del prototipo, no
+  improvisados) — incluye el estado de éxito ("Consulta enviada
+  (simulado)", con "Enviar otra consulta"/"Volver al inicio") que no
+  estaba documentado como texto en la rúbrica pero sí se podía renderizar.
+  El envío es 100% local (no hay `contactoService`: no hay nada que
+  simular con demora de red, el prototipo mismo aclara "no se manda ningún
+  mensaje ni se guarda nada"). A la derecha, "Otros datos de contacto" con
+  los mismos placeholders entre corchetes que ya usa el Footer.
+- `src/components/ui/Iconos.jsx`: se agregó `IconoPersona` (silueta
+  simple), el único ícono que hacía falta y no estaba en el set original —
+  mismo trazo que el resto, usado como foto-placeholder en las tarjetas
+  del equipo.
+- `src/utils/validaciones.js`: `PATRON_EMAIL` ahora se exporta, para que
+  Contacto pueda reusar la misma expresión regular que ya usa
+  `validarEmail` sin duplicarla, aunque con sus propios mensajes de error
+  (los del prototipo de Contacto son distintos a los de Registrarse).
+- Verificado con Playwright: Nosotros y Contacto completos en escritorio,
+  el resumen de error de Contacto con los 4 campos vacíos, los mensajes
+  específicos de cada regla (correo con formato inválido, asunto y mensaje
+  demasiado cortos), el estado de éxito tras un envío válido, y mobile
+  (390px) de las dos pantallas.
+
 ## Notas del prototipo renderizado (para los próximos pasos)
 
 El texto de los archivos `.dc.html` no alcanza para construir fiel al
@@ -352,15 +394,15 @@ detalles que no están en el texto. Lo que ya se relevó así:
   Mensaje con contador "0 / 500"), a la derecha otra tarjeta "Otros datos
   de contacto" con los mismos placeholders entre corchetes del pie de
   página. Breadcrumb arriba, pill "Formulario simulado" junto al título.
-- **Nosotros (C7)**: **los nombres de dos de los tres integrantes están
-  confirmados en el propio prototipo**: "Pablo Bustos" y "Tobias Rossi". El
-  tercero solo tiene apellido: "[Nombre] De Vincenzo". Usar estos nombres
-  tal cual en la pantalla real (paso 6) — no son un dato de ejemplo, el pie
-  de esa sección lo aclara explícitamente ("Los nombres de Pablo Bustos y
-  Tobias Rossi son los indicados por el equipo"). Tarjeta de cada
+- **Nosotros (C7)**: el prototipo trae tres integrantes de ejemplo, con los
+  nombres "Pablo Bustos" y "Tobias Rossi" confirmados y un tercero sin
+  nombre ("[Nombre] De Vincenzo"). **El equipo real son solo esos dos** —
+  Pablo Bustos y Tobias Rossi, confirmado por el usuario en el paso 6 —, así
+  que la pantalla real tiene dos tarjetas, no tres. Tarjeta de cada
   integrante: foto placeholder (ícono de persona, borde punteado) + Nombre
-  completo + Participación o rol (placeholder) + Presentación personal
-  (placeholder, 2-3 líneas). Arriba: 4 tarjetas "Qué es Changuito y qué
+  completo + Participación o rol + Presentación personal (2-3 líneas) — a
+  diferencia del prototipo, que deja esos dos últimos campos vacíos, acá
+  están completos (ver paso 6). Arriba: 4 tarjetas "Qué es Changuito y qué
   propone" (ícono + título + texto) y una caja mostaza "Qué es real y qué
   es simulado hoy".
 - **Caja informativa con ícono** (mostaza, fondo tintado suave): es la
@@ -519,7 +561,7 @@ seguir al siguiente.
 3. ~~Login + registro + política de privacidad~~ ✅ hecho
 4. ~~Catálogo + detalle + carrito~~ ✅ hecho
 5. ~~Checkout + confirmación~~ ✅ hecho
-6. Nosotros + Contacto
+6. ~~Nosotros + Contacto~~ ✅ hecho
 7. Administración completa, con sus rutas protegidas
 8. Pulido de accesibilidad y responsive + revisión contra cada criterio de
    la rúbrica
