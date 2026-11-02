@@ -174,6 +174,38 @@ que ahí está. Archivos clave a abrir antes de escribir código:
   `/iniciar-sesion` una vez logueado, y que el navbar del cliente muestra
   "Ir a Administración" cuando corresponde.
 
+### Paso 3 — login, registro y política de privacidad
+
+- `src/utils/validaciones.js`: funciones puras (validarEmail, validarTexto,
+  validarTelefono, validarContrasena, sinVacios), reusadas en Registrarse y
+  preparadas para Contacto/Finalizar compra/Admin más adelante.
+- `src/components/ui/Recuadro.jsx` (+ css): la caja informativa con ícono
+  del prototipo (mostaza para avisos, roja para resúmenes de error),
+  reusada en todas las pantallas nuevas.
+- `src/components/ui/Migas.jsx` (+ css): breadcrumb, reusado también en
+  estas tres pantallas (el prototipo lo usa en Catálogo/Contacto/Admin).
+- `IniciarSesion.jsx`: una sola pantalla para los dos roles. Redirige según
+  el rol que devuelve la sesión — Administrador siempre a
+  `/administracion`, Cliente a donde intentaba ir (`location.state.desde`)
+  o a `/`. Muestra las dos cuentas de prueba en el recuadro informativo,
+  para que probarlo no dependa de acordarse las credenciales.
+- `Registrarse.jsx`: nombre, apellido, email, teléfono, contraseña,
+  checkbox obligatorio de Política de Privacidad (abre en pestaña nueva
+  para no perder el formulario a medio llenar). Nunca pide ni manda rol.
+  Resumen de errores arriba + mensaje repetido en cada campo, como pide el
+  patrón del prototipo. Al registrarse, inicia sesión sola y redirige igual
+  que el login.
+- `PoliticaDePrivacidad.jsx`: página estática. Qué se pide, para qué se
+  usa, dónde queda guardado (localStorage, con la honestidad de que las
+  contraseñas no están cifradas por no haber servidor) — linkeada desde el
+  checkbox de Registrarse, el pie de página, y pendiente Contacto (paso 6).
+- Verificado con Playwright de punta a punta, no solo "compila": el
+  resumen de errores con los 6 campos vacíos, el error específico cuando
+  falta solo la política, el error genérico de login con la cuenta admin y
+  contraseña incorrecta, y el flujo completo de pedir `/finalizar-compra`
+  sin sesión → login como `chenzito@gmail.com` → vuelve exactamente a
+  `/finalizar-compra` (no a `/`).
+
 ## Notas del prototipo renderizado (para los próximos pasos)
 
 El texto de los archivos `.dc.html` no alcanza para construir fiel al
@@ -209,6 +241,29 @@ detalles que no están en el texto. Lo que ya se relevó así:
 - **Navbar mobile**: SÍ tiene menú hamburguesa (botón cuadrado verde oscuro
   con tres líneas, al lado del carrito) — no se ve en una captura estática
   porque empieza cerrado. Ya implementado en `NavbarCliente.jsx`.
+- **Contacto (C8)**: dos columnas en escritorio — a la izquierda una
+  tarjeta blanca con el formulario (Nombre y apellido, Correo, Asunto,
+  Mensaje con contador "0 / 500"), a la derecha otra tarjeta "Otros datos
+  de contacto" con los mismos placeholders entre corchetes del pie de
+  página. Breadcrumb arriba, pill "Formulario simulado" junto al título.
+- **Nosotros (C7)**: **los nombres de dos de los tres integrantes están
+  confirmados en el propio prototipo**: "Pablo Bustos" y "Tobias Rossi". El
+  tercero solo tiene apellido: "[Nombre] De Vincenzo". Usar estos nombres
+  tal cual en la pantalla real (paso 6) — no son un dato de ejemplo, el pie
+  de esa sección lo aclara explícitamente ("Los nombres de Pablo Bustos y
+  Tobias Rossi son los indicados por el equipo"). Tarjeta de cada
+  integrante: foto placeholder (ícono de persona, borde punteado) + Nombre
+  completo + Participación o rol (placeholder) + Presentación personal
+  (placeholder, 2-3 líneas). Arriba: 4 tarjetas "Qué es Changuito y qué
+  propone" (ícono + título + texto) y una caja mostaza "Qué es real y qué
+  es simulado hoy".
+- **Caja informativa con ícono** (mostaza, fondo tintado suave): es la
+  misma pieza que usa el prototipo para avisos informativos (Nosotros) y
+  para el resumen de error arriba de un formulario (Compra-Estados), solo
+  cambia el color. Se implementa una sola vez como `Recuadro.jsx`
+  (variantes `info`/`error`), reusada en toda la app — incluida la nota de
+  "esto es una simulación académica" de Iniciar sesión/Registrarse, que no
+  estaba en el prototipo original pero usa su mismo lenguaje visual.
 
 ## Estructura de carpetas esperada
 
@@ -355,7 +410,7 @@ seguir al siguiente.
 
 1. ~~Setup del proyecto + sistema de diseño~~ ✅ hecho
 2. ~~Layouts, navegación y `AuthContext`/`CartContext`~~ ✅ hecho
-3. Login + registro + política de privacidad
+3. ~~Login + registro + política de privacidad~~ ✅ hecho
 4. Catálogo + detalle + carrito
 5. Checkout + confirmación
 6. Nosotros + Contacto

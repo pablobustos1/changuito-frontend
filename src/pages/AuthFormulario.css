@@ -1,0 +1,82 @@
+/* Compartido por IniciarSesion y Registrarse — mismo lenguaje visual que las
+   tarjetas blancas del prototipo (Contacto, Admin), en una sola columna
+   angosta y centrada, que es lo que corresponde a un formulario de sesión. */
+
+.pagina-auth {
+  padding-top: var(--espacio-2);
+  padding-bottom: var(--espacio-5);
+  display: flex;
+  justify-content: center;
+}
+
+.tarjeta-auth {
+  width: 100%;
+  max-width: 440px;
+  background: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+  box-shadow: var(--sombra-elevada);
+  padding: var(--espacio-4);
+  margin-top: var(--espacio-2);
+}
+
+.pagina-auth-subtitulo {
+  color: var(--color-texto-suave);
+  margin-bottom: var(--espacio-3);
+}
+
+.pagina-auth-leyenda {
+  font: var(--tipo-etiqueta);
+  color: var(--color-texto-suave);
+  margin-bottom: var(--espacio-2);
+}
+.pagina-auth-leyenda span {
+  color: var(--color-error);
+}
+
+.pagina-auth-boton {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.pagina-auth-pie {
+  text-align: center;
+  margin-top: var(--espacio-3);
+  font: var(--tipo-texto);
+  font-size: 15px;
+}
+.pagina-auth-pie a {
+  font-weight: 700;
+}
+
+/* El checkbox de Política de Privacidad no encaja en CampoFormulario (está
+   pensado para label-arriba-del-campo, acá el label va al lado). Reusa la
+   clase de error de CampoFormulario.css para que se vea igual. */
+.campo-checkbox {
+  margin-bottom: var(--espacio-2);
+}
+.campo-checkbox label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font: var(--tipo-texto);
+  font-size: 15px;
+  cursor: pointer;
+}
+.campo-checkbox input {
+  width: 20px;
+  height: 20px;
+  min-height: 0;
+  flex-shrink: 0;
+  margin-top: 2px;
+  accent-color: var(--color-verde-principal);
+}
+.campo-checkbox a {
+  font-weight: 700;
+}
+
+@media (max-width: 520px) {
+  .tarjeta-auth {
+    padding: var(--espacio-3);
+  }
+}

@@ -21,6 +21,11 @@
   --color-verde-suave: #e4f0ea;
   --color-error: #b42318;
   --color-error-suave: #fbeae8;
+  /* Tinte suave de mostaza para cajas informativas (Recuadro). No está en el
+     documento de identidad — se deriva del mostaza aprobado, igual criterio
+     que --color-verde-suave respecto del verde principal. */
+  --color-mostaza-suave: #fdf3e2;
+  --color-mostaza-borde: #f0d9a8;
 
   /* Tipografía. Manrope para títulos y precios, Source Sans 3 para el resto —
      las dos se cargan desde Google Fonts en index.html. */
