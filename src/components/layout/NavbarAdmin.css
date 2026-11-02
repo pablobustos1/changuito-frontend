@@ -1,0 +1,102 @@
+.navbar-admin {
+  background: var(--color-verde-oscuro);
+}
+
+.navbar-admin-barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espacio-2);
+  min-height: 72px;
+  padding-top: var(--espacio-2);
+  padding-bottom: var(--espacio-2);
+}
+
+.navbar-admin-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--color-blanco);
+  font: 800 20px var(--fuente-titulos);
+}
+
+.navbar-admin-etiqueta {
+  background: var(--color-mostaza);
+  color: var(--color-texto);
+  font: 700 12px var(--fuente-texto);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.navbar-admin-links {
+  display: flex;
+  margin-right: auto;
+  margin-left: var(--espacio-3);
+}
+
+.navbar-admin-link {
+  color: var(--color-crema);
+  text-decoration: none;
+  font: 600 16px var(--fuente-texto);
+  padding: 4px 2px;
+  border-bottom: 2px solid transparent;
+}
+
+.navbar-admin-link-activo {
+  color: var(--color-blanco);
+  border-bottom-color: var(--color-mostaza);
+  font-weight: 700;
+}
+
+.navbar-admin-acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  flex-wrap: wrap;
+}
+
+.navbar-admin-saludo {
+  color: var(--color-crema);
+  font: var(--tipo-etiqueta);
+  white-space: nowrap;
+}
+
+/* Las dos acciones a la derecha estaban pensadas sobre fondo claro — en esta
+   barra oscura necesitan su propio contraste, por eso se sobrescriben acá en
+   vez de crear variantes de Boton que solo se usarían una vez. */
+.navbar-admin-barra .boton-enlace.navbar-admin-cerrar {
+  color: var(--color-crema);
+}
+.navbar-admin-barra .boton-enlace.navbar-admin-cerrar:hover {
+  color: var(--color-blanco);
+}
+
+.navbar-admin-barra .boton-secundario.navbar-admin-volver {
+  background: var(--color-blanco);
+  color: var(--color-verde-oscuro);
+  border-color: var(--color-blanco);
+}
+.navbar-admin-barra .boton-secundario.navbar-admin-volver:hover {
+  background: var(--color-crema);
+}
+
+@media (max-width: 640px) {
+  .navbar-admin-barra {
+    justify-content: center;
+    text-align: center;
+  }
+  .navbar-admin-links {
+    margin: 0;
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+  .navbar-admin-acciones {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+  }
+}

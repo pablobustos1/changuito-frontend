@@ -96,3 +96,25 @@ export function IconoAviso(props) {
     </svg>
   );
 }
+
+/* Los dos siguientes no estaban en la lista original de Identidad-Componentes
+ * — ahí no se había diseñado todavía el menú de navegación en mobile. Hacen
+ * falta para el botón que abre/cierra ese menú, mismo trazo que el resto. */
+export function IconoMenu(props) {
+  return (
+    <svg {...basePropiedades} {...props}>
+      <path d="M4 7h16" />
+      <path d="M4 12h16" />
+      <path d="M4 17h16" />
+    </svg>
+  );
+}
+
+export function IconoCerrar(props) {
+  return (
+    <svg {...basePropiedades} {...props}>
+      <path d="M6 6l12 12" />
+      <path d="M18 6L6 18" />
+    </svg>
+  );
+}

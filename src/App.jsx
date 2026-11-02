@@ -1,90 +1,78 @@
-import { BrowserRouter } from "react-router-dom";
-import Boton from "./components/ui/Boton";
-import CampoFormulario from "./components/ui/CampoFormulario";
-import Etiqueta from "./components/ui/Etiqueta";
-import {
-  IconoCarrito,
-  IconoBuscar,
-  IconoModificar,
-  IconoEliminar,
-  IconoConfirmar,
-  IconoCorreo,
-  IconoAlmacen,
-  IconoAviso,
-} from "./components/ui/Iconos";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext";
+import LayoutCliente from "./components/layout/LayoutCliente";
+import LayoutAdmin from "./components/layout/LayoutAdmin";
+import RutaProtegida from "./components/layout/RutaProtegida";
+
+import Inicio from "./pages/Inicio";
+import Catalogo from "./pages/Catalogo";
+import DetalleProducto from "./pages/DetalleProducto";
+import Carrito from "./pages/Carrito";
+import FinalizarCompra from "./pages/FinalizarCompra";
+import CompraConfirmada from "./pages/CompraConfirmada";
+import Nosotros from "./pages/Nosotros";
+import Contacto from "./pages/Contacto";
+import IniciarSesion from "./pages/IniciarSesion";
+import Registrarse from "./pages/Registrarse";
+import PoliticaDePrivacidad from "./pages/PoliticaDePrivacidad";
+import ListadoProductos from "./pages/admin/ListadoProductos";
+import DetalleProductoAdmin from "./pages/admin/DetalleProductoAdmin";
+import ModificarProducto from "./pages/admin/ModificarProducto";
+import NuevoProducto from "./pages/admin/NuevoProducto";
 
 /**
- * Vista de control del sistema de diseño — PROVISORIA. Se reemplaza en el
- * paso 2 por el enrutamiento real de la app. Sirve para verificar a simple
- * vista que los tokens, los botones, las etiquetas y los íconos están bien
- * antes de construir una sola pantalla real sobre ellos.
+ * Árbol de rutas completo (paso 2). C1-C8 y L1-L3 bajo LayoutCliente, A1-A5
+ * bajo LayoutAdmin — protegido una sola vez a la altura del layout, no en
+ * cada página admin por separado. /finalizar-compra pide sesión de
+ * cualquier rol; /administracion pide sesión de Administrador.
  */
 function App() {
   return (
     <BrowserRouter>
-      <main
-        className="contenedor"
-        style={{
-          paddingTop: 32,
-          paddingBottom: 48,
-          display: "flex",
-          flexDirection: "column",
-          gap: 32,
-        }}
-      >
-        <h1>Changuito</h1>
-        <p style={{ color: "var(--color-texto-suave)" }}>
-          Sistema de diseño — paso 1 del plan.
-        </p>
+      <AuthProvider>
+        <CartProvider>
+          <Routes>
+            <Route element={<LayoutCliente />}>
+              <Route path="/" element={<Inicio />} />
+              <Route path="/productos" element={<Catalogo />} />
+              <Route path="/productos/:id" element={<DetalleProducto />} />
+              <Route path="/carrito" element={<Carrito />} />
+              <Route
+                path="/finalizar-compra"
+                element={
+                  <RutaProtegida>
+                    <FinalizarCompra />
+                  </RutaProtegida>
+                }
+              />
+              <Route path="/compra-confirmada" element={<CompraConfirmada />} />
+              <Route path="/nosotros" element={<Nosotros />} />
+              <Route path="/contacto" element={<Contacto />} />
+              <Route path="/iniciar-sesion" element={<IniciarSesion />} />
+              <Route path="/registrarse" element={<Registrarse />} />
+              <Route
+                path="/politica-de-privacidad"
+                element={<PoliticaDePrivacidad />}
+              />
+            </Route>
 
-        <section style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-          <Boton variante="principal">Finalizar compra</Boton>
-          <Boton variante="acento">Agregar al carrito</Boton>
-          <Boton variante="secundario">Seguir comprando</Boton>
-          <Boton variante="destructivo">Eliminar producto</Boton>
-          <Boton variante="enlace">Volver al listado</Boton>
-        </section>
-
-        <section style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-          <Etiqueta variante="disponible" />
-          <Etiqueta variante="sin-stock" />
-          <Etiqueta variante="oferta" />
-          <Etiqueta variante="guardado" />
-          <Etiqueta variante="desactivado" />
-        </section>
-
-        <section
-          style={{
-            display: "flex",
-            gap: 24,
-            color: "var(--color-verde-principal)",
-          }}
-        >
-          <IconoCarrito />
-          <IconoBuscar />
-          <IconoModificar />
-          <IconoEliminar />
-          <IconoConfirmar />
-          <IconoCorreo />
-          <IconoAlmacen />
-          <IconoAviso />
-        </section>
-
-        <section style={{ maxWidth: 360 }}>
-          <CampoFormulario
-            etiqueta="Correo electrónico"
-            obligatorio
-            type="email"
-            placeholder="nombre@dominio.com"
-            ayuda="Ingresá un correo válido, por ejemplo nombre@dominio.com."
-          />
-          <CampoFormulario
-            etiqueta="Nombre y apellido"
-            obligatorio
-            error="Ingresá tu nombre y apellido."
-          />
-        </section>
-      </main>
+            <Route
+              path="/administracion"
+              element={
+                <RutaProtegida rolRequerido="Administrador">
+                  <LayoutAdmin />
+                </RutaProtegida>
+              }
+            >
+              <Route index element={<ListadoProductos />} />
+              <Route path="productos/nuevo" element={<NuevoProducto />} />
+              <Route path="productos/:id" element={<DetalleProductoAdmin />} />
+              <Route path="productos/:id/editar" element={<ModificarProducto />} />
+            </Route>
+          </Routes>
+        </CartProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

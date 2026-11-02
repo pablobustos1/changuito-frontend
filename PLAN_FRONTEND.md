@@ -123,7 +123,9 @@ que ahí está. Archivos clave a abrir antes de escribir código:
     Registrarse (checkbox), Contacto (debajo del botón de enviar) y el pie
     de página.
 
-## Lo que ya está hecho (paso 1 — andamiaje y sistema de diseño)
+## Lo que ya está hecho
+
+### Paso 1 — andamiaje y sistema de diseño
 
 - Proyecto Vite + React scaffoldeado, `react-router-dom` instalado.
 - `index.html`: lang="es-AR", fuentes de Google Fonts (Manrope + Source Sans
@@ -131,11 +133,12 @@ que ahí está. Archivos clave a abrir antes de escribir código:
 - `src/index.css`: todos los tokens de color/tipografía/forma/espaciado del
   documento de identidad, reset base, tipografía global (h1/h2/h3 en
   Manrope color verde oscuro, cuerpo en Source Sans 3 color texto), clase
-  `.contenedor` (ancho máximo 1200px) y un breakpoint a 768px.
+  `.contenedor` (ancho máximo 1200px), `.visualmente-oculto` (texto solo
+  para lector de pantalla) y un breakpoint a 768px.
 - `src/assets/marca/`: las tres imágenes del personaje.
-- `src/components/ui/Iconos.jsx`: los 8 íconos propios (carrito, buscar,
-  modificar, eliminar, confirmar, correo, almacén, aviso), SVG a mano, 24px,
-  trazo 1.75.
+- `src/components/ui/Iconos.jsx`: 10 íconos propios SVG a mano, 24px, trazo
+  1.75 (los 8 de Identidad-Componentes.dc.html + Menú/Cerrar para el nav
+  mobile, que el prototipo no tenía diseñados todavía).
 - `src/components/ui/Boton.jsx` (+ css): las 5 variantes (principal, acento,
   secundario, destructivo, enlace), usable como `<button>`, `<a href>` o
   `<Link to>`.
@@ -143,11 +146,71 @@ que ahí está. Archivos clave a abrir antes de escribir código:
   textarea + ayuda/error, con aria-describedby y aria-invalid.
 - `src/components/ui/Etiqueta.jsx` (+ css): las 5 etiquetas de estado
   (disponible, sin-stock, oferta, guardado, desactivado).
-- Verificado con `npm run build` y con una captura de pantalla real
-  (desktop y mobile) contra el servidor de preview: coincide con la
-  identidad visual del prototipo.
-- `src/App.jsx` tiene una vista de control **provisoria** que muestra todo
-  lo anterior junto — se reemplaza en el paso 2 por el enrutamiento real.
+
+### Paso 2 — datos, servicios, layouts, navegación y Context
+
+- `src/data/categorias.js`, `productos.js` (21 productos), `usuarios.js`
+  (las 2 cuentas demo). Los campos de producto imitan a propósito la forma
+  de `ProductoDTO` del backend (ver comentario en el archivo).
+- `src/utils/almacenLocal.js`: wrapper de localStorage con try/catch.
+- `src/services/productosService.js` (solo lectura por ahora: listarTodos,
+  listarDisponibles, obtener — las operaciones de escritura se agregan en
+  el paso de Administración) y `authService.js` (iniciarSesion, registrar,
+  cerrarSesion, obtenerSesion) — las dos con demora artificial de 400ms.
+- `src/context/AuthContext.jsx` y `CartContext.jsx`. El carrito valida
+  contra `productosService.obtener` (disponibilidad + tope de 12 o el
+  stock, lo que sea menor) y no está atado a ningún usuario — igual que el
+  carrito del backend real, que tampoco reserva stock.
+- `src/components/layout/`: `NavbarCliente` (con menú hamburguesa en
+  mobile), `NavbarAdmin`, `Footer`, `LayoutCliente`, `LayoutAdmin`,
+  `RutaProtegida` (guarda de rutas por sesión/rol).
+- `App.jsx` con el árbol de rutas completo (las 15 páginas + el árbol
+  cliente/admin con sus dos layouts). Las páginas todavía son placeholders
+  de una línea — se completan en los pasos 3 a 7, sin tocar el ruteo de
+  nuevo.
+- Verificado con `npm run build`, con capturas reales (desktop y mobile,
+  con el menú abierto) y simulando una sesión de administrador en
+  localStorage para probar que `/administracion` deja de redirigir a
+  `/iniciar-sesion` una vez logueado, y que el navbar del cliente muestra
+  "Ir a Administración" cuando corresponde.
+
+## Notas del prototipo renderizado (para los próximos pasos)
+
+El texto de los archivos `.dc.html` no alcanza para construir fiel al
+prototipo — hay que **renderizarlos** (sirven como HTML estático con
+`npx http-server docs/prototipo` + Playwright) y mirarlos, porque tienen
+detalles que no están en el texto. Lo que ya se relevó así:
+
+- **Inicio (C1)**: hero con fondo verde, pill de categoría, título, dos
+  botones (acento + outline sobre fondo oscuro), y a la derecha un recuadro
+  "Foto de referencia" con el mascota superpuesta. Después: grilla de 5
+  categorías (ícono + nombre + "Ver productos →"), 4 productos destacados,
+  una franja "Por qué Changuito" con 4 íconos, y una sección partida
+  imagen/texto con CTA a Nosotros.
+- **Catálogo (C2)**: breadcrumb "Inicio / Productos". Buscador de ancho
+  completo + **dos botones de orden** ("↑ Menor a mayor" / "↓ Mayor a
+  menor") a la derecha — no es un `<select>`. Debajo, pills de categoría
+  **con contador** ("Almacén 6", incluido "Todos 13"), y un renglón
+  "Mostrando X de Y productos". Grilla de 4 columnas con la misma tarjeta
+  de producto que Inicio.
+- **Tarjeta de producto**: recuadro "Foto del producto" (ícono + texto, sin
+  imagen real) con la etiqueta de disponibilidad superpuesta arriba a la
+  izquierda y la categoría al lado; debajo nombre, precio grande, y dos
+  botones apilados: "Ver detalle" (secundario) + "Agregar al carrito"
+  (acento) o "No disponible por ahora" (deshabilitado) si no hay stock.
+- **Administración (A1)**: NO es una grilla de tarjetas, es una **tabla**:
+  columnas Imagen / Producto / Categoría / Precio / Disponibilidad (badge +
+  "Stock: N unidades" debajo) / Acciones (Editar + Eliminar, los dos
+  outline). Arriba: breadcrumb, título, pills de filtro con contador
+  (Todos/Disponibles/Sin stock/Desactivados) y el botón "+ Agregar
+  producto". Abajo de la tabla hay dos renglones de aclaración ("Eliminar
+  no borra el producto...") que conviene adaptar, no copiar tal cual
+  (hablan del prototipo, no de esta app ya construida).
+- **Navbar mobile**: SÍ tiene menú hamburguesa (botón cuadrado verde oscuro
+  con tres líneas, al lado del carrito) — no se ve en una captura estática
+  porque empieza cerrado. Ya implementado en `NavbarCliente.jsx`.
+
+## Estructura de carpetas esperada
 
 ## Estructura de carpetas esperada
 
@@ -173,6 +236,8 @@ src/
               EstadoVacio.jsx (reutilizable: carrito vacío / sin resultados / sin
                 productos en categoría — las tres comparten forma)
     catalogo/ TarjetaProducto.jsx (3 estados), Buscador.jsx, FiltroCategoria.jsx
+              (pills con contador), OrdenPorPrecio.jsx (2 botones, no es un
+              select — ver "Notas del prototipo renderizado")
     carrito/  FilaCarrito.jsx, ResumenCarrito.jsx
     admin/    FilaProductoAdmin.jsx, ModalConfirmarEliminacion.jsx
   pages/
@@ -289,7 +354,7 @@ se va a hacer y por qué antes de cada paso, y esperar confirmación antes de
 seguir al siguiente.
 
 1. ~~Setup del proyecto + sistema de diseño~~ ✅ hecho
-2. Layouts, navegación y `AuthContext`/`CartContext`
+2. ~~Layouts, navegación y `AuthContext`/`CartContext`~~ ✅ hecho
 3. Login + registro + política de privacidad
 4. Catálogo + detalle + carrito
 5. Checkout + confirmación

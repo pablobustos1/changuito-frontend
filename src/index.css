@@ -143,3 +143,17 @@ p {
     padding: 0 var(--espacio-2);
   }
 }
+
+/* Texto que solo necesita un lector de pantalla — ej. la palabra "Menú" del
+   botón que en pantalla ya se ve como un ícono de tres líneas. */
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
