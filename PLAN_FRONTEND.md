@@ -63,6 +63,35 @@ que ahí está. Archivos clave a abrir antes de escribir código:
    {apellido} ({email})" tomado de la sesión. Lo que sí se sigue pidiendo:
    forma de entrega, dirección (solo si es envío a domicilio) y observaciones
    (opcional, hasta 200 caracteres).
+5. **Stock en "Agregar producto" (A5)**: el prototipo deja el stock fijo en
+   0 y nunca editable, ni al crear ni al modificar ("Su stock empieza en
+   0" en el aviso de alta). El backend real pide `stockActual` como campo
+   obligatorio en el alta (`ProductoRequest`) y recién lo protege de
+   ediciones en la modificación. Para no poder crear algo que el backend
+   rechazaría el día de la integración, en "Agregar producto" el stock
+   **sí** es un campo editable (entero ≥ 0); en "Modificar producto" sigue
+   siendo de solo lectura, igual que indica el prototipo.
+6. **Filtro "Sin stock" en Administración (A1)**: el prototipo tiene un
+   cuarto filtro para productos con `disponible: true` y stock 0. En el
+   backend real eso no es un estado alcanzable: `disponible` se calcula
+   como `stockActual > 0` al crear, y al llegar a 0 por una venta el
+   producto se despublica solo (`ProductoService.descontarStock`). Con el
+   stock protegido en la edición (deviación 5), nunca queda un producto
+   disponible con 0 unidades. El filtro "Sin stock" se saca: quedan
+   Todos/Disponibles/Desactivados.
+7. **Reactivar un producto desactivado**: el propio prototipo aclara que
+   "la reactivación no está diseñada en esta etapa" (Admin-Estados.dc.html)
+   — aunque el backend real sí tiene un endpoint para esto
+   (`PATCH /activar`), no se construye acá: un producto desactivado queda
+   en ese estado de forma permanente en esta app, sin Editar ni Eliminar
+   disponibles, tal como lo deja el prototipo.
+8. **Imagen de producto en Administración**: el prototipo tiene un
+   selector de imagen simulado ("Elegir otra imagen"). Como en el resto de
+   la app ningún producto tiene foto real — Catálogo y Detalle siempre
+   muestran el mismo recuadro "Foto del producto" con un ícono, decisión
+   ya tomada en el paso 1 — agregar un selector de imagen en Administración
+   sería una simulación sin ningún efecto visible en ningún lado. Se saca
+   del formulario.
 
 ## Stack (decidido, no renegociar sin motivo)
 
@@ -354,6 +383,61 @@ que ahí está. Archivos clave a abrir antes de escribir código:
   demasiado cortos), el estado de éxito tras un envío válido, y mobile
   (390px) de las dos pantallas.
 
+### Paso 7 — Administración completa
+
+- Antes de construir, se revisó el backend real (`ProductoRequest`,
+  `ProductoController`, `ProductoService`) para que las reglas de negocio
+  de alta/baja/modificación coincidan exactamente — de ahí salen las
+  desviaciones 5, 6 y 7 de "Desviaciones del prototipo" y la corrección de
+  la regla del stock en "Reglas de negocio".
+- `src/services/productosService.js`: se agregan `crear`, `actualizar` y
+  `eliminar`. `crear` calcula `disponible = stockActual > 0`, igual que
+  `ProductoService.crear` real; `actualizar` nunca toca `stockActual` ni
+  `disponible`, aunque se los pasen; `eliminar` es baja lógica (nunca saca
+  el producto del array) y rechaza eliminar un producto ya desactivado,
+  igual que `ProductoService.darDeBaja`.
+- `src/utils/validacionesProducto.js`: validaciones de Nuevo/Modificar
+  producto, con los mensajes copiados tal cual de `Admin-Estados.dc.html`
+  (extraídos del HTML, no de memoria) — incluye `parsearPrecio`, que
+  acepta "2350" o "2350,50" (coma decimal) y rechaza cualquier otra cosa.
+- `src/components/admin/`: `SelectorCategoria.jsx` (pills de categoría,
+  selección única, no un `<select>`), `FormularioProducto.jsx` (compartido
+  entre Nuevo y Modificar — las dos pantallas usan exactamente las mismas
+  reglas de validación, según el propio prototipo; la única diferencia
+  real es el stock, editable en uno y de solo lectura en el otro),
+  `FilaProductoAdmin.jsx` (la fila de la tabla, con Editar/Eliminar
+  deshabilitados si el producto está desactivado) y
+  `ModalConfirmarEliminacion.jsx` (A4, con foco inicial en "Cancelar" y
+  cierre con Escape o clic afuera).
+- `src/components/ui/Recuadro.jsx`: se agrega la variante `exito` (verde,
+  ícono de check) y un botón de cerrar opcional (`onCerrar`), para los
+  avisos de "Producto agregado"/"Cambios guardados"/"Producto desactivado"
+  que aparecen arriba del listado después de una acción
+  (Admin-Estados.dc.html: "se pueden cerrar").
+- `ListadoProductos.jsx` (A1): tabla con pills de filtro con contador
+  (Todos/Disponibles/Desactivados — sin "Sin stock", ver deviación 6). El
+  resaltado "Guardado" de la fila recién creada/modificada y el aviso de
+  arriba viajan en el estado de navegación desde Nuevo/Modificar/Eliminar,
+  con el mismo cuidado que en Finalizar compra (paso 5) para que el aviso
+  nunca se repita si se vuelve a esta pantalla sin pasar por una acción.
+- `DetalleProductoAdmin.jsx` (A2): ficha completa con Modificar/Eliminar —
+  no estaba en el mapa de rutas original de un vistazo, pero el propio
+  `Mapa-de-pantallas.dc.html` dice que el listado tiene "Ver, Modificar y
+  Eliminar" por fila (tres acciones, no dos); "Ver" es el nombre del
+  producto, que lleva acá.
+- `NuevoProducto.jsx` (A5) y `ModificarProducto.jsx` (A3): wrappers finos
+  sobre `FormularioProducto`, cada uno arma el `onGuardar` que llama al
+  servicio correspondiente y navega de vuelta al listado con el aviso.
+- Verificado con Playwright de punta a punta, no solo "compila": el
+  resumen de error con los 5 campos vacíos de Agregar producto, el
+  mensaje específico de precio inválido ("tres mil" como texto), crear un
+  producto nuevo y verlo aparecer resaltado en el listado con su aviso,
+  ver su ficha (A2), modificarlo (con el stock mostrado de solo lectura),
+  eliminarlo desde el listado con el modal de confirmación, y confirmar
+  que terminó desactivado con Editar/Eliminar inhabilitados — todo contra
+  la tabla completa de 21 productos semilla, más mobile (390px) del
+  listado y de Agregar producto.
+
 ## Notas del prototipo renderizado (para los próximos pasos)
 
 El texto de los archivos `.dc.html` no alcanza para construir fiel al
@@ -465,9 +549,14 @@ src/
 
 ## Reglas de negocio a respetar aunque no haya backend
 
-- El stock es de solo lectura en los formularios de producto (crear/editar).
-  No se ingresa a mano en la edición, coincide con la regla real del
-  backend.
+- El stock **solo se ingresa a mano al crear un producto** — el backend
+  real (`ProductoRequest.stockActual`) lo pide como obligatorio en el
+  alta. **Al modificar, el stock es de solo lectura**: ni el backend real
+  ni esta app lo tocan ahí, cambia únicamente por eventos de negocio
+  (confirmación de pedidos, reposición), nunca a mano. (Corrección sobre
+  una versión anterior de esta misma regla, que decía "solo lectura en
+  crear y editar" — ver paso 7, fue una imprecisión mía: el backend real
+  solo lo protege en la modificación, no en el alta.)
 - "Eliminar" un producto en administración es baja lógica: pasa a
   "Desactivado", no desaparece del listado ni dispara ninguna acción
   destructiva real.
@@ -562,7 +651,7 @@ seguir al siguiente.
 4. ~~Catálogo + detalle + carrito~~ ✅ hecho
 5. ~~Checkout + confirmación~~ ✅ hecho
 6. ~~Nosotros + Contacto~~ ✅ hecho
-7. Administración completa, con sus rutas protegidas
+7. ~~Administración completa, con sus rutas protegidas~~ ✅ hecho
 8. Pulido de accesibilidad y responsive + revisión contra cada criterio de
    la rúbrica
 9. **Guía de defensa** (`DEFENSA_FRONTEND.md`): igual que se hizo para el

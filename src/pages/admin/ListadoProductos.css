@@ -1,0 +1,101 @@
+.pagina-admin-listado {
+  padding-top: var(--espacio-2);
+  padding-bottom: var(--espacio-5);
+}
+
+.pagina-admin-listado-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--espacio-3);
+  margin-top: var(--espacio-2);
+  margin-bottom: var(--espacio-3);
+  flex-wrap: wrap;
+}
+.pagina-admin-listado-encabezado p {
+  color: var(--color-texto-suave);
+  margin-top: 4px;
+  max-width: 50ch;
+}
+
+.pagina-admin-listado-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: var(--espacio-3);
+}
+.pagina-admin-listado-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--color-borde);
+  background: var(--color-blanco);
+  color: var(--color-texto);
+  font: 600 14px var(--fuente-texto);
+  cursor: pointer;
+}
+.pagina-admin-listado-pill span {
+  font: 700 12px var(--fuente-texto);
+  color: var(--color-texto-suave);
+}
+.pagina-admin-listado-pill-activa {
+  background: var(--color-verde-principal);
+  border-color: var(--color-verde-principal);
+  color: var(--color-blanco);
+}
+.pagina-admin-listado-pill-activa span {
+  color: var(--color-blanco);
+  opacity: 0.85;
+}
+
+.pagina-admin-listado-cargando,
+.pagina-admin-listado-vacio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: var(--espacio-4) 0;
+  color: var(--color-texto-suave);
+}
+
+.pagina-admin-listado-tabla-envoltorio {
+  overflow-x: auto;
+  background: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+}
+
+.pagina-admin-listado-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+.pagina-admin-listado-tabla thead th {
+  text-align: left;
+  font: 700 12px var(--fuente-texto);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-texto-suave);
+  padding: var(--espacio-2);
+  background: var(--color-crema);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.pagina-admin-listado-nota {
+  font-size: 13px;
+  color: var(--color-texto-suave);
+  margin-top: var(--espacio-3);
+  max-width: 70ch;
+}
+
+@media (max-width: 640px) {
+  .pagina-admin-listado-encabezado {
+    flex-direction: column;
+  }
+  .pagina-admin-listado-encabezado .boton {
+    width: 100%;
+    justify-content: center;
+  }
+}

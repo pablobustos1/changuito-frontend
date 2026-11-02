@@ -51,3 +51,30 @@
 .recuadro-error .recuadro-icono {
   color: var(--color-error);
 }
+
+.recuadro-exito {
+  background: var(--color-verde-suave);
+  border: 1px solid var(--color-verde-principal);
+  color: var(--color-texto);
+}
+.recuadro-exito .recuadro-icono {
+  color: var(--color-verde-principal);
+}
+
+.recuadro-cuerpo {
+  flex: 1;
+}
+
+.recuadro-cerrar {
+  flex-shrink: 0;
+  align-self: flex-start;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-texto-suave);
+  border-radius: 999px;
+  padding: 2px;
+}
+.recuadro-cerrar:hover {
+  color: var(--color-texto);
+}

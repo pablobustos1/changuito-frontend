@@ -1,0 +1,49 @@
+.formulario-producto-grilla {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--espacio-3);
+  align-items: start;
+}
+
+.formulario-producto-campos,
+.formulario-producto-lateral {
+  background: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+  padding: var(--espacio-3);
+}
+
+.formulario-producto-acciones {
+  display: flex;
+  gap: var(--espacio-2);
+  margin-top: var(--espacio-2);
+}
+
+.formulario-producto-stock-fijo h2 {
+  margin-bottom: var(--espacio-2);
+}
+.formulario-producto-stock-valor {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: var(--espacio-2);
+}
+.formulario-producto-stock-valor strong {
+  font: var(--tipo-precio);
+  color: var(--color-verde-oscuro);
+}
+.formulario-producto-stock-valor span {
+  color: var(--color-texto-suave);
+  font-size: 14px;
+}
+.formulario-producto-stock-fijo p {
+  font-size: 13px;
+  color: var(--color-texto-suave);
+}
+
+@media (max-width: 900px) {
+  .formulario-producto-grilla {
+    grid-template-columns: 1fr;
+  }
+}

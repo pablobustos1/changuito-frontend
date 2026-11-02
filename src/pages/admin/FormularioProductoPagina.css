@@ -1,0 +1,19 @@
+.pagina-admin-formulario {
+  padding-top: var(--espacio-2);
+  padding-bottom: var(--espacio-5);
+}
+
+.pagina-admin-formulario h1 {
+  margin-top: var(--espacio-2);
+}
+
+.pagina-admin-formulario > p:not([class]) {
+  color: var(--color-texto-suave);
+  margin-bottom: var(--espacio-3);
+}
+
+.pagina-admin-formulario-cargando {
+  padding: var(--espacio-5) 0;
+  text-align: center;
+  color: var(--color-texto-suave);
+}

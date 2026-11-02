@@ -1,0 +1,70 @@
+.fila-producto-admin td {
+  padding: var(--espacio-2);
+  border-bottom: 1px solid var(--color-borde);
+  vertical-align: middle;
+}
+
+.fila-producto-admin-foto {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radio-campo);
+  background: var(--color-verde-suave);
+  color: var(--color-verde-principal);
+}
+
+.fila-producto-admin td:nth-child(2) a {
+  font: 600 15px var(--fuente-texto);
+  color: var(--color-texto);
+  text-decoration: none;
+}
+.fila-producto-admin td:nth-child(2) a:hover {
+  color: var(--color-verde-principal);
+  text-decoration: underline;
+}
+
+.fila-producto-admin-disponibilidad {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+.fila-producto-admin-stock {
+  font-size: 13px;
+  color: var(--color-texto-suave);
+}
+
+.fila-producto-admin-acciones {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.fila-producto-admin-acciones .boton {
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 13px;
+}
+
+.fila-producto-admin-accion-inactiva {
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+.fila-producto-admin-destacada {
+  background: var(--color-verde-suave);
+  transition: background 400ms ease;
+}
+
+.fila-producto-admin-desactivada td:nth-child(2) a {
+  color: var(--color-texto-suave);
+  text-decoration: line-through;
+}
+.fila-producto-admin-desactivada {
+  color: var(--color-texto-suave);
+}
+.fila-producto-admin-desactivada td:nth-child(3),
+.fila-producto-admin-desactivada td:nth-child(4) {
+  color: var(--color-texto-suave);
+}
