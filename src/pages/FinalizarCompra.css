@@ -1,0 +1,146 @@
+.pagina-finalizar-compra {
+  padding-top: var(--espacio-2);
+  padding-bottom: var(--espacio-5);
+}
+
+.pagina-finalizar-compra-cargando {
+  padding: var(--espacio-5) 0;
+  text-align: center;
+  color: var(--color-texto-suave);
+}
+
+.pagina-finalizar-compra-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--espacio-2);
+  margin-top: var(--espacio-2);
+}
+
+.pagina-finalizar-compra-dato-ejemplo {
+  flex-shrink: 0;
+  font: var(--tipo-etiqueta);
+  font-size: 13px;
+  color: var(--color-texto-suave);
+  border: 1px dashed var(--color-borde);
+  border-radius: 999px;
+  padding: 5px 14px;
+}
+
+.pagina-finalizar-compra-grilla {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--espacio-3);
+  align-items: start;
+  margin-top: var(--espacio-3);
+}
+
+.pagina-finalizar-compra-columna {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+}
+
+.tarjeta-finalizar-compra {
+  background: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+  padding: var(--espacio-3);
+}
+.tarjeta-finalizar-compra h2 {
+  margin-bottom: var(--espacio-2);
+}
+
+.finalizar-compra-comprando-como {
+  font-size: 15px;
+  color: var(--color-texto);
+}
+
+/* ----------------------------------------------------------- Entrega */
+.opciones-entrega {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espacio-2);
+  margin-bottom: var(--espacio-3);
+}
+
+.opcion-entrega {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: var(--espacio-2);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-campo);
+  cursor: pointer;
+}
+.opcion-entrega-activa {
+  background: var(--color-verde-suave);
+  border-color: var(--color-verde-principal);
+}
+.opcion-entrega input {
+  margin-top: 3px;
+  accent-color: var(--color-verde-principal);
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.opcion-entrega span {
+  display: flex;
+  flex-direction: column;
+}
+.opcion-entrega strong {
+  font: 700 15px var(--fuente-texto);
+  color: var(--color-verde-oscuro);
+}
+.opcion-entrega small {
+  font-size: 13px;
+  color: var(--color-texto-suave);
+}
+
+/* ------------------------------------------------------- Medio de pago */
+.medio-pago-fijo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--espacio-2);
+  border: 1px solid var(--color-verde-principal);
+  border-radius: var(--radio-campo);
+  background: var(--color-verde-suave);
+}
+.medio-pago-fijo strong {
+  font: 700 15px var(--fuente-texto);
+  color: var(--color-verde-oscuro);
+}
+.medio-pago-fijo p {
+  font-size: 13px;
+  color: var(--color-texto-suave);
+}
+
+/* ---------------------------------------------------------- Acciones */
+.pagina-finalizar-compra-acciones {
+  display: flex;
+  gap: var(--espacio-2);
+  flex-wrap: wrap;
+  margin-top: var(--espacio-3);
+}
+
+.pagina-finalizar-compra-disclaimer {
+  font-size: 13px;
+  color: var(--color-texto-suave);
+  margin-top: var(--espacio-1);
+}
+
+@media (max-width: 900px) {
+  .pagina-finalizar-compra-grilla {
+    grid-template-columns: 1fr;
+  }
+  .pagina-finalizar-compra-encabezado {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 560px) {
+  .opciones-entrega {
+    grid-template-columns: 1fr;
+  }
+}

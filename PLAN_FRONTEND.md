@@ -264,6 +264,54 @@ que ahí está. Archivos clave a abrir antes de escribir código:
   posición en vez de por nombre — confirmado reproduciendo con un locator
   por texto que "Agregar al carrito" agrega el producto correcto.
 
+### Paso 5 — Finalizar compra y confirmación
+
+- `FinalizarCompra.jsx` (+ css, C5): "Tus datos" y "Medio de pago" no son
+  formularios (ver "Desviaciones del prototipo" #2 y #4) — nombre/apellido/
+  correo salen de la sesión ("Comprando como {nombre} {apellido}
+  ({email})") y el medio de pago es una tarjeta fija "Transferencia
+  (simulado)", sin selector. Lo único que se valida es "Entrega": dos
+  tarjetas tipo radio (domicilio/retiro), dirección obligatoria solo con
+  domicilio, observaciones opcionales con tope duro de 200 caracteres
+  (`maxLength`, no un error post-submit — más simple y nunca deja el campo
+  en un estado inválido). Si el carrito queda vacío o sin ningún producto
+  disponible (incluso entrando directo por URL), redirige a `/carrito`.
+- `src/components/compra/ResumenPedido.jsx` (+ css): "Resumen del pedido"
+  con cada línea (cantidad × precio unitario → subtotal) y el total,
+  reusado en C5 (con link "Editar carrito") y C6 (sin él, porque ahí el
+  carrito ya está vacío). Distinto de `ResumenCarrito.jsx` del paso 4, que
+  es el resumen corto del Carrito con el botón "Finalizar compra".
+- `CompraConfirmada.jsx` (+ css, C6): como no hay backend, no existe nada
+  que "guardar" — todo lo que se muestra viaja en `location.state`, puesto
+  una sola vez al confirmar (número de operación `DEMO-XXXXXX` generado al
+  azar, resumen de líneas, datos de entrega). Entrar directo a esta URL (o
+  refrescar la página) no tiene `state` y redirige a Inicio, igual que si
+  el pedido nunca hubiera existido.
+- Bug real encontrado y corregido durante la verificación (no un problema
+  del test): al confirmar, vaciar el carrito y navegar a
+  `/compra-confirmada` pasaban en el mismo evento. Eso podía disparar el
+  guard de "carrito vacío → volver a `/carrito`" de `FinalizarCompra`
+  *después* de la navegación a la confirmación pero *antes* de que el
+  componente llegara a desmontarse, pisando con un segundo
+  `replace` la URL de confirmación y dejando al usuario de vuelta en un
+  carrito vacío en lugar de ver la pantalla de éxito. Se solucionó moviendo
+  `vaciar()` a un `useEffect` dentro de `CompraConfirmada` (se vacía ahí,
+  una vez montada con un `state` válido), así el carrito sigue teniendo
+  productos durante toda la navegación de `FinalizarCompra` y el guard
+  nunca llega a dispararse.
+- Verificado con Playwright: pantalla completa, el error de dirección
+  obligatoria (y que desaparece al cambiar a "Retiro en el local" o al
+  volver a elegir "Entrega a domicilio"), la compra confirmada completa
+  (con los datos de entrega y el resumen correctos, y el carrito en 0
+  después), los dos *guards* de navegación directa (sin `state` → Inicio;
+  carrito vacío → Carrito) probados con una pestaña nueva para no arrastrar
+  `history.state` de la navegación anterior, y mobile (390px).
+- Pendiente para antes de la defensa (ya estaba anotado desde el paso 3,
+  sigue sin resolver): completar el nombre y apellido reales de la cuenta
+  `chenzito@gmail.com` en `src/data/usuarios.js` — hoy dice "[completar]
+  [completar]" y ahora se ve también en "Comprando como..." de Finalizar
+  compra y en el saludo de Compra confirmada.
+
 ## Notas del prototipo renderizado (para los próximos pasos)
 
 El texto de los archivos `.dc.html` no alcanza para construir fiel al
@@ -470,7 +518,7 @@ seguir al siguiente.
 2. ~~Layouts, navegación y `AuthContext`/`CartContext`~~ ✅ hecho
 3. ~~Login + registro + política de privacidad~~ ✅ hecho
 4. ~~Catálogo + detalle + carrito~~ ✅ hecho
-5. Checkout + confirmación
+5. ~~Checkout + confirmación~~ ✅ hecho
 6. Nosotros + Contacto
 7. Administración completa, con sus rutas protegidas
 8. Pulido de accesibilidad y responsive + revisión contra cada criterio de
