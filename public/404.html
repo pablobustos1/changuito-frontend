@@ -1,0 +1,38 @@
+<!doctype html>
+<!--
+  GitHub Pages sirve este archivo para cualquier ruta que no exista como
+  archivo real (ej. /changuito-frontend/productos/1, al entrar directo o
+  recargar). Como esta app es una SPA con react-router, esa ruta SÍ existe
+  para React, solo que GitHub Pages no lo sabe — así que acá se guarda la
+  ruta pedida en la URL como query string y se redirige a index.html, que
+  la decodifica (ver el script agregado en index.html) y se la pasa al
+  router. Truco estándar para SPAs en GitHub Pages:
+  https://github.com/rafgraph/spa-github-pages
+-->
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Changuito</title>
+    <script type="text/javascript">
+      var pathSegmentsToKeep = 1; // mantiene "/changuito-frontend"
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname.split("/").slice(0, 1 + pathSegmentsToKeep).join("/") +
+          "/?/" +
+          l.pathname
+            .slice(1)
+            .split("/")
+            .slice(pathSegmentsToKeep)
+            .join("/")
+            .replace(/&/g, "~and~") +
+          (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+          l.hash,
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -26,10 +26,17 @@ import NuevoProducto from "./pages/admin/NuevoProducto";
  * bajo LayoutAdmin — protegido una sola vez a la altura del layout, no en
  * cada página admin por separado. /finalizar-compra pide sesión de
  * cualquier rol; /administracion pide sesión de Administrador.
+ *
+ * `basename`: en desarrollo la app vive en la raíz ("/"), pero el build que
+ * se publica en GitHub Pages vive en "/changuito-frontend/" (un sitio de
+ * proyecto, no de usuario) — sin avisarle esto al router, ninguna ruta
+ * matchea ahí ("No routes matched location"). `import.meta.env.BASE_URL` ya
+ * trae el valor correcto en los dos casos: lo define `base` en
+ * vite.config.js, Vite lo inyecta solo, no hace falta duplicarlo a mano.
  */
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <AuthProvider>
         <CartProvider>
           <Routes>
