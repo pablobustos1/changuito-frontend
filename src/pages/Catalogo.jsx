@@ -107,6 +107,11 @@ function Catalogo() {
         total={productos.length}
       />
 
+      {/* Oculto a la vista: el nombre de cada producto es un <h3> (ver
+       * TarjetaProducto), así que hace falta un <h2> antes para no saltear
+       * un nivel de la jerarquía de encabezados. */}
+      <h2 className="visualmente-oculto">Resultados</h2>
+
       {!cargando && (
         <p className="pagina-catalogo-resultado">
           Mostrando {filtrados.length} de {productos.length} productos

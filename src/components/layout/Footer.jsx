@@ -2,14 +2,17 @@ import { Link } from "react-router-dom";
 import pulgar from "../../assets/marca/pulgar.png";
 import "./Footer.css";
 
+/* Calculado una sola vez al cargar el módulo, no en cada render del
+ * componente — evita llamar a `Date` (una función impura) durante el
+ * render. */
+const ANIO_ACTUAL = new Date().getFullYear();
+
 /**
  * Pie de página — solo del lado del comprador (Mapa-de-pantallas.dc.html:
  * "Solo en el lado del comprador"). Los datos entre corchetes son los mismos
  * que deja sin completar el prototipo: no se inventan.
  */
 function Footer() {
-  const anioActual = new Date().getFullYear();
-
   return (
     <footer className="footer">
       <div className="contenedor footer-contenido">
@@ -58,7 +61,7 @@ function Footer() {
 
       <div className="contenedor footer-barra-inferior">
         <p>
-          © {anioActual} Changuito · Trabajo práctico de Aplicaciones
+          © {ANIO_ACTUAL} Changuito · Trabajo práctico de Aplicaciones
           Interactivas, UADE
         </p>
         <nav aria-label="Legal">

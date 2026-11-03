@@ -107,13 +107,13 @@
   white-space: nowrap;
 }
 
-@media (max-width: 900px) {
-  .navbar-cliente-links {
-    gap: var(--espacio-2);
-  }
-}
-
-@media (max-width: 768px) {
+/* El menú de escritorio (logo + links + carrito + sesión, todo en una
+ * sola fila sin wrap) necesita alrededor de 920px para no desbordar
+ * cuando hay sesión iniciada ("Hola, {nombre}" + Cerrar sesión +
+ * Carrito) — por eso el menú hamburguesa arranca en 940px (con margen),
+ * no en 768px como en un inicio (encontrado con una revisión de
+ * desborde horizontal, paso 8). */
+@media (max-width: 940px) {
   .navbar-cliente-boton-menu {
     display: inline-flex;
   }

@@ -438,6 +438,108 @@ que ahí está. Archivos clave a abrir antes de escribir código:
   la tabla completa de 21 productos semilla, más mobile (390px) del
   listado y de Agregar producto.
 
+### Paso 8 — Pulido de accesibilidad/responsive y revisión contra la rúbrica
+
+**Metodología.** Hasta acá cada paso se había verificado con capturas de
+Playwright en 1-2 anchos puntuales. Para este paso se armaron dos
+auditorías automatizadas que recorren **todas** las pantallas (incluidos
+los estados con error, el menú mobile abierto, el modal de Administración,
+y las vistas con sesión de cliente y de administrador):
+
+- **Accesibilidad**: `axe-core` inyectado con Playwright contra las 21
+  pantallas/estados, con las reglas `wcag2a`/`wcag2aa`/`best-practice`.
+- **Responsive**: un barrido de `document.documentElement.scrollWidth` vs.
+  `clientWidth` en 11 anchos (320 a 1280px) × todas las rutas, para
+  detectar desbordes horizontales reales en vez de mirar capturas una por
+  una.
+
+**Bugs encontrados y corregidos** (los cuatro, reales, no falsos
+positivos — verificados de nuevo después de cada corrección):
+
+1. **Orden de encabezados** (Catálogo y Carrito con ítems): el nombre de
+   cada producto es un `<h3>` (`TarjetaProducto`/`FilaCarrito`), pero
+   ninguna de las dos páginas tenía un `<h2>` antes — saltaban de `<h1>` a
+   `<h3>`. Se agregó un `<h2 className="visualmente-oculto">` antes de la
+   grilla/lista en cada una (oculto a la vista, solo corrige la jerarquía
+   para lectores de pantalla).
+2. **Navbar del cliente desbordaba entre ~820 y 920px con sesión
+   iniciada**: el menú de escritorio (logo + links + Carrito + "Hola,
+   {nombre}" + Cerrar sesión, todo en una fila sin wrap) necesita más
+   ancho del que el breakpoint original (768px) le daba — a partir de
+   768px ya mostraba el menú de escritorio completo, que recién entra
+   cómodo pasados los 920px. Se subió el breakpoint del menú hamburguesa
+   de 768px a 940px (con margen).
+3. **Formulario de Administración (Nuevo/Modificar producto) desbordaba
+   en pantallas angostas (320px)**: `.formulario-producto-campos` y
+   `.formulario-producto-lateral` son ítems de una grilla CSS, que por
+   default no se achican por debajo del contenido que tengan adentro
+   (`min-width: auto` implícito) — alcanza con que un campo sea un poco
+   más ancho que la columna para que toda la grilla se desborde. Se
+   agregó `min-width: 0` a los dos.
+4. **Los botones "Agregar producto"/"Guardar cambios" + "Cancelar" no
+   envolvían** a 320px, agregando otro desborde más chico. Se agregó
+   `flex-wrap: wrap` a `.formulario-producto-acciones`.
+
+Después de las cuatro correcciones: **0 violaciones de accesibilidad y 0
+desbordes horizontales** en el barrido completo (re-verificado, no
+asumido).
+
+**Revisión de código (`oxlint`).** Quedan 9 warnings, todos revisados y
+aceptados a propósito (no silenciados sin mirar):
+
+- 7 son `set-state-in-effect` en los `useEffect` que piden datos a
+  `productosService`/`authService` (patrón estándar "fetch en un efecto",
+  el mismo que documenta la propia React — no hay nada que sincronizar
+  fuera de un efecto acá, es justamente lo que un efecto es para esto).
+- 2 son `only-export-components` en `AuthContext.jsx`/`CartContext.jsx`,
+  por exportar el Provider y el hook (`useAuth`/`useCart`) desde el mismo
+  archivo — patrón estándar de Context de React; solo afecta el Fast
+  Refresh del modo desarrollo, no el build ni el comportamiento.
+- La falta de `vaciar` en las dependencias del `useEffect` de
+  `CompraConfirmada.jsx` (paso 5) ya tiene su propio comentario en el
+  código explicando por qué es a propósito (incluirla causaría un bucle,
+  ver el archivo).
+
+**Revisión contra los 8 criterios de `Rubrica_Apis_Interactivas.pdf`**
+(no es la autoevaluación final — esa va en `DEFENSA_FRONTEND.md`, paso 9
+— es el chequeo de que no falta nada grueso antes de escribirla):
+
+1. **Adecuación al modelo de negocios**: categorías, productos y reglas
+   calcadas del backend real (paso 1); flujo completo comprador (catálogo
+   → carrito → compra simulada) y administrador (ABM de productos) para
+   un almacén de barrio. Sin huecos pendientes.
+2. **Estructura y arquitectura**: navbar + migas en cada pantalla,
+   layouts separados cliente/admin, rutas protegidas, URLs predecibles
+   (`/productos/:id`, `/administracion/productos/:id/editar`). Verificado
+   que se puede recorrer toda la app solo con los links de la interfaz.
+3. **Semántica y accesibilidad**: 0 violaciones de `axe-core` en 21
+   pantallas/estados (ver arriba) — jerarquía de encabezados corregida,
+   `<label>` asociado en todos los campos (`CampoFormulario`), botones
+   solo-ícono con `aria-label`, `aria-live` en los avisos, foco visible
+   global, navegación 100% por teclado (elementos nativos, sin trampas).
+4. **Diseño visual y usabilidad**: un solo sistema de diseño
+   (`src/index.css`) para toda la app, sin combinaciones de color fuera
+   de las aprobadas, tipografía y espaciado consistentes de principio a
+   fin.
+5. **Adaptabilidad a distintos dispositivos**: 0 desbordes horizontales
+   de 320px a 1280px en todas las rutas (ver arriba), con los tres bugs
+   de responsive que aparecieron corregidos.
+6. **Interacción y comportamiento**: cada flujo probado de punta a punta
+   con Playwright en su propio paso (agregar al carrito, filtros,
+   checkout, ABM de administración, modal de confirmación) — no solo que
+   "compila", sino que cada botón hace lo que dice.
+7. **Formularios, validaciones y estados**: los 6 formularios de la app
+   (Registrarse, Iniciar sesión, Contacto, Finalizar compra,
+   Nuevo/Modificar producto) con etiquetas, validaciones y mensajes
+   copiados o adaptados del prototipo, resumen de errores + error por
+   campo, y estados de éxito/espera/vacío en cada pantalla que los
+   necesita.
+8. **Calidad técnica**: componentes chicos y reusados a propósito
+   (`Boton`, `CampoFormulario`, `Recuadro`, `Etiqueta`, `Migas`,
+   `FormularioProducto` compartido entre Nuevo/Modificar), capa de
+   servicios separada de las páginas, `oxlint` revisado (ver arriba), sin
+   casos de "no sé por qué funciona esto".
+
 ## Notas del prototipo renderizado (para los próximos pasos)
 
 El texto de los archivos `.dc.html` no alcanza para construir fiel al
@@ -652,8 +754,8 @@ seguir al siguiente.
 5. ~~Checkout + confirmación~~ ✅ hecho
 6. ~~Nosotros + Contacto~~ ✅ hecho
 7. ~~Administración completa, con sus rutas protegidas~~ ✅ hecho
-8. Pulido de accesibilidad y responsive + revisión contra cada criterio de
-   la rúbrica
+8. ~~Pulido de accesibilidad y responsive + revisión contra cada criterio de
+   la rúbrica~~ ✅ hecho
 9. **Guía de defensa** (`DEFENSA_FRONTEND.md`): igual que se hizo para el
    backend — las preguntas de la rúbrica y del material de la cátedra
    respondidas contra el código real, con el mapeo explícito de qué parte

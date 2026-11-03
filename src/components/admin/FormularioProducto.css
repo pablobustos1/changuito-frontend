@@ -7,6 +7,10 @@
 
 .formulario-producto-campos,
 .formulario-producto-lateral {
+  /* Los ítems de grid no se achican por debajo de su contenido por
+   * default (min-width: auto): sin esto, en pantallas angostas el campo
+   * de texto más ancho empuja la columna entera fuera del viewport. */
+  min-width: 0;
   background: var(--color-blanco);
   border: 1px solid var(--color-borde);
   border-radius: var(--radio-tarjeta);
@@ -15,6 +19,7 @@
 
 .formulario-producto-acciones {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--espacio-2);
   margin-top: var(--espacio-2);
 }

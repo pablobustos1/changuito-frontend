@@ -111,6 +111,9 @@ function Carrito() {
 
       <div className="pagina-carrito-grilla">
         <div className="pagina-carrito-lineas">
+          {/* Oculto a la vista: el nombre de cada línea es un <h3> (ver
+           * FilaCarrito), así que hace falta un <h2> antes. */}
+          <h2 className="visualmente-oculto">Productos en el carrito</h2>
           {itemsResueltos.map(({ item, producto }) => (
             <FilaCarrito key={item.idProducto} item={item} producto={producto} />
           ))}
