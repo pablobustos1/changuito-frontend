@@ -756,9 +756,9 @@ seguir al siguiente.
 7. ~~Administración completa, con sus rutas protegidas~~ ✅ hecho
 8. ~~Pulido de accesibilidad y responsive + revisión contra cada criterio de
    la rúbrica~~ ✅ hecho
-9. **Guía de defensa** (`DEFENSA_FRONTEND.md`): igual que se hizo para el
+9. ~~**Guía de defensa** (`DEFENSA_FRONTEND.md`): igual que se hizo para el
    backend — las preguntas de la rúbrica y del material de la cátedra
    respondidas contra el código real, con el mapeo explícito de qué parte
    del código responde a cada uno de los 8 criterios de
    `Rubrica_Apis_Interactivas.pdf`. Se escribe al final, contra el código
-   terminado, no antes.
+   terminado, no antes.~~ ✅ hecho — ver `DEFENSA_FRONTEND.md`.
