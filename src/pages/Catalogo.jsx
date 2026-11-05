@@ -89,9 +89,6 @@ function Catalogo() {
           <h1>Nuestros productos</h1>
           <p>Elegí por rubro, buscá por nombre o ordená por precio.</p>
         </div>
-        <span className="pagina-catalogo-dato-ejemplo">
-          Productos y precios de ejemplo
-        </span>
       </div>
 
       <div className="pagina-catalogo-controles">

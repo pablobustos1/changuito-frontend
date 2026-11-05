@@ -92,7 +92,6 @@ function Contacto() {
 
       <div className="pagina-contacto-encabezado">
         <h1>Contacto</h1>
-        <span className="pagina-contacto-dato-ejemplo">Formulario simulado</span>
       </div>
       <p className="pagina-contacto-subtitulo">
         Si tenés una consulta sobre Changuito, completá el formulario y contanos.

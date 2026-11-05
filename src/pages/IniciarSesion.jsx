@@ -101,12 +101,9 @@ function IniciarSesion() {
             </Link>
           </p>
 
-          <Recuadro variante="info" titulo="Esto es una simulación académica">
-            No es tu contraseña real de ningún servicio. No se envía a ningún
-            servidor: queda guardada solo en este navegador. Cuentas de
-            prueba — Administrador:{" "}
-            <strong>adminchanguito@gmail.com / 123456</strong> · Cliente:{" "}
-            <strong>chenzito@gmail.com / 123456</strong>.
+          <Recuadro variante="info" titulo="Cuentas de prueba">
+            Administrador: <strong>adminchanguito@gmail.com / 123456</strong>{" "}
+            · Cliente: <strong>chenzito@gmail.com / 123456</strong>.
           </Recuadro>
         </div>
       </div>

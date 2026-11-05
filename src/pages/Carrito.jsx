@@ -95,9 +95,6 @@ function Carrito() {
 
       <div className="pagina-carrito-encabezado">
         <h1>Tu carrito</h1>
-        <span className="pagina-carrito-dato-ejemplo">
-          Compra simulada · datos de ejemplo
-        </span>
       </div>
 
       <IndicadorPasos pasoActivo={1} />

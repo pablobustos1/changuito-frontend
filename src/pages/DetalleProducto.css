@@ -74,12 +74,6 @@
   font: var(--tipo-texto);
   color: var(--color-texto);
   max-width: 48ch;
-}
-
-.pagina-detalle-dato-ejemplo {
-  font-size: 13px;
-  color: var(--color-texto-suave);
-  margin-top: 6px;
   margin-bottom: var(--espacio-3);
 }
 

@@ -1,8 +1,5 @@
 /**
  * Semilla de usuarios. Las dos cuentas de demostración de PLAN_FRONTEND.md.
- *
- * El nombre y apellido de chenzito están sin confirmar — reemplazar antes de
- * la defensa si corresponde.
  */
 export const USUARIOS_SEMILLA = [
   {
@@ -16,8 +13,8 @@ export const USUARIOS_SEMILLA = [
   },
   {
     idUsuario: 2,
-    nombre: "[completar]",
-    apellido: "[completar]",
+    nombre: "Pablo",
+    apellido: "Bustos",
     email: "chenzito@gmail.com",
     telefono: "1100000001",
     contrasena: "123456",

@@ -92,7 +92,6 @@ function Inicio() {
             <span className="inicio-eyebrow">Categorías</span>
             <h2>Recorré el almacén por rubro</h2>
           </div>
-          <span className="inicio-pill">Categorías de ejemplo</span>
         </div>
 
         <div className="inicio-categorias">
@@ -119,7 +118,6 @@ function Inicio() {
             <h2>Productos destacados</h2>
           </div>
           <div className="inicio-destacados-acciones">
-            <span className="inicio-pill">Productos y precios de ejemplo</span>
             <Link to="/productos" className="inicio-ver-todos">
               Ver todos los productos →
             </Link>

@@ -11,16 +11,6 @@
   margin-top: var(--espacio-2);
 }
 
-.pagina-contacto-dato-ejemplo {
-  flex-shrink: 0;
-  font: var(--tipo-etiqueta);
-  font-size: 13px;
-  color: var(--color-texto-suave);
-  border: 1px dashed var(--color-borde);
-  border-radius: 999px;
-  padding: 5px 14px;
-}
-
 .pagina-contacto-subtitulo {
   color: var(--color-texto-suave);
   margin-top: var(--espacio-1);

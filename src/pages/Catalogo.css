@@ -17,16 +17,6 @@
   margin-top: 6px;
 }
 
-.pagina-catalogo-dato-ejemplo {
-  flex-shrink: 0;
-  font: var(--tipo-etiqueta);
-  font-size: 13px;
-  color: var(--color-texto-suave);
-  border: 1px dashed var(--color-borde);
-  border-radius: 999px;
-  padding: 5px 14px;
-}
-
 .pagina-catalogo-controles {
   display: flex;
   gap: var(--espacio-2);

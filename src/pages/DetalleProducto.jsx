@@ -124,9 +124,6 @@ function DetalleProducto() {
           <h1>{producto.nombre}</h1>
           <p className="pagina-detalle-precio">{formatearPrecio(producto.precio)}</p>
           <p className="pagina-detalle-descripcion">{producto.detalle}</p>
-          <p className="pagina-detalle-dato-ejemplo">
-            Producto, descripción y precio de ejemplo.
-          </p>
 
           {sinStock ? (
             <div className="pagina-detalle-caja-sin-stock">
