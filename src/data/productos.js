@@ -1,3 +1,4 @@
+import yerbaMate from "../assets/productos/yerba-mate.jpg";
 import arroz from "../assets/productos/arroz.jpg";
 import fideosGuiseros from "../assets/productos/fideos-guiseros.jpg";
 import aceiteGirasol from "../assets/productos/aceite-girasol.jpg";
@@ -36,7 +37,7 @@ export const PRODUCTOS_SEMILLA = [
     idCategoria: 1,
     nombreCategoria: "Almacén",
     oferta: false,
-    imagen: null,
+    imagen: yerbaMate,
   },
   {
     idProducto: 2,
