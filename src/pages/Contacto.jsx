@@ -197,30 +197,26 @@ function Contacto() {
 
         <aside className="tarjeta-otros-datos">
           <h2>Otros datos de contacto</h2>
-          <p>
-            Espacios para completar con los datos reales del comercio. Por
-            ahora no hay ninguno cargado.
-          </p>
           <dl>
             <div>
               <dt>Correo de contacto</dt>
-              <dd>[Correo de contacto]</dd>
+              <dd>contacto@changuito.com.ar</dd>
             </div>
             <div>
               <dt>Teléfono</dt>
-              <dd>[Teléfono]</dd>
+              <dd>011 2345-6789</dd>
             </div>
             <div>
               <dt>Dirección del local</dt>
-              <dd>[Dirección del local]</dd>
+              <dd>Av. Rivadavia 4850, Caballito, CABA</dd>
             </div>
             <div>
               <dt>Horario de atención</dt>
-              <dd>[Horario de atención]</dd>
+              <dd>Lunes a sábado, de 9 a 20 h</dd>
             </div>
             <div>
               <dt>Redes sociales</dt>
-              <dd>[Redes sociales]</dd>
+              <dd>Instagram: @changuito.almacen</dd>
             </div>
           </dl>
         </aside>

@@ -92,11 +92,6 @@
   top: 88px;
 }
 .tarjeta-otros-datos h2 {
-  margin-bottom: var(--espacio-1);
-}
-.tarjeta-otros-datos > p {
-  font-size: 14px;
-  color: var(--color-texto-suave);
   margin-bottom: var(--espacio-3);
 }
 .tarjeta-otros-datos dl {
@@ -113,8 +108,6 @@
 }
 .tarjeta-otros-datos dd {
   color: var(--color-texto-suave);
-  text-decoration: underline dashed;
-  text-underline-offset: 3px;
 }
 
 @media (max-width: 900px) {

@@ -9,8 +9,8 @@ const ANIO_ACTUAL = new Date().getFullYear();
 
 /**
  * Pie de página — solo del lado del comprador (Mapa-de-pantallas.dc.html:
- * "Solo en el lado del comprador"). Los datos entre corchetes son los mismos
- * que deja sin completar el prototipo: no se inventan.
+ * "Solo en el lado del comprador"). Los datos de contacto son ficticios,
+ * para que el pie no quede con espacios vacíos.
  */
 function Footer() {
   return (
@@ -47,15 +47,15 @@ function Footer() {
           <Link to="/contacto" className="footer-boton-contacto">
             Escribinos
           </Link>
-          <p className="footer-dato">[Correo de contacto]</p>
-          <p className="footer-dato">[Teléfono]</p>
+          <p className="footer-dato">contacto@changuito.com.ar</p>
+          <p className="footer-dato">011 2345-6789</p>
         </div>
 
         <div className="footer-columna">
           <h2>Información institucional</h2>
-          <p className="footer-dato">[Nombre del comercio]</p>
-          <p className="footer-dato">[Dirección del local]</p>
-          <p className="footer-dato">[Horario de atención]</p>
+          <p className="footer-dato">Almacén Changuito</p>
+          <p className="footer-dato">Av. Rivadavia 4850, Caballito, CABA</p>
+          <p className="footer-dato">Lunes a sábado, de 9 a 20 h</p>
         </div>
       </div>
 
