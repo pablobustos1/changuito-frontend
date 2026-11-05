@@ -59,25 +59,15 @@
   position: relative;
 }
 .inicio-hero-foto {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 6px;
   aspect-ratio: 4 / 3;
   background: var(--color-crema);
   border-radius: var(--radio-tarjeta);
-  padding: var(--espacio-3);
-  color: var(--color-verde-principal);
+  overflow: hidden;
 }
-.inicio-hero-foto p {
-  font: 700 15px var(--fuente-texto);
-  color: var(--color-texto);
-}
-.inicio-hero-foto span {
-  font-size: 13px;
-  color: var(--color-texto-suave);
+.inicio-hero-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .inicio-hero-mascota {
   position: absolute;

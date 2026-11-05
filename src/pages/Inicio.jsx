@@ -7,6 +7,7 @@ import TarjetaProducto from "../components/catalogo/TarjetaProducto";
 import { IconoAlmacen, IconoCarrito, IconoBuscar, IconoConfirmar } from "../components/ui/Iconos";
 import festejo from "../assets/marca/festejo.png";
 import senalando from "../assets/marca/senalando.png";
+import gondolaAlmacen from "../assets/marca/gondola-almacen.jpg";
 import "./Inicio.css";
 
 /* Uno de cada rubro, para que los destacados muestren variedad de categorías
@@ -77,9 +78,7 @@ function Inicio() {
 
           <div className="inicio-hero-imagen">
             <div className="inicio-hero-foto">
-              <IconoAlmacen width={32} height={32} />
-              <p>Foto de referencia</p>
-              <span>Productos frescos y artículos de almacén, una mesa o góndola.</span>
+              <img src={gondolaAlmacen} alt="Góndola de almacén con productos variados" />
             </div>
             <img src={festejo} alt="" className="inicio-hero-mascota" width="130" height="137" />
           </div>
