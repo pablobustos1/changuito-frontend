@@ -108,9 +108,15 @@ function DetalleProducto() {
         <div
           className={`pagina-detalle-foto ${sinStock ? "pagina-detalle-foto-sin-stock" : ""}`}
         >
-          <IconoAlmacen width={48} height={48} />
-          <p>Foto principal del producto</p>
-          <span>Foto de referencia, se reemplaza por la real.</span>
+          {producto.imagen ? (
+            <img src={producto.imagen} alt="" />
+          ) : (
+            <>
+              <IconoAlmacen width={48} height={48} />
+              <p>Foto principal del producto</p>
+              <span>Foto de referencia, se reemplaza por la real.</span>
+            </>
+          )}
         </div>
 
         <div className="pagina-detalle-info">

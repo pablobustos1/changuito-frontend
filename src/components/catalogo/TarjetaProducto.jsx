@@ -40,8 +40,14 @@ function TarjetaProducto({ producto }) {
       className={`tarjeta-producto ${sinStock ? "tarjeta-producto-sin-stock" : ""}`}
     >
       <div className="tarjeta-producto-foto">
-        <IconoAlmacen width={32} height={32} />
-        <span>Foto del producto</span>
+        {producto.imagen ? (
+          <img src={producto.imagen} alt="" />
+        ) : (
+          <>
+            <IconoAlmacen width={32} height={32} />
+            <span>Foto del producto</span>
+          </>
+        )}
       </div>
 
       <div className="tarjeta-producto-textos">

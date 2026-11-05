@@ -21,7 +21,11 @@ function FilaProductoAdmin({ producto, destacada, onEliminar }) {
     <tr className={`fila-producto-admin ${destacada ? "fila-producto-admin-destacada" : ""} ${desactivado ? "fila-producto-admin-desactivada" : ""}`.trim()}>
       <td data-etiqueta="Imagen">
         <span className="fila-producto-admin-foto" aria-hidden="true">
-          <IconoAlmacen width={20} height={20} />
+          {producto.imagen ? (
+            <img src={producto.imagen} alt="" />
+          ) : (
+            <IconoAlmacen width={20} height={20} />
+          )}
         </span>
       </td>
       <td data-etiqueta="Producto">

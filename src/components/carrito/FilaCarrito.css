@@ -26,6 +26,13 @@
   background: var(--color-verde-suave);
   color: var(--color-verde-principal);
   border-radius: var(--radio-campo);
+  overflow: hidden;
+}
+.fila-carrito-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 6px;
 }
 .fila-carrito-no-disponible .fila-carrito-foto {
   background: var(--color-borde);

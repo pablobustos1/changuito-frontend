@@ -100,8 +100,14 @@ function DetalleProductoAdmin() {
         <div
           className={`pagina-admin-detalle-foto ${desactivado ? "pagina-admin-detalle-foto-desactivada" : ""}`}
         >
-          <IconoAlmacen width={44} height={44} />
-          <p>Foto del producto</p>
+          {producto.imagen ? (
+            <img src={producto.imagen} alt="" />
+          ) : (
+            <>
+              <IconoAlmacen width={44} height={44} />
+              <p>Foto del producto</p>
+            </>
+          )}
         </div>
 
         <div className="pagina-admin-detalle-info">

@@ -29,7 +29,11 @@ function FilaCarrito({ item, producto }) {
     return (
       <article className="fila-carrito fila-carrito-no-disponible">
         <div className="fila-carrito-foto">
-          <IconoAlmacen width={28} height={28} />
+          {producto.imagen ? (
+            <img src={producto.imagen} alt="" />
+          ) : (
+            <IconoAlmacen width={28} height={28} />
+          )}
         </div>
         <div className="fila-carrito-cuerpo">
           <div className="fila-carrito-fila-superior">
@@ -104,7 +108,11 @@ function FilaCarrito({ item, producto }) {
   return (
     <article className={`fila-carrito ${error ? "fila-carrito-con-error" : ""}`}>
       <div className="fila-carrito-foto">
-        <IconoAlmacen width={28} height={28} />
+        {producto.imagen ? (
+          <img src={producto.imagen} alt="" />
+        ) : (
+          <IconoAlmacen width={28} height={28} />
+        )}
       </div>
       <div className="fila-carrito-cuerpo">
         <div className="fila-carrito-fila-superior">

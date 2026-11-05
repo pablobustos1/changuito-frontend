@@ -27,9 +27,16 @@
   background: var(--color-verde-suave);
   color: var(--color-verde-principal);
   border-radius: var(--radio-tarjeta);
+  overflow: hidden;
+  padding: var(--espacio-3);
 }
 .pagina-admin-detalle-foto p {
   font: 700 15px var(--fuente-texto);
+}
+.pagina-admin-detalle-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .pagina-admin-detalle-foto-desactivada {
   background: var(--color-crema);

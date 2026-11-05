@@ -13,6 +13,13 @@
   border-radius: var(--radio-campo);
   background: var(--color-verde-suave);
   color: var(--color-verde-principal);
+  overflow: hidden;
+}
+.fila-producto-admin-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
 }
 
 .fila-producto-admin td:nth-child(2) a {

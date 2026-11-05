@@ -1,3 +1,9 @@
+import arroz from "../assets/productos/arroz.jpg";
+import fideosGuiseros from "../assets/productos/fideos-guiseros.jpg";
+import aceiteGirasol from "../assets/productos/aceite-girasol.jpg";
+import azucar from "../assets/productos/azucar.jpg";
+import dulceDeLeche from "../assets/productos/dulce-de-leche.jpg";
+
 /**
  * Catálogo de ejemplo. Los campos imitan a propósito la forma de ProductoDTO
  * del backend real (idProducto, nombre, detalle, precio, stockActual,
@@ -7,8 +13,11 @@
  *
  * `oferta` e `imagen` son agregados propios del frontend, no existen en el
  * DTO del backend: `oferta` es un adorno visual (la etiqueta "Oferta" del
- * prototipo) y `imagen` queda en null porque no hay fotos reales — se usa el
- * recuadro de referencia en todos los casos (Identidad-Componentes.dc.html).
+ * prototipo) e `imagen` es la URL de una foto (importada como asset de Vite)
+ * o `null` — cuando es `null`, todos los componentes que muestran una foto
+ * caen al recuadro de referencia genérico, como pedía el prototipo
+ * originalmente. Por ahora solo Almacén tiene fotos reales (de uso libre,
+ * conseguidas por el usuario), el resto sigue con el recuadro genérico.
  *
  * Dos casos preparados a propósito, como hacía DatosDemo.java en el backend:
  * un producto con una sola unidad (Dulce de leche) y uno agotado y dado de
@@ -39,7 +48,7 @@ export const PRODUCTOS_SEMILLA = [
     idCategoria: 1,
     nombreCategoria: "Almacén",
     oferta: false,
-    imagen: null,
+    imagen: arroz,
   },
   {
     idProducto: 3,
@@ -51,7 +60,7 @@ export const PRODUCTOS_SEMILLA = [
     idCategoria: 1,
     nombreCategoria: "Almacén",
     oferta: false,
-    imagen: null,
+    imagen: fideosGuiseros,
   },
   {
     idProducto: 4,
@@ -63,7 +72,7 @@ export const PRODUCTOS_SEMILLA = [
     idCategoria: 1,
     nombreCategoria: "Almacén",
     oferta: false,
-    imagen: null,
+    imagen: aceiteGirasol,
   },
   {
     idProducto: 5,
@@ -75,7 +84,7 @@ export const PRODUCTOS_SEMILLA = [
     idCategoria: 1,
     nombreCategoria: "Almacén",
     oferta: false,
-    imagen: null,
+    imagen: azucar,
   },
   {
     idProducto: 6,
@@ -87,7 +96,7 @@ export const PRODUCTOS_SEMILLA = [
     idCategoria: 1,
     nombreCategoria: "Almacén",
     oferta: false,
-    imagen: null,
+    imagen: dulceDeLeche,
   },
   // ---------------------------------------------------------------- Bebidas
   {

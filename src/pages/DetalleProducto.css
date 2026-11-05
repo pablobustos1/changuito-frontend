@@ -33,9 +33,15 @@
   color: var(--color-verde-principal);
   border-radius: var(--radio-tarjeta);
   padding: var(--espacio-3);
+  overflow: hidden;
 }
 .pagina-detalle-foto p {
   font: 700 16px var(--fuente-texto);
+}
+.pagina-detalle-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .pagina-detalle-foto span {
   font-size: 13px;

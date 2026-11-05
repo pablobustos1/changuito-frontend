@@ -39,7 +39,11 @@ function ModalConfirmarEliminacion({ producto, onConfirmar, onCancelar, eliminan
 
         <div className="modal-eliminacion-producto">
           <span className="modal-eliminacion-foto">
-            <IconoAlmacen width={22} height={22} />
+            {producto.imagen ? (
+              <img src={producto.imagen} alt="" />
+            ) : (
+              <IconoAlmacen width={22} height={22} />
+            )}
           </span>
           <div>
             <strong>{producto.nombre}</strong>
